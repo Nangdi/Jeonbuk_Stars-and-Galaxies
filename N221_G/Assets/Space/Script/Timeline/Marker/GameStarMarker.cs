@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -6,7 +6,7 @@ using UnityEngine.Timeline;
 
 
 /// <summary>
-/// ∫∞≈¨∏≥ ƒ¡∆Æ∑—
+/// Î≥ÑÌÅ¥Î¶Ω Ïª®Ìä∏Î°§
 /// </summary>
 public partial class GameSceneMarker : Marker, INotification
 {

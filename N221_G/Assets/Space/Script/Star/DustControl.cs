@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,12 +22,12 @@ public class DustControl : MonoBehaviour
         isPlay = false;
     }
 
-    //ÆÄÆ¼Å¬ ½ÇÇà
+    //íŒŒí‹°í´ ì‹¤í–‰
     public void OnPlay() {
         particleSystem.Play();
     }
 
-    //ÆÄÆ¼Å¬ ¼Ò¸ê
+    //íŒŒí‹°í´ ì†Œë©¸
     public void OnStop() {
         particleSystem.Stop();
     }

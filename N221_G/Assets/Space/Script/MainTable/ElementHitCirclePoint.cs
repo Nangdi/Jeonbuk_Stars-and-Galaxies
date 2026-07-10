@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,30 +7,30 @@ using static StarObject;
 
 
 
-//Ãæµ¹¿µ¿ª Ä«¸Ş¶ó ÁÂÇ¥ ¿¬°è 
+//ì¶©ëŒì˜ì—­ ì¹´ë©”ë¼ ì¢Œí‘œ ì—°ê³„ 
 public class ElementHitCirclePoint : MonoBehaviour
 {
-    //¸ŞÀÎ Ä«¸Ş¶ó ¼³Á¤
+    //ë©”ì¸ ì¹´ë©”ë¼ ì„¤ì •
     public Camera mainSystemCamera;
     public StarObject starObject;
     private Coroutine onLoop = null;
     
-    [Header("È÷Æ® ¿µ¿ª layerMask")]
+    [Header("íˆíŠ¸ ì˜ì—­ layerMask")]
     public string hitLayerMask;
 
-    //»ç¿îµå Å¬·¡½º
+    //ì‚¬ìš´ë“œ í´ë˜ìŠ¤
     public SoundClass soundClass;
 
     [System.Serializable]
     public class SoundClass
     {
-        //ºû Ãæµ¹ »ı¼º À½Çâ
+        //ë¹› ì¶©ëŒ ìƒì„± ìŒí–¥
         public AudioClip audioClip1;
         public AudioClip audioClip2;
         public AudioSource audioSource;
     }
 
-    //Äİ¶óÀÌ´õ Á¤º¸
+    //ì½œë¼ì´ë” ì •ë³´
     public Collider2D collider2D;
 
     private void OnEnable()
@@ -52,12 +52,12 @@ public class ElementHitCirclePoint : MonoBehaviour
 
     }
 
-    //½ÃÀÛ Ä¿¸Çµå 
+    //ì‹œì‘ ì»¤ë§¨ë“œ 
     public void OnInit(StarObject starObject) {
         CreateStarObject(starObject);
     }
 
-    //º°¿ÀºêÁ§Æ® »ı¼º ±¸°£ 
+    //ë³„ì˜¤ë¸Œì íŠ¸ ìƒì„± êµ¬ê°„ 
     private void CreateStarObject(StarObject starObject) {
 
         GameObject addStarObject = GameObject.Instantiate(
@@ -69,7 +69,7 @@ public class ElementHitCirclePoint : MonoBehaviour
 
 
 
-    //·çÇÁ Á¤Áö
+    //ë£¨í”„ ì •ì§€
     private void RemoveOnLoop() {
         if (onLoop != null) {
             StopCoroutine(onLoop);
@@ -77,7 +77,7 @@ public class ElementHitCirclePoint : MonoBehaviour
         }
     }
 
-    //·çÇÁ ÀÛµ¿ (ÄÚ·çÆ¾)
+    //ë£¨í”„ ì‘ë™ (ì½”ë£¨í‹´)
     IEnumerator OnLoop() {
         yield return new WaitUntil(()=> starObject);
         while (true) {
@@ -89,7 +89,7 @@ public class ElementHitCirclePoint : MonoBehaviour
 
     private Coroutine onTriggerDisable = null;
 
-    //Ãæµ¹ Æ®¸®°Å »èÁ¦ ÁøÇà
+    //ì¶©ëŒ íŠ¸ë¦¬ê±° ì‚­ì œ ì§„í–‰
     IEnumerator OnTriggerDisable() {
         yield return null;
         collider2D.enabled = false;
@@ -126,7 +126,7 @@ public class ElementHitCirclePoint : MonoBehaviour
                 if (stepValue < 4)
                 {
                     collision.enabled = false;
-                    //Å¸ÀÓ¶óÀÎ »ı¼ºµµµÇ±â Àü¿¡ Ãæµ¹ÇßÀ»°æ¿ì
+                    //íƒ€ì„ë¼ì¸ ìƒì„±ë„ë˜ê¸° ì „ì— ì¶©ëŒí–ˆì„ê²½ìš°
                     starObject.insertStep = (StarStepData.Step)stepValue;
                     starObject.StepStarChange();
                 }
@@ -156,11 +156,11 @@ public class ElementHitCirclePoint : MonoBehaviour
 
     //private StarStepData.Step currentStep = StarStepData.Step.Step1;
     /// <summary>
-    /// º° »ı¼º½Ã ¿ø¼Ò ±âÈ£ Ãæµ¹Ã³¸® °ü·Ã 
-    /// º° Ãæµ¹ ´©Àû Ã³¸® ÇÏ´Â°ø°£ 
+    /// ë³„ ìƒì„±ì‹œ ì›ì†Œ ê¸°í˜¸ ì¶©ëŒì²˜ë¦¬ ê´€ë ¨ 
+    /// ë³„ ì¶©ëŒ ëˆ„ì  ì²˜ë¦¬ í•˜ëŠ”ê³µê°„ 
     /// </summary>
     private void HitObject() {
-        //¿ÜºÎ ¿ø¼Ò±âÈ£ Ãæµ¹ Ã³¸® 
+        //ì™¸ë¶€ ì›ì†Œê¸°í˜¸ ì¶©ëŒ ì²˜ë¦¬ 
         RaycastHit2D[] hits = Physics2D.RaycastAll(
            this.transform.position,
            this.transform.right*2f);
@@ -193,7 +193,7 @@ public class ElementHitCirclePoint : MonoBehaviour
                     if (stepValue < 4)
                     {
                         his.collider.enabled = false;
-                        //Å¸ÀÓ¶óÀÎ »ı¼ºµµµÇ±â Àü¿¡ Ãæµ¹ÇßÀ»°æ¿ì
+                        //íƒ€ì„ë¼ì¸ ìƒì„±ë„ë˜ê¸° ì „ì— ì¶©ëŒí–ˆì„ê²½ìš°
                         starObject.insertStep = (StarStepData.Step)stepValue;
                         starObject.StepStarChange();
                     }
@@ -204,7 +204,7 @@ public class ElementHitCirclePoint : MonoBehaviour
 
 
     /// <summary>
-    /// º°»ı¼º À§Ä¡ ¼±Á¤ ±¸°£ 
+    /// ë³„ìƒì„± ìœ„ì¹˜ ì„ ì • êµ¬ê°„ 
     /// </summary>
     public void StarPosition() {
         Vector3 pos = mainSystemCamera.transform.position + this.transform.position;

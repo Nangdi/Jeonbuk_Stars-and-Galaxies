@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -13,13 +13,13 @@ public class SettingControllerEditor : Editor
         base.OnInspectorGUI();
         SettingController _target = target as SettingController;
 
-        if (GUILayout.Button("Ä«¸Ş¶ó À§Ä¡ »çÀÌÁî Á¤ÀÇ"))
+        if (GUILayout.Button("ì¹´ë©”ë¼ ìœ„ì¹˜ ì‚¬ì´ì¦ˆ ì •ì˜"))
         {
             _target.mainTargetCamera.orthographicSize = 
                 _target.SetCameraSize();
         }
 
-        if (GUILayout.Button("¸Ş½¬ »çÀÌÁî È®ÀÎ")) {
+        if (GUILayout.Button("ë©”ì‰¬ ì‚¬ì´ì¦ˆ í™•ì¸")) {
             _target.SetMeshData();
         }
 
@@ -28,31 +28,31 @@ public class SettingControllerEditor : Editor
 #endif
 
 /// <summary>
-/// ¸ŞÀÎ ¼ÂÆÃ È­¸é ±¸¼º
+/// ë©”ì¸ ì…‹íŒ… í™”ë©´ êµ¬ì„±
 /// </summary>
 public class SettingController : MonoBehaviour
 {
 
-    //ÇöÀçÀÇ Ä«¸Ş¶ó Á¤º¸
-    [Header("¸ŞÀÎ Camera Á¤º¸")]
+    //í˜„ì¬ì˜ ì¹´ë©”ë¼ ì •ë³´
+    [Header("ë©”ì¸ Camera ì •ë³´")]
     public Camera mainTargetCamera;
 
-    //¸Ş½¬ Á¤º¸
-    [Header("¸ŞÀÎ Sprite Á¤º¸")]
+    //ë©”ì‰¬ ì •ë³´
+    [Header("ë©”ì¸ Sprite ì •ë³´")]
     public SpriteRenderer mainSpriteRenderer;
 
-    [Header("¸ŞÀÎ Renderer Á¤º¸")]
+    [Header("ë©”ì¸ Renderer ì •ë³´")]
     public Renderer mainRenderer;
 
     /// <summary>
-    /// Ä«¸Ş¶ó ¼ÂÆÃ
+    /// ì¹´ë©”ë¼ ì…‹íŒ…
     /// </summary>
     /// <returns></returns>
     public float SetCameraSize()
     { 
-        //Å©±â Á¤º¸
+        //í¬ê¸° ì •ë³´
         Vector3 _size = mainSpriteRenderer.bounds.extents;
-        //À§Ä¡ Á¤º¸
+        //ìœ„ì¹˜ ì •ë³´
         Vector3 _center = mainSpriteRenderer.bounds.center;
         _center.z = -50f;
         mainTargetCamera.transform.position = _center;
@@ -60,10 +60,10 @@ public class SettingController : MonoBehaviour
     }
 
 
-    //¸Ş½¬ »çÀÌÁî º¯°æ
+    //ë©”ì‰¬ ì‚¬ì´ì¦ˆ ë³€ê²½
     public void SetMeshData() {
         
-        //º¹Á¦ ¿ÀºêÁ§Æ® 
+        //ë³µì œ ì˜¤ë¸Œì íŠ¸ 
         Vector3 _size = mainSpriteRenderer.bounds.extents;
         Bounds bounds = mainRenderer.localBounds;
         float scX = 1f / bounds.extents.x;

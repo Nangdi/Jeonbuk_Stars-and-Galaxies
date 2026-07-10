@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,11 +7,11 @@ using UnityEngine;
 using static ErrorControl;
 using static UserTableSettingBase;
 
-//¿¡·¯ »ç¿ëÀÚ Áö½Ã ÅØ½ºÆ®
+//ì—ëŸ¬ ì‚¬ìš©ì ì§€ì‹œ í…ìŠ¤íŠ¸
 public class ErrorControl : TextDataContent
 {
 
-    //Å¸ÀÓ ÀÎµ¦½º Á¤º¸
+    //íƒ€ì„ ì¸ë±ìŠ¤ ì •ë³´
     private int timeIndex = 0;
 
     public override void OnEnable()
@@ -21,7 +21,7 @@ public class ErrorControl : TextDataContent
         timeIndex = 0;
     }
 
-    //ÅØ½ºÆ® Á¤º¸ µî·Ï ±¸°£
+    //í…ìŠ¤íŠ¸ ì •ë³´ ë“±ë¡ êµ¬ê°„
     private void SetTextPhraseData()
     {
         if (textDataList[0].stationState.Equals(
@@ -33,11 +33,11 @@ public class ErrorControl : TextDataContent
         }
     }
 
-    //Å¸ÀÓ ÅØ½ºÆ® Ã¼ÀÎÁö 
+    //íƒ€ì„ í…ìŠ¤íŠ¸ ì²´ì¸ì§€ 
     public override void TimeTextChange() {
         if (timeIndex > 2)
         {
-            //ÃÖÁ¾¹®±¸ º¯°æÀÌ µÇµµ·Ï ±¸¼º ÁøÇà 
+            //ìµœì¢…ë¬¸êµ¬ ë³€ê²½ì´ ë˜ë„ë¡ êµ¬ì„± ì§„í–‰ 
             UserTableSettingBase.StationState stationState=GetCurrentMission();
             switch (stationState) {
                 case UserTableSettingBase.StationState.mission1:
@@ -54,7 +54,7 @@ public class ErrorControl : TextDataContent
         }
     }
 
-    //ÇöÀçÀÇ ÅØ½ºÆ® ¹Ì¼Ç »óÅÂ Á¤º¸
+    //í˜„ì¬ì˜ í…ìŠ¤íŠ¸ ë¯¸ì…˜ ìƒíƒœ ì •ë³´
     private UserTableSettingBase.StationState GetCurrentMission() {
         return textDataList[0].stationState;
     }

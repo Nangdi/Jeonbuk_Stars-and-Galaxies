@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,12 +13,12 @@ public class UserWaitingCountDown : NextSceneClip
     public TextMeshPro countText;
     public bool isEnd = false;
 
-    [Header("Å¸ÀÌ¸Ó Á¾·á")]
+    [Header("íƒ€ì´ë¨¸ ì¢…ë£Œ")]
     public EndTimeCountEvent endTimeCountEvent;
     [System.Serializable]
     public class EndTimeCountEvent : UnityEvent { }
 
-    [Header("Å¸ÀÌ¸Ó ÀÛµ¿")]
+    [Header("íƒ€ì´ë¨¸ ì‘ë™")]
     public TimeChangeEvent timeChangeEvent;
     [System.Serializable]
     public class TimeChangeEvent:UnityEvent<int> { }
@@ -34,7 +34,7 @@ public class UserWaitingCountDown : NextSceneClip
     }
 
     /// <summary>
-    /// ¹Ì¼Ç ½ºÅ¸Æ®
+    /// ë¯¸ì…˜ ìŠ¤íƒ€íŠ¸
     /// </summary>
     private void MissionStart()
     {
@@ -49,7 +49,7 @@ public class UserWaitingCountDown : NextSceneClip
         OnRemoveLoop();
     }
 
-    //Ä«¿îÅÍ ·çÇÁ ÁøÇà
+    //ì¹´ìš´í„° ë£¨í”„ ì§„í–‰
     IEnumerator OnLoop()
     {
         while (true)
@@ -67,7 +67,7 @@ public class UserWaitingCountDown : NextSceneClip
                 if (currentCount == 0)
                 {
                     //endTimeCountEvent.Invoke();
-                    Debug.Log("Å¸ÀÌ¸Ó Á¾·á");
+                    Debug.Log("íƒ€ì´ë¨¸ ì¢…ë£Œ");
                     GotoSceneClip();
                     GameObjectControl.Instance.stationState = UserTableSettingBase.StationState.experience;
                     isEnd = true;
@@ -83,7 +83,7 @@ public class UserWaitingCountDown : NextSceneClip
         }
     }
 
-    //½Ã°£ ÃÊ±âÈ­
+    //ì‹œê°„ ì´ˆê¸°í™”
     public void ResetTimer()
     {
         isEnd = true;
@@ -92,14 +92,14 @@ public class UserWaitingCountDown : NextSceneClip
         SetText();
     }
 
-    //Å¸ÀÌ¸Ó ÀÛµ¿
+    //íƒ€ì´ë¨¸ ì‘ë™
     public void StartTimer()
     {
         isEnd = false;
         GameObjectControl.Instance.isGamePlay = true;
     }
 
-    //ÀÏ½ÃÁ¤Áö
+    //ì¼ì‹œì •ì§€
     public void PauseTimer()
     {
         isEnd = true;

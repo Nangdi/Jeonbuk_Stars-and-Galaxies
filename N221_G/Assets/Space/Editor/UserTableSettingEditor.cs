@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-//»ç¿ëÀÚ Å×ÀÌºí ¼ÂÆÃ ÇöÀå ¼³Á¤¿ë
+//ì‚¬ìš©ì í…Œì´ë¸” ì…‹íŒ… í˜„ì¥ ì„¤ì •ìš©
 [CustomEditor(typeof(UserTableSetting))]
 public partial class UserTableSettingEditor : Editor
 {
@@ -13,12 +13,12 @@ public partial class UserTableSettingEditor : Editor
         base.OnInspectorGUI();
 
         UserTableSetting userTableSetting=target as UserTableSetting;
-        if (GUILayout.Button("ÇÏÀ§ ±ÛÀÚ º¯°æ")) {
+        if (GUILayout.Button("í•˜ìœ„ ê¸€ì ë³€ê²½")) {
             userTableSetting.TextSizeChange();
          
         }
 
-        if (GUILayout.Button("Å×ÀÌºí ¼ÂÆÃ"))
+        if (GUILayout.Button("í…Œì´ë¸” ì…‹íŒ…"))
         {
             userTableSetting.SetMeshData();
             //TableSetting();

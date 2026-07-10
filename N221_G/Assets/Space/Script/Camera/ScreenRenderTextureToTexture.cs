@@ -1,12 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-//·»´õ ÅØ½ºÃÄ Á¤º¸ º¯°æ
+//ë Œë” í…ìŠ¤ì³ ì •ë³´ ë³€ê²½
 public class ScreenRenderTextureToTexture : MonoBehaviour
 {
-    //ÇÁ·ÎÁ§Æ® Á¤º¸
+    //í”„ë¡œì íŠ¸ ì •ë³´
     public ProjectorSim projectorSim;
 
     // Start is called before the first frame update

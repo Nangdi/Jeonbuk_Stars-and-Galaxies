@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,22 +9,22 @@ public class UserTableAddElementObject : MonoBehaviour
     public Renderer renderer;
     public MaterialPropertyBlock materialPropertyBlock;
 
-    //¿òÁ÷ÀÓ Å¸°Ù ¿ÀºêÁ§Æ®
+    //ì›€ì§ì„ íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸
     public Transform moveTargetObject;
     
     private Coroutine onInit = null;
 
-    //ºĞ·ù È®ÀÎ ÀÎµ¦½º Á¤º¸
+    //ë¶„ë¥˜ í™•ì¸ ì¸ë±ìŠ¤ ì •ë³´
     public int index = -1;
 
-    [Header("¸ğ¼Ç Å¸ÀÔ ¼±¾ğ")]
+    [Header("ëª¨ì…˜ íƒ€ì… ì„ ì–¸")]
     public MotionType motionType;
-    //¸ğ¼Ç Å¸ÀÔ ±¸ºĞ ÁöÁ¤
-    //¸ğ¼Ç1 : ¹Ì¼Ç1 ¸ğ¼Ç - ÁÖ±âÀ²Ç¥¿¡ ¿øÀÚ ¾ÈÂø 
-    //¸ğ¼Ç2 : ¹Ì¼Ç2 ¸ğ¼Ç - Áö±¸¿¡ ¿øÀÚ ¾ÈÂø (¸ğ¼Ç±îÁö ±¸¼º ÇÊ¿ä)
+    //ëª¨ì…˜ íƒ€ì… êµ¬ë¶„ ì§€ì •
+    //ëª¨ì…˜1 : ë¯¸ì…˜1 ëª¨ì…˜ - ì£¼ê¸°ìœ¨í‘œì— ì›ì ì•ˆì°© 
+    //ëª¨ì…˜2 : ë¯¸ì…˜2 ëª¨ì…˜ - ì§€êµ¬ì— ì›ì ì•ˆì°© (ëª¨ì…˜ê¹Œì§€ êµ¬ì„± í•„ìš”)
     public enum MotionType { mission1Motion, mission2Motion }
 
-    [Header("Ãæµ¹ ÆÄÆ¼Å¬ ½Ã½ºÅÛ")]
+    [Header("ì¶©ëŒ íŒŒí‹°í´ ì‹œìŠ¤í…œ")]
     public ParticleSystemImpect hitImpectParticleSystem;
     
 
@@ -45,7 +45,7 @@ public class UserTableAddElementObject : MonoBehaviour
 
     IEnumerator OnInit()
     {
-        //·»´ı ¿òÁ÷ÀÓ ÀÛµ¿±¸°£
+        //ë Œë¤ ì›€ì§ì„ ì‘ë™êµ¬ê°„
         yield return new WaitForSeconds(UnityEngine.Random.Range(0, 0.8f));
         var moveRandomTime=UnityEngine.Random.Range(1.5f, 3f);
         DOTween.To(() => transform.position,
@@ -60,7 +60,7 @@ public class UserTableAddElementObject : MonoBehaviour
     {
         Debug.Log("[OnCompleteEvent]");
     }
-    //ÇÒ¼ºÈ­ ÀÛµ¿½Ã 
+    //í• ì„±í™” ì‘ë™ì‹œ 
 
     public void OnEnable()
     {
@@ -74,7 +74,7 @@ public class UserTableAddElementObject : MonoBehaviour
     private void OnDestroy()
     {
 
-        //¹«ºê ¿ÀºêÁ§Æ® »èÁ¦ ÁøÇà 
+        //ë¬´ë¸Œ ì˜¤ë¸Œì íŠ¸ ì‚­ì œ ì§„í–‰ 
         if (motionType.Equals(MotionType.mission2Motion))
         {
             GameObject.Destroy(moveTargetObject.gameObject);
@@ -90,14 +90,14 @@ public class UserTableAddElementObject : MonoBehaviour
     }
 
 
-    //ÀçÁú º¯°æ
+    //ì¬ì§ˆ ë³€ê²½
     public void SeMaterial(Texture2D texture) {
         CreateMaterialPropertyBlock();
         materialPropertyBlock.SetTexture("_BaseMap", texture);
         renderer.SetPropertyBlock(materialPropertyBlock);
     }
 
-    //ÄÃ·¯ º¯°æ ½ÃÀÛ ±¸°£
+    //ì»¬ëŸ¬ ë³€ê²½ ì‹œì‘ êµ¬ê°„
     private void ColorChange() {
         renderer.material.DOColor(Color.clear, "_BaseColor", 0.3f);
     }
@@ -118,7 +118,7 @@ public class UserTableAddElementObject : MonoBehaviour
                 //Debug.Log(distance);
                 /**else if (motionType.Equals(MotionType.mission2Motion))
                   {
-                      //¸ğ¼Ç ¿Ï·á ÀÌº¥Æ® ÇÚµé·¯(ÆÄÆ¼Å¬ »ı¼º)
+                      //ëª¨ì…˜ ì™„ë£Œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬(íŒŒí‹°í´ ìƒì„±)
                       hitImpectParticleSystem.gameObject.SetActive(true);
                 }*/
                 if (distance < 0.01f)

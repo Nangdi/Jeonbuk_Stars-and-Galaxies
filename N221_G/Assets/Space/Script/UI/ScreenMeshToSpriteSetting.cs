@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -20,20 +20,20 @@ public class ScreenMeshToSpriteSettingEditor : Editor {
 public class ScreenMeshToSpriteSetting : MonoBehaviour
 {
 
-    //ÇöÀçÀÇ Ä«¸Ş¶ó Á¤º¸
+    //í˜„ì¬ì˜ ì¹´ë©”ë¼ ì •ë³´
     public Camera targetCamera;
 
-    //¸Ş½¬ Á¤º¸
+    //ë©”ì‰¬ ì •ë³´
     public SpriteRenderer spriteRenderer;
 
 
     public void GetData()
     {
 
-        //Å©±â Á¤º¸
+        //í¬ê¸° ì •ë³´
         Vector3 _size= spriteRenderer.bounds.extents;
         
-        //À§Ä¡ Á¤º¸
+        //ìœ„ì¹˜ ì •ë³´
         Vector3 _center = spriteRenderer.bounds.center;
         
 

@@ -1,4 +1,4 @@
-
+ï»¿
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ public class SettingControl : MonoBehaviour
     public void Update()
     {
         if (Input.GetKeyUp(keyCode)) {
-            //ÆÄÀÏ·Î ÀúÀå
+            //íŒŒì¼ë¡œ ì €ì¥
             string data = "{'size':'"+ spriteRenderer.transform.localScale+ "'}";
             data += "pos:" + spriteRenderer.transform.position+ "";
             System.IO.File.WriteAllText(Application.streamingAssetsPath+Path.DirectorySeparatorChar+"dataTestViw.json", data);

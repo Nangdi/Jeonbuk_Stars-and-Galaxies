@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,10 +11,10 @@ using static UserTableSettingBase;
 
 public class UserTotalControl : MainTimelineManager
 { 
-    //»ç¿îµå ÄÁÆ®·Ñ
+    //ì‚¬ìš´ë“œ ì»¨íŠ¸ë¡¤
     public SoundControl soundControl;
 
-    [Header("»ç¿ëÀÚ ÀÛµ¿ °á°ú")]
+    [Header("ì‚¬ìš©ì ì‘ë™ ê²°ê³¼")]
     public List<UserData> userDataList;
 
     [System.Serializable]
@@ -24,17 +24,17 @@ public class UserTotalControl : MainTimelineManager
         public bool[] isUserList = new bool[] { false, false, false, false, false };
     }
 
-    [Header("°ÔÀÓ µ¥ÀÌÅÍ ")]
+    [Header("ê²Œì„ ë°ì´í„° ")]
     public List<MissionData> missionDataList;
     [System.Serializable]
     public class MissionData
     {
         public UserTableSettingBase.StationState stationState;
-        //Á¤´ä °¹¼ö
+        //ì •ë‹µ ê°¯ìˆ˜
         //public int rightAnswer = 0;
-        //ÃÖ¼Ò 
+        //ìµœì†Œ 
         public int minRightAnswer = 0;
-        //ÃÖ´ë
+        //ìµœëŒ€
         public int maxRightAnswer = 0;
     }
 
@@ -42,41 +42,41 @@ public class UserTotalControl : MainTimelineManager
     public bool[] connectionUser = new bool[] { false, false, false, false, false };
 
 
-    [Header("»ç¿ëÀÚ ´ë±â Ä«¿îÆ® ´Ù¿î")]
+    [Header("ì‚¬ìš©ì ëŒ€ê¸° ì¹´ìš´íŠ¸ ë‹¤ìš´")]
     public UserWaitingCountDown userWaitingCountDown;
-    [Header("¿¬½À °ÔÀÓ Ä«¿îÆ® ´Ù¿î")]
+    [Header("ì—°ìŠµ ê²Œì„ ì¹´ìš´íŠ¸ ë‹¤ìš´")]
     public MissionCount practiceCountDown;
-    [Header("¹Ì¼Ç Ä«¿îÅÍ")]
+    [Header("ë¯¸ì…˜ ì¹´ìš´í„°")]
     public MissionCount missionCount;
-    [Header("¹Ì¼Ç Ä«¿îÅÍ2")]
+    [Header("ë¯¸ì…˜ ì¹´ìš´í„°2")]
     public MissionCount missionCount2;
 
     private Coroutine onUserLoop = null;
     public UserTableSettingBase.StationState stationState;
     public List<UserTableController> userTableSettingList;
     
-    //¹Ì¼Ç ¿Ï·á ÄÁÆ®·Ñ
+    //ë¯¸ì…˜ ì™„ë£Œ ì»¨íŠ¸ë¡¤
     public bool isMissionComplete = false;
     private Coroutine onMissionComplete = null;
 
-    [Header("ÅÂ¾ç°è ¿ÀºêÁ§Æ®")]
+    [Header("íƒœì–‘ê³„ ì˜¤ë¸Œì íŠ¸")]
     public GameObject solarSystemObject;
 
-    [Header("ÁÖ±âÀ²Ç¥ ¿ÀºêÁ§Æ®")]
+    [Header("ì£¼ê¸°ìœ¨í‘œ ì˜¤ë¸Œì íŠ¸")]
     public GameObject periodicTableObject;
 
-    [Header("¹Ì¼Ç Á¾·á ¿ÀºêÁ§Æ®")]
+    [Header("ë¯¸ì…˜ ì¢…ë£Œ ì˜¤ë¸Œì íŠ¸")]
     public GameObject missionCompleteObject;
     
-    [Header("Ã¼Çè »ı¼º ¿ÀºêÁ§Æ®")]
+    [Header("ì²´í—˜ ìƒì„± ì˜¤ë¸Œì íŠ¸")]
     public ElementObject elementObject;
     public Transform elementParentObject;
 
-    [Header("ÅÍÀÓ Ä«¿îÅÍ ÀÌ¹ÌÁö")]
+    [Header("í„°ì„ ì¹´ìš´í„° ì´ë¯¸ì§€")]
     public TimeCountSliderImage timeCountSliderImage;
     [System.Serializable]
     public class TimeCountSliderImage {
-        //¹Ì¼Ç 1 µô·¹ÀÌ ½½¶óÀÌ´õ ÀÌ¹ÌÁö
+        //ë¯¸ì…˜ 1 ë”œë ˆì´ ìŠ¬ë¼ì´ë” ì´ë¯¸ì§€
         public Image mission1DelaySliderImage;
     }
     
@@ -103,7 +103,7 @@ public class UserTotalControl : MainTimelineManager
         }
     }
 
-    //·çÇÁ(°á°ú È­¸é µ¿½Ã¿¡ ÀÛµ¿¿©ºÎ ÆÄ¾Ç ¼öÁ¤ ÇÊ¿äÇÑ±¸°£)
+    //ë£¨í”„(ê²°ê³¼ í™”ë©´ ë™ì‹œì— ì‘ë™ì—¬ë¶€ íŒŒì•… ìˆ˜ì • í•„ìš”í•œêµ¬ê°„)
     IEnumerator OnUserLoop() {
         while (true)
         {
@@ -155,20 +155,20 @@ public class UserTotalControl : MainTimelineManager
                                 }
 
 
-                                Debug.Log("ÀÎ·Â¿¡ µû¸¥ Á¤´äÀÎ½Ä ¿Ï·á - °ÔÀÓ Á¾·á");
+                                Debug.Log("ì¸ë ¥ì— ë”°ë¥¸ ì •ë‹µì¸ì‹ ì™„ë£Œ - ê²Œì„ ì¢…ë£Œ");
                                 OnMissionCompleteStart(GameObjectControl.Instance.stationState);
                             }
                         }
                         break;
                     //case UserTableSettingBase.StationState.mission2:
-                        //¹Ì¼Ç2 ¿Ï·á ·çÇÁ ÀÛµ¿
+                        //ë¯¸ì…˜2 ì™„ë£Œ ë£¨í”„ ì‘ë™
                        // break;
                 }
             }
         }
     }
 
-    //¹Ì¼Ç¿Ï·á ÄÚ·çÆ¾
+    //ë¯¸ì…˜ì™„ë£Œ ì½”ë£¨í‹´
     private void OnMissionCompleteStart(UserTableSettingBase.StationState stationState) {
         isMissionComplete = true;
         OnRemoveMissionComplete();
@@ -182,7 +182,7 @@ public class UserTotalControl : MainTimelineManager
         }
     }
 
-    //¹Ì¼Ç Á¾·á °£ÁÖ
+    //ë¯¸ì…˜ ì¢…ë£Œ ê°„ì£¼
     IEnumerator OnMissionComplete(UserTableSettingBase.StationState stationState) {
         if (stationState.Equals(UserTableSettingBase.StationState.mission1))
         {
@@ -193,7 +193,7 @@ public class UserTotalControl : MainTimelineManager
             yield return new WaitForSeconds(5f);
         }
         Debug.Log("[OnMissionComplete]");
-        //Å¸ÀÓ Á¾·á·Î °£ÁÖ
+        //íƒ€ì„ ì¢…ë£Œë¡œ ê°„ì£¼
         TimeEnd();
         if (stationState.Equals(UserTableSettingBase.StationState.mission2))
         {
@@ -205,7 +205,7 @@ public class UserTotalControl : MainTimelineManager
     
 
 
-    //»ç¿ëÀÚ µî·Ï
+    //ì‚¬ìš©ì ë“±ë¡
     public void UserConnection(UserTableSettingBase userTableSettingBase) {
         if (GameObjectControl.Instance.isGameEnd) {
             userTableSettingBase.UserTableGotoClip(UserTableSettingBase.StationState.mission2,
@@ -216,9 +216,9 @@ public class UserTotalControl : MainTimelineManager
         int connectionUserIndex =
             (int)userTableSettingBase.starIndex - 1;
         connectionUser[connectionUserIndex] = true;
-        Debug.Log("»ç¿ëÀÚ ¿¬°áÁöÁ¡À¸·Î °íÁ¤ [Scene1]");
+        Debug.Log("ì‚¬ìš©ì ì—°ê²°ì§€ì ìœ¼ë¡œ ê³ ì • [Scene1]");
 
-        //»ç¿ëÀÚ ¿¬°áÀº ÁøÇàÀÌ µÇÁö¸¸ Å¸ÀÓº¯°æÀº µÇÁö¾ÊÀ½
+        //ì‚¬ìš©ì ì—°ê²°ì€ ì§„í–‰ì´ ë˜ì§€ë§Œ íƒ€ì„ë³€ê²½ì€ ë˜ì§€ì•ŠìŒ
         if (!GameObjectControl.Instance.isGamePlay)
         {
             GameSceneClip gameSceneClip = userTableSettingBase.GetClipState();
@@ -244,7 +244,7 @@ public class UserTotalControl : MainTimelineManager
                 }
                 else
                 {
-                    //°øÅë ´ë±â È­¸éÀ¸·Î ÁøÇà(¿µ»ó Á¾·á ´ë±â ¹®±¸)
+                    //ê³µí†µ ëŒ€ê¸° í™”ë©´ìœ¼ë¡œ ì§„í–‰(ì˜ìƒ ì¢…ë£Œ ëŒ€ê¸° ë¬¸êµ¬)
                     userTableSettingBase.UserTableGotoClip(
                             stationState,
                             GameManager.ClipState.Scene9);
@@ -281,17 +281,17 @@ public class UserTotalControl : MainTimelineManager
         }
         userTableSettingBase.starVideoType = StarVideoType.BigStar;
         if (stationState.Equals(UserTableSettingBase.StationState.waiting)) {
-            //´ë±â¿¡¼­ »ç¿ëÀÚ Á¢±ÙÀÏ°æ¿ì ¸ŞÀÎ Å¸ÀÓ¶óÀÎ º¯°æ
-            //Ä«¿îÆ® ´Ù¿îÀ¸·Î ÀÌµ¿
+            //ëŒ€ê¸°ì—ì„œ ì‚¬ìš©ì ì ‘ê·¼ì¼ê²½ìš° ë©”ì¸ íƒ€ì„ë¼ì¸ ë³€ê²½
+            //ì¹´ìš´íŠ¸ ë‹¤ìš´ìœ¼ë¡œ ì´ë™
             GotoSceneClip(UserTableSettingBase.StationState.waiting,
                 GameManager.ClipState.Scene1);
         }
     }
 
-    //¸®¼Â
+    //ë¦¬ì…‹
     public void OnReset() {
 
-        //´ë±â È­¸éÀ¸·Î °­Á¦ ÀÌµ¿
+        //ëŒ€ê¸° í™”ë©´ìœ¼ë¡œ ê°•ì œ ì´ë™
         stationState = UserTableSettingBase.StationState.waiting;
         solarSystemObject.SetActive(false);
         periodicTableObject.SetActive(false);
@@ -300,14 +300,14 @@ public class UserTotalControl : MainTimelineManager
         missionCount2.gameObject.SetActive(false);
 
         OnRemoveMissionComplete();
-        //°á°ú ¿Ï·á ÀÌµ¿ 
+        //ê²°ê³¼ ì™„ë£Œ ì´ë™ 
         isMissionComplete = false;
-        //»ç¿ëÀÚ Á¢±Ù ÃÊ±âÈ­
+        //ì‚¬ìš©ì ì ‘ê·¼ ì´ˆê¸°í™”
         for (int i=0; i< connectionUser.Length; i++) {
             connectionUser[i] = false;
         }
 
-        //»ç¿ëÀÚ ÀÛµ¿ °á°ú ÃÊ±âÈ­
+        //ì‚¬ìš©ì ì‘ë™ ê²°ê³¼ ì´ˆê¸°í™”
         for (int i=0;i<userDataList.Count ;i++) {
             for (int j = 0; j < userDataList[i].isUserList.Length; j++) {
                 userDataList[i].isUserList[j] = false;
@@ -317,14 +317,14 @@ public class UserTotalControl : MainTimelineManager
         for (int i = 0; i < userTableSettingList.Count; i++) {
             userTableSettingList[i].OnReset();
         }
-        //°ÔÀÓ ÁøÇà °¡´É
+        //ê²Œì„ ì§„í–‰ ê°€ëŠ¥
         GameObjectControl.Instance.isGamePlay = true;
         StartCoroutine(OnResetDivce());
     }
 
     IEnumerator OnResetDivce()
     {
-        Debug.Log("°ø¹èÃâ [ÇÏµå¿ş¾î ÃÊ±âÈ­]");
+        Debug.Log("ê³µë°°ì¶œ [í•˜ë“œì›¨ì–´ ì´ˆê¸°í™”]");
         yield return new WaitForSeconds(0.01f);
         OnResetData("1");
         yield return new WaitForSeconds(0.01f);
@@ -372,7 +372,7 @@ public class UserTotalControl : MainTimelineManager
             if (userTableController.ballSetting.insertBallCount > 0)
             {
                 GameObjectControl.Instance.rsControl.multiRS.SendConsole(i, data); 
-                Debug.Log("¸®¼Â ÁøÇà »ç¿ëÀÚ" + i);
+                Debug.Log("ë¦¬ì…‹ ì§„í–‰ ì‚¬ìš©ì" + i);
             }
         }
     }
@@ -393,9 +393,9 @@ public class UserTotalControl : MainTimelineManager
         return Array.FindIndex(userDataList.ToArray(), item => item.stationState.Equals(stationState));
     }
 
-    //»ç¿ëÀÚ ÄÁÆ®·Ñ(¿µ»ó Á¾·á ÀÌº¥Æ®)
+    //ì‚¬ìš©ì ì»¨íŠ¸ë¡¤(ì˜ìƒ ì¢…ë£Œ ì´ë²¤íŠ¸)
     public void OnSetUserTotal(UserTableController userTableController) {
-        //¿µ»ó Á¾·á ÀÌº¥Æ® ÇÚµé·¯
+        //ì˜ìƒ ì¢…ë£Œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬
         if (!GameObjectControl.Instance.isGamePlay) {
             return;
         }
@@ -421,16 +421,16 @@ public class UserTotalControl : MainTimelineManager
                         missionData.maxRightAnswer>= userTableController.ballSetting.insertBallCount)
                     //if ( userTableController.ballSetting.insertBallCount.Equals(missionData.rightAnswer))
                     {
-                        //»ç¿ëÀÚ ¹®Á¦Ç®ÀÌ Á¤´ä
+                        //ì‚¬ìš©ì ë¬¸ì œí’€ì´ ì •ë‹µ
                         userDataList[index].isUserList[(int)userTableController.starIndex - 1] = true;
                         MissionCompleteEvent(userTableController,GameObjectControl.Instance.stationState);
-                        Debug.Log("¹®Á¦ ¸ÂÀ½["+ GameObjectControl.Instance.stationState+"]");
+                        Debug.Log("ë¬¸ì œ ë§ìŒ["+ GameObjectControl.Instance.stationState+"]");
 
 
                     }
                     else
                     {
-                        Debug.Log("¹®Á¦ Æ²¸²");
+                        Debug.Log("ë¬¸ì œ í‹€ë¦¼");
                     }
                     UserScoreTextMove(userTableController,0.09f);
                 }
@@ -447,23 +447,23 @@ public class UserTotalControl : MainTimelineManager
         StartCoroutine(OnExperienceEndVideo(userTableController));
     }
 
-    //ºñµğ¿À ½ÇÇà °á°ú  °úÁ¤ 
+    //ë¹„ë””ì˜¤ ì‹¤í–‰ ê²°ê³¼  ê³¼ì • 
     IEnumerator OnExperienceEndVideo(UserTableController userTableController) {
         
         yield return new WaitForSeconds(1f);
 
-        Debug.Log("¿µ»ó Á¾·á ¿øÀÚ ±ÛÀÚ ¿òÁ÷ÀÓ");
+        Debug.Log("ì˜ìƒ ì¢…ë£Œ ì›ì ê¸€ì ì›€ì§ì„");
         int createValue=UnityEngine.Random.Range(2, 4);
 
         for (int i=0;i< createValue; i++) {
-            //¿µ»ó Á¾·á ÀÛµ¿ ±¸°£ 
+            //ì˜ìƒ ì¢…ë£Œ ì‘ë™ êµ¬ê°„ 
             ElementObject _elementObject =
                 GameObject.Instantiate<ElementObject>(elementObject, elementParentObject);
             _elementObject.transform.position = userTableController.transform.position;
             _elementObject.isEditorMove = false;
             _elementObject.gameObject.SetActive(true);
 
-            //Ãæµ¹ ÀÎµ¦½º ¼±Á¤
+            //ì¶©ëŒ ì¸ë±ìŠ¤ ì„ ì •
             _elementObject.crashIndex = (int)userTableController.starIndex;
             _elementObject.starVideoType = userTableController.starVideoType;
             _elementObject.OnInit();
@@ -471,7 +471,7 @@ public class UserTotalControl : MainTimelineManager
         }
     }
 
-    //¿¤¸®¸ÕÆ® ¿ÀºêÁ§Æ® »èÁ¦
+    //ì—˜ë¦¬ë¨¼íŠ¸ ì˜¤ë¸Œì íŠ¸ ì‚­ì œ
     public void RemoveElementObject() {
 
         ElementObject[] elementObjectList = GameObject.FindObjectsOfType<ElementObject>();
@@ -484,7 +484,7 @@ public class UserTotalControl : MainTimelineManager
 
 
     /// <summary>
-    /// ¹Ì¼Ç ¿Ï·á ÀÌº¥Æ® È­¸é ¼³Á¤ ±¸°£
+    /// ë¯¸ì…˜ ì™„ë£Œ ì´ë²¤íŠ¸ í™”ë©´ ì„¤ì • êµ¬ê°„
     /// </summary>
     private void MissionCompleteEvent(UserTableController userTableController,
         UserTableSettingBase.StationState _stationState) {
@@ -492,46 +492,46 @@ public class UserTotalControl : MainTimelineManager
                                 UserTableAddElementParentObject.PlayState.RightAnswer, _stationState);
         switch (_stationState) {
             case UserTableSettingBase.StationState.mission1:
-                //¿ø¼Ò »ı¼º
+                //ì›ì†Œ ìƒì„±
                 
                 
-                Debug.Log("¹®Á¦ Á¤´ä ÀÛµ¿mission1");
+                Debug.Log("ë¬¸ì œ ì •ë‹µ ì‘ë™mission1");
                 break;
             case UserTableSettingBase.StationState.mission2:
-                //20230424 ¼öÁ¤ »çÇ× 
-                // 1. ¿ø¼Ò »ı¼º 
-                // 2. Áß¾Ó Áö±¸ Ç×¸ñÀ¸·Îº¯°æ
-                // 3. »ç¶÷, ³ª¹«, °Ç¹° , ÀÚµ¿ÀÚ µî ´Ù¾çÇÑ ¿ì¸® ÁÖº¯ »ç¹°ÀÌ »ı°Ü³ª´Â ³»¿ë À¸·Î º¯°æ 
-                //À©¼Ò »ı¼º 
+                //20230424 ìˆ˜ì • ì‚¬í•­ 
+                // 1. ì›ì†Œ ìƒì„± 
+                // 2. ì¤‘ì•™ ì§€êµ¬ í•­ëª©ìœ¼ë¡œë³€ê²½
+                // 3. ì‚¬ëŒ, ë‚˜ë¬´, ê±´ë¬¼ , ìë™ì ë“± ë‹¤ì–‘í•œ ìš°ë¦¬ ì£¼ë³€ ì‚¬ë¬¼ì´ ìƒê²¨ë‚˜ëŠ” ë‚´ìš© ìœ¼ë¡œ ë³€ê²½ 
+                //ìœˆì†Œ ìƒì„± 
                 //userTableController.CreateElementObject(
                                 //UserTableAddElementParentObject.PlayState.RightAnswer);
-                //ÅÂ¾ç°è »ı¼º
+                //íƒœì–‘ê³„ ìƒì„±
                 solarSystemObject.SetActive(true);
                 break;
         }
     }
 
     /// <summary>
-    /// ¹Ì¼ÇÁøÇà¿©ºÎ
+    /// ë¯¸ì…˜ì§„í–‰ì—¬ë¶€
     /// </summary>
     public bool isMissionPlay = false;
 
-    //Å¸ÀÓ Á¾·á
+    //íƒ€ì„ ì¢…ë£Œ
     public void TimeEnd()
     {
-        //½Ã°£ Á¾·á ÀÌº¥Æ® ÇÚµé·¯
+        //ì‹œê°„ ì¢…ë£Œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬
         bool isConnectionUser = false;
         switch (stationState)
         {
             case StationState.experience:
-                Debug.Log("[experience ½Ã°£ Á¾·á ÀÌº¥Æ® ÇÚµé·¯]");
+                Debug.Log("[experience ì‹œê°„ ì¢…ë£Œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬]");
                 GameObjectControl.Instance.isGamePlay = false;
-                //´ÙÀ½¾ÀÀ¸·Î ÀÌµ¿
+                //ë‹¤ìŒì”¬ìœ¼ë¡œ ì´ë™
                 ExperienceEnd();
 
                 break;
             case StationState.mission1:
-                Debug.Log("[mission1 ½Ã°£ Á¾·á ÀÌº¥Æ® ÇÚµé·¯]");
+                Debug.Log("[mission1 ì‹œê°„ ì¢…ë£Œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬]");
                 isMissionPlay = false;
                 //int index = GetUserData(GameObjectControl.instance.stationState);
                 //bool[] isUserList = userDataList[index].isUserList;
@@ -543,7 +543,7 @@ public class UserTotalControl : MainTimelineManager
                         {
                             if (userDataList[index].isUserList[i])
                             {
-                                Debug.Log("Á¤´ä ÀÛµ¿");
+                                Debug.Log("ì •ë‹µ ì‘ë™");
                                 userTableSettingList[i].RightAnswerScene(UserTableSettingBase.StationState.mission1);
                                 userTableSettingList[i].CreateElementObject(
                                     UserTableAddElementParentObject.PlayState.TimeOut, stationState);
@@ -551,13 +551,13 @@ public class UserTotalControl : MainTimelineManager
                             }
                             else
                             {
-                                Debug.Log("Æ²¸² ÀÛµ¿");
+                                Debug.Log("í‹€ë¦¼ ì‘ë™");
                                 userTableSettingList[i].EndMustScene(UserTableSettingBase.StationState.mission1);
                                 UserScoreTextMove(userTableSettingList[i], 0.09f);
                             }
                         }
                         else {
-                            Debug.Log("Æ²¸² ÀÛµ¿");
+                            Debug.Log("í‹€ë¦¼ ì‘ë™");
                             userTableSettingList[i].EndMustScene(UserTableSettingBase.StationState.mission1);
                             UserScoreTextMove(userTableSettingList[i], 0.09f);
                         }
@@ -567,17 +567,17 @@ public class UserTotalControl : MainTimelineManager
                 }
                 if (!isConnectionUser) {
 
-                    Debug.Log("»ç¿ëÀÚ Å×ÀÌºí »ç¿ëÀÚ ¾Æ¹«µµ ¾øÀ½ ÃÊ±âÈ­¸éÀ¸·Î ÀÌµ¿");
+                    Debug.Log("ì‚¬ìš©ì í…Œì´ë¸” ì‚¬ìš©ì ì•„ë¬´ë„ ì—†ìŒ ì´ˆê¸°í™”ë©´ìœ¼ë¡œ ì´ë™");
                 }
 
-                //´ÙÀ½¾À ÁøÇà
+                //ë‹¤ìŒì”¬ ì§„í–‰
                 NextSceneStart();
                 break;
 
             case StationState.mission2:
-                Debug.Log("[mission2 ½Ã°£ Á¾·á ÀÌº¥Æ® ÇÚµé·¯ ÀÛµ¿]");
+                Debug.Log("[mission2 ì‹œê°„ ì¢…ë£Œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ ì‘ë™]");
                 isMissionPlay = false;
-                //Á¤´ä È­¸éÀ¸·Î ÀÌµ¿
+                //ì •ë‹µ í™”ë©´ìœ¼ë¡œ ì´ë™
                 for (int i = 0; i < connectionUser.Length; i++)
                 {
                     if (connectionUser[i])
@@ -587,7 +587,7 @@ public class UserTotalControl : MainTimelineManager
                         {
                             if (userDataList[index].isUserList[i])
                             {
-                                Debug.Log("Á¤´ä ÀÛµ¿");
+                                Debug.Log("ì •ë‹µ ì‘ë™");
                                 userTableSettingList[i].RightAnswerScene(UserTableSettingBase.StationState.mission2);
                                 /*userTableSettingList[i].CreateElementObject(
                                     UserTableAddElementParentObject.PlayState.TimeOut);*/
@@ -595,13 +595,13 @@ public class UserTotalControl : MainTimelineManager
                             }
                             else
                             {
-                                Debug.Log("Æ²¸² ÀÛµ¿");
+                                Debug.Log("í‹€ë¦¼ ì‘ë™");
                                 userTableSettingList[i].EndMustScene(UserTableSettingBase.StationState.mission2);
                                 UserScoreTextMove(userTableSettingList[i], 0.09f);
                             }
                         }
                         else {
-                            Debug.Log("Æ²¸² ÀÛµ¿");
+                            Debug.Log("í‹€ë¦¼ ì‘ë™");
                             userTableSettingList[i].EndMustScene(UserTableSettingBase.StationState.mission2);
                             UserScoreTextMove(userTableSettingList[i], 0.09f);
 
@@ -614,17 +614,17 @@ public class UserTotalControl : MainTimelineManager
                 if (!isConnectionUser)
                 {
 
-                    Debug.Log("»ç¿ëÀÚ Å×ÀÌºí »ç¿ëÀÚ ¾Æ¹«µµ ¾øÀ½ ÃÊ±âÈ­¸éÀ¸·Î ÀÌµ¿");
+                    Debug.Log("ì‚¬ìš©ì í…Œì´ë¸” ì‚¬ìš©ì ì•„ë¬´ë„ ì—†ìŒ ì´ˆê¸°í™”ë©´ìœ¼ë¡œ ì´ë™");
                 }
 
-                //´ÙÀ½ ¾ÀÀ¸·ÎÀÌµ¿(°ÔÀÓÁ¾·á)
-                //¸ŞÀÎ Å¸ÀÓ¶óÀÎ ¼³Á¤ ±¸°£
+                //ë‹¤ìŒ ì”¬ìœ¼ë¡œì´ë™(ê²Œì„ì¢…ë£Œ)
+                //ë©”ì¸ íƒ€ì„ë¼ì¸ ì„¤ì • êµ¬ê°„
                 EndScene();
                 break;
         }
     }
 
-    //»ç¿ëÀÚ ½ºÄÚ¾î ¿òÁ÷ÀÓ
+    //ì‚¬ìš©ì ìŠ¤ì½”ì–´ ì›€ì§ì„
     public void UserScoreTextMove(UserTableController userTableController,float move) {
         Vector3 localPos = userTableController.userScoreText.transform.localPosition;
         /*DOTween.To(() => userTableController.userScoreText.transform.localPosition,
@@ -634,12 +634,12 @@ public class UserTotalControl : MainTimelineManager
 
     public virtual void NextSceneStart() { }
     
-    //Á¾·á ½Å
+    //ì¢…ë£Œ ì‹ 
     public virtual void EndScene() {
 
         GameObjectControl.Instance.isGameEnd = true;
         soundControl.SoundStop();
-        Debug.Log("°ÔÀÓÁ¾·á");
+        Debug.Log("ê²Œì„ì¢…ë£Œ");
         StartCoroutine(OnGotoSceneClip());
         GameObjectControl.Instance.IsMissionPlayAllUserList(false);
         StartCoroutine(OnResetDivce());
@@ -673,17 +673,17 @@ public class UserTotalControl : MainTimelineManager
     }
 
 
-    //¾À ÃÊ±âÈ­(¸ŞÀÎ)
+    //ì”¬ ì´ˆê¸°í™”(ë©”ì¸)
     public void OnResetSceneClip() {
-        Debug.Log("¹Ì¼Ç ¿Ï·á ÀÛµ¿ ±¸°£");
+        Debug.Log("ë¯¸ì…˜ ì™„ë£Œ ì‘ë™ êµ¬ê°„");
         GotoSceneClip(UserTableSettingBase.StationState.MissionComplete,
                 GameManager.ClipState.Scene0);
     }
 
-    //»ç¿ëÀÚ Á¡¼ö ¸®¼Â 
+    //ì‚¬ìš©ì ì ìˆ˜ ë¦¬ì…‹ 
     public void UserScoreReset() {
 
-        //»ç¿ëÀÚ ½ºÄÚ¾î ¸®¼Â ÅØ½ºÆ® Á¤º¸
+        //ì‚¬ìš©ì ìŠ¤ì½”ì–´ ë¦¬ì…‹ í…ìŠ¤íŠ¸ ì •ë³´
         for (int i=0;i<userTableSettingList.Count ;i++) {            
             userTableSettingList[i].userScoreText.OnScoreDataReset();
         }

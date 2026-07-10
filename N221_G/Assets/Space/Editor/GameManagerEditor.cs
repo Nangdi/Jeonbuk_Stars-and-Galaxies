@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -10,10 +10,10 @@ public class GameManagerEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        /**Debug.Log("¿¡µğÅÍ ÀÛµ¿ È®ÀÎ:1");
+        /**Debug.Log("ì—ë””í„° ì‘ë™ í™•ì¸:1");
         SerializedProperty componentVOSerializedProperty = serializedObject.FindProperty("componentVO");
         Debug.Log(componentVOSerializedProperty);
-        Debug.Log("¿¡µğÅÍ ÀÛµ¿ È®ÀÎ:2");*/
+        Debug.Log("ì—ë””í„° ì‘ë™ í™•ì¸:2");*/
         //componentVOSerializedProperty.en
     }
 

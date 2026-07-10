@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +10,7 @@ namespace com.humanc.rsconn
 {
 
     /// <summary>
-    /// ÄÜ¼Ö ÇÁ·ÎÁ§Æ® ¿¬µ¿ ±¸°£
+    /// ì½˜ì†” í”„ë¡œì íŠ¸ ì—°ë™ êµ¬ê°„
     /// </summary>
     
     public class ConsoleProcessStart
@@ -20,12 +20,12 @@ namespace com.humanc.rsconn
         [System.Serializable]
         public class RSEvent : UnityEvent<string> { }
 
-        //ÇÁ·Î¼¼½º 
+        //í”„ë¡œì„¸ìŠ¤ 
         public Process process;
         public string data = "";
         private RsConnection rsConnection;
         /// <summary>
-        /// ÇÁ·Î¼¼½º ¿¬µ¿ ¼³Á¤ ±¸°£
+        /// í”„ë¡œì„¸ìŠ¤ ì—°ë™ ì„¤ì • êµ¬ê°„
         /// </summary>
         public void OnInit(RsVO rsVO, RsConnection rsConnection) {
             // this.m_rsEvent = m_rsEvent;
@@ -58,7 +58,7 @@ namespace com.humanc.rsconn
         }
 
         /// <summary>
-        /// ¸®½Ã¹ö ÀÌº¥Æ® ÇÚµé·¯ ÀÛµ¿±¸°£ (¼öÁ¤ : Ãß°¡ÀûÀÎ ÀÛ¾÷ ÇÊ¿äÇÔ)
+        /// ë¦¬ì‹œë²„ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ ì‘ë™êµ¬ê°„ (ìˆ˜ì • : ì¶”ê°€ì ì¸ ì‘ì—… í•„ìš”í•¨)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="eventArgs"></param>
@@ -68,7 +68,7 @@ namespace com.humanc.rsconn
             m_rsEvent.Invoke(data);
         }
 
-        //ÄÜ¼Ö µ¥ÀÌÅÍ Àü¼Û
+        //ì½˜ì†” ë°ì´í„° ì „ì†¡
         public void SendConsole(string message) {
             if (process != null)
             {
@@ -78,15 +78,15 @@ namespace com.humanc.rsconn
         }
 
         /// <summary>
-        /// ÇÁ·Î¼¼½º Á¾·á 
-        /// ¿¹¿Ü Ã³¸® ÀÛ¾÷  ¿Ï·á 
+        /// í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ 
+        /// ì˜ˆì™¸ ì²˜ë¦¬ ì‘ì—…  ì™„ë£Œ 
         /// </summary>
         public void ProcessKill() {
             try
             {
                 if (process != null)
                 {
-                    //ÇÁ·Î¼¼½º Á¾·á ±¸°£ 
+                    //í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ êµ¬ê°„ 
                     process.Kill();
                 }
             }

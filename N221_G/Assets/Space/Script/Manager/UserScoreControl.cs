@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityEngine.SocialPlatforms;
 using static UserScoreControl;
 
 /// <summary>
-///  »ç¿ëÀÚ Á¡¼ö ÄÁÆ®·Ñ Á¤ÀÇ ±¸°£
+///  ì‚¬ìš©ì ì ìˆ˜ ì»¨íŠ¸ë¡¤ ì •ì˜ êµ¬ê°„
 /// </summary>
 public class UserScoreControl : UserTableTimelineManager
 {
@@ -16,38 +16,38 @@ public class UserScoreControl : UserTableTimelineManager
     [System.Serializable]
     public class UserScoreData {
 
-        //»ç¿ëÀÚ Á¡¼ö ÄÁÆ®·Ñ ÅØ½ºÆ® ¼±Á¤ ±¸°£
-        [Header("»ç¿ëÀÚ ÀÔ·Â ÅØ½ºÆ®")]
+        //ì‚¬ìš©ì ì ìˆ˜ ì»¨íŠ¸ë¡¤ í…ìŠ¤íŠ¸ ì„ ì • êµ¬ê°„
+        [Header("ì‚¬ìš©ì ì…ë ¥ í…ìŠ¤íŠ¸")]
         public TextMeshProUGUI userScoreText;
         public int currentScore = 0;
 
-        //Å¸ÀÓ º° ½ºÄÚ¾î Á¡¼ö Á¤º¸
+        //íƒ€ì„ ë³„ ìŠ¤ì½”ì–´ ì ìˆ˜ ì •ë³´
         public int timeStarScore = 0;
 
-        //ÇÚµé Á¡¼ö
+        //í•¸ë“¤ ì ìˆ˜
         public int turnHandleScore = 10;
         public int littleStarMaxScore = 150;
         public int bigStarScore = 70;
 
-        //ÃÊ½Å¼º Æø¹ß Á¡¼ö
+        //ì´ˆì‹ ì„± í­ë°œ ì ìˆ˜
         public int superNovaExplosionScore = 150;
         
-        //Çà¼º»ó ¼º¿î Æø¹ß Á¡¼ö
+        //í–‰ì„±ìƒ ì„±ìš´ í­ë°œ ì ìˆ˜
         public int planetaryExplosionScore = 150;
 
         /*
-         * Á¡¼ö
-        ÇÚµé È¸Àü½Ã 10Á¡ °øÅë
-        ÃÖ´ë ÀÔ·Â ¹üÁÖ 
-         - ÀÛÀºº° 150Á¡ ±îÁö             
-         - Å«º° 70Á¡ ±îÁö
+         * ì ìˆ˜
+        í•¸ë“¤ íšŒì „ì‹œ 10ì  ê³µí†µ
+        ìµœëŒ€ ì…ë ¥ ë²”ì£¼ 
+         - ì‘ì€ë³„ 150ì  ê¹Œì§€             
+         - í°ë³„ 70ì  ê¹Œì§€
 
-        ÃÊ½Å¼º Æø¹ß½Ã  150Á¡
-        Çà¼º»ó ¼º¿î½Ã  30Á¡ 
+        ì´ˆì‹ ì„± í­ë°œì‹œ  150ì 
+        í–‰ì„±ìƒ ì„±ìš´ì‹œ  30ì  
          */
     }
 
-    //½ÃÀÛ Ä¿¸Çµå
+    //ì‹œì‘ ì»¤ë§¨ë“œ
     /*public override void OnInit()
     {
         //base.OnInit();
@@ -55,27 +55,27 @@ public class UserScoreControl : UserTableTimelineManager
     }*/
 
 
-    //»ç¿ëÀÚ Á¡¼ö ÄÁÆ®·Ñ ½ÃÀÛ ºÎºĞ
+    //ì‚¬ìš©ì ì ìˆ˜ ì»¨íŠ¸ë¡¤ ì‹œì‘ ë¶€ë¶„
     private void OnUserScoreInit(){
         
     }
 
 
-    //È¸Àü ÇÚµé Á¡¼ö 
+    //íšŒì „ í•¸ë“¤ ì ìˆ˜ 
     public override void TurnHandleScore() {
         
         int _turnHandleScore = 0;
 
         if (this.currentBall >= 3)
         {
-            Debug.Log("Å«º°");
+            Debug.Log("í°ë³„");
             if (userScoreData.timeStarScore <= userScoreData.bigStarScore)
             {
                 _turnHandleScore = userScoreData.turnHandleScore;
             }
         }
         else {
-            Debug.Log("ÀÛÀº º°");
+            Debug.Log("ì‘ì€ ë³„");
             if (userScoreData.timeStarScore <= userScoreData.littleStarMaxScore)
             {
                 _turnHandleScore = userScoreData.turnHandleScore;

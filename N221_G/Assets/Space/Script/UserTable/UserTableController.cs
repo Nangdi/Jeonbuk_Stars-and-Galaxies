@@ -1,4 +1,4 @@
-using RenderHeads.Media.AVProVideo;
+ï»¿using RenderHeads.Media.AVProVideo;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,15 +10,15 @@ using static UnityEngine.GraphicsBuffer;
 using static UserTableController;
 
 
-//»ç¿ëÀÚ Å×ÀÌºí ÄÁÆ®·Ñ·¯
+//ì‚¬ìš©ì í…Œì´ë¸” ì»¨íŠ¸ë¡¤ëŸ¬
 public class UserTableController : UserTableQuestion
 {
 
-    //Å«º° ºñµğ¿À ÇÃ·¹ÀÌ¾î
+    //í°ë³„ ë¹„ë””ì˜¤ í”Œë ˆì´ì–´
     public MediaPlayer bigStarVideoPlayer;
     public MediaReference bigMediaReference;
 
-    //ÀÛÀºº° ºñµğ¿À ÇÃ·¹ÀÌ¾î
+    //ì‘ì€ë³„ ë¹„ë””ì˜¤ í”Œë ˆì´ì–´
     public MediaPlayer littleStarVideoPlayer;
     public MediaReference littleMediaReference;
 
@@ -27,7 +27,7 @@ public class UserTableController : UserTableQuestion
     private bool isLittleStarVideoPlay = false;
 
 
-    //±âº» ÅØ½ºÃÄ
+    //ê¸°ë³¸ í…ìŠ¤ì³
     public Texture2D defaultTexture;
     
     private IEnumerator Start()
@@ -37,12 +37,12 @@ public class UserTableController : UserTableQuestion
 
         yield return null;
         SetDefaultTexture();
-        Debug.Log("ÆÄÀÏ·Îµå ½ÃÀÛ ÄÁÆ®·Ñ");
+        Debug.Log("íŒŒì¼ë¡œë“œ ì‹œì‘ ì»¨íŠ¸ë¡¤");
         VideoFileLoad();
         OnLoopStart();
     }
 
-    //±âº» ÅØ½ºÃÄ º¯°æ
+    //ê¸°ë³¸ í…ìŠ¤ì³ ë³€ê²½
     private void SetDefaultTexture() {
         materialPropertyBlock.SetTexture("_BaseMap", defaultTexture);
         renderer.SetPropertyBlock(materialPropertyBlock);
@@ -77,7 +77,7 @@ public class UserTableController : UserTableQuestion
     //private bool isPlay = true;
 
     /// <summary>
-    /// ·çÇÁ 
+    /// ë£¨í”„ 
     /// </summary>
     /// <returns></returns>
     IEnumerator OnLoop() {
@@ -87,8 +87,8 @@ public class UserTableController : UserTableQuestion
             yield return new WaitUntil(() => bigStar.isStarVideoPlay && littleStar.isStarVideoPlay);
             yield return null;
             switch (starVideoType) {
-                case StarVideoType.BigStar://Å« º°
-                    //ÇöÀç ºñµğ¿À ½Ã°£ Å¸ÀÓÁ¤ÀÇ ±¸°£ 
+                case StarVideoType.BigStar://í° ë³„
+                    //í˜„ì¬ ë¹„ë””ì˜¤ ì‹œê°„ íƒ€ì„ì •ì˜ êµ¬ê°„ 
                     if (bigStar.isStarVideoPlay)
                     {
                         if (bigStar.isPlay) {
@@ -97,7 +97,7 @@ public class UserTableController : UserTableQuestion
                             bigVideoPosition,
                             (float)bigStar.videoValue,
                             ref yVelocity, smoothTime);
-                            //ºñµğ¿À Æ÷Áö¼Ç 
+                            //ë¹„ë””ì˜¤ í¬ì§€ì…˜ 
                             float currentVideoBigSmoothPosition = bigVideoPosition * (float)bigStar.videoDuration;
 
                             bigStarVideoPlayer.Control.Seek(currentVideoBigSmoothPosition);
@@ -117,7 +117,7 @@ public class UserTableController : UserTableQuestion
                         }
                     }
                     break;
-                case StarVideoType.LittleStar://ÀÛÀº º°
+                case StarVideoType.LittleStar://ì‘ì€ ë³„
                     if (littleStar.isStarVideoPlay)
                     {
                         if (littleStar.isPlay)
@@ -127,7 +127,7 @@ public class UserTableController : UserTableQuestion
                             bigVideoPosition,
                             (float)littleStar.videoValue,
                             ref yVelocity, smoothTime);
-                            //ºñµğ¿À Æ÷Áö¼Ç 
+                            //ë¹„ë””ì˜¤ í¬ì§€ì…˜ 
                             float currentVideoBigSmoothPosition = bigVideoPosition * (float)littleStar.videoDuration;
 
                             littleStarVideoPlayer.Control.Seek(currentVideoBigSmoothPosition);
@@ -152,7 +152,7 @@ public class UserTableController : UserTableQuestion
         }
     }
 
-    //ºñµğ¿À Æ÷Áö¼Ç ¸®¼Â
+    //ë¹„ë””ì˜¤ í¬ì§€ì…˜ ë¦¬ì…‹
     public override void VideoReset()
     {
         bigVideoPosition = 0;
@@ -166,7 +166,7 @@ public class UserTableController : UserTableQuestion
    
     
     public void  VideoValueChange(float value) {
-        //ºñµğ¿À Å¸ÀÔ¿¡ µû¸¥ ¿µ»óÀ§Ä¡ º¯°æ 
+        //ë¹„ë””ì˜¤ íƒ€ì…ì— ë”°ë¥¸ ì˜ìƒìœ„ì¹˜ ë³€ê²½ 
         switch (starVideoType) {
             case StarVideoType.BigStar:
                 BigVideoChangeDetectionValue(value);
@@ -179,29 +179,29 @@ public class UserTableController : UserTableQuestion
     }
 
     /// <summary>
-    /// ºñµğ¿À º¯È­ °¨Áö
+    /// ë¹„ë””ì˜¤ ë³€í™” ê°ì§€
     /// </summary>
     public override void BigVideoChangeDetectionValue(float value) {
         this.bigStar.videoValue = value;
         this.bigStar.isPlay = true;
-        Debug.Log("¿µ»ó º¯È­ °¨Áö µÇ´Â±¸°£");
+        Debug.Log("ì˜ìƒ ë³€í™” ê°ì§€ ë˜ëŠ”êµ¬ê°„");
     }
 
     public override void LittleVideoChangeDetectionValue(float value)
     {
-        //ºñµğ¿À Æ÷Áö¼Ç º¯°æ À§Ä¡
+        //ë¹„ë””ì˜¤ í¬ì§€ì…˜ ë³€ê²½ ìœ„ì¹˜
         this.littleStar.videoValue = value;
         this.littleStar.isPlay = true;
-        Debug.Log("¿µ»ó º¯È­ °¨Áö µÇ´Â±¸°£");
+        Debug.Log("ì˜ìƒ ë³€í™” ê°ì§€ ë˜ëŠ”êµ¬ê°„");
     }
 
     /// <summary>
-    /// ÆÄÀÏ·Îµå
+    /// íŒŒì¼ë¡œë“œ
     /// </summary>
     private void VideoFileLoad() {
-        //Å«º° ¿ÀÇÂ
+        //í°ë³„ ì˜¤í”ˆ
         bigStarVideoPlayer.OpenMedia(bigMediaReference, false);
-        //ÀÛÀºº° ¿ÀÇÂ
+        //ì‘ì€ë³„ ì˜¤í”ˆ
         littleStarVideoPlayer.OpenMedia(littleMediaReference, false);
     }
 
@@ -210,7 +210,7 @@ public class UserTableController : UserTableQuestion
     }
 
 
-    //Å«º° ¿µ»ó Àç»ı ÀÌº¥Æ® 
+    //í°ë³„ ì˜ìƒ ì¬ìƒ ì´ë²¤íŠ¸ 
     public void BigStarPlayerEvent(MediaPlayer mp, MediaPlayerEvent.EventType eventType, ErrorCode errorCode) {
         Debug.Log(eventType);
         switch (eventType) {
@@ -225,14 +225,14 @@ public class UserTableController : UserTableQuestion
                
                 break;
             case MediaPlayerEvent.EventType.FinishedPlaying:
-                Debug.Log("¿µ»ó ¿Ï·á ÀÌº¥Æ®");
+                Debug.Log("ì˜ìƒ ì™„ë£Œ ì´ë²¤íŠ¸");
                 
                 break;
         }
     }
 
 
-    //ÀÛÀºº° ¿µ»ó Àç»ı ÀÌº¥Æ®
+    //ì‘ì€ë³„ ì˜ìƒ ì¬ìƒ ì´ë²¤íŠ¸
     public void LittleStarPlayerEvent(MediaPlayer mp, MediaPlayerEvent.EventType eventType, ErrorCode errorCode) {
         //Debug.Log(eventType);
         switch (eventType)
@@ -247,7 +247,7 @@ public class UserTableController : UserTableQuestion
             case MediaPlayerEvent.EventType.FirstFrameReady:
                 break;
             case MediaPlayerEvent.EventType.FinishedPlaying:
-                Debug.Log("¿µ»ó ¿Ï·á ÀÌº¥Æ®");
+                Debug.Log("ì˜ìƒ ì™„ë£Œ ì´ë²¤íŠ¸");
                 //videoCompleteEvent.Invoke(this);
                 break;
         }

@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+Ôªøusing Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,14 +13,14 @@ public class RsControl : MonoBehaviour
         SetEvent();
     }
 
-    //¿Ã∫•∆Æ µÓ∑œ 
+    //Ïù¥Î≤§Ìä∏ Îì±Î°ù 
     private void SetEvent() {
         MultiRS.RsReceived += DataReceivedEvent;
     }
 
 
     /// <summary>
-    /// µ•¿Ã≈Õ ¿Ã∫•∆Æ
+    /// Îç∞Ïù¥ÌÑ∞ Ïù¥Î≤§Ìä∏
     /// </summary>
     /// <param name="data"></param>
     private void DataReceivedEvent(string data)
@@ -36,34 +36,34 @@ public class RsControl : MonoBehaviour
 
     private void Command(string data,int userData) {
         switch (data) {
-            case "A1"://»∏¿¸ µ•¿Ã≈Õ
+            case "A1"://ÌöåÏ†Ñ Îç∞Ïù¥ÌÑ∞
                 OnRotatingDevice(userData);
                 break;
-            case "B1"://∞¯≈ı¿‘
+            case "B1"://Í≥µÌà¨ÏûÖ
                 OnInsertBall(userData);
                 break;
         }
     }
 
-    //»∏¿¸ µ•¿Ã≈Õ ¡§∫∏
+    //ÌöåÏ†Ñ Îç∞Ïù¥ÌÑ∞ Ï†ïÎ≥¥
     private void OnRotatingDevice(int userIndex) {
-        //»∏¿¸µ•¿Ã≈Õ
+        //ÌöåÏ†ÑÎç∞Ïù¥ÌÑ∞
         UserTableController gameObjectControl = GameObjectControl.Instance.userTableSettingList[userIndex];
         gameObjectControl.RotatingDevice();
     }
 
-    //∫º ¿‘∑¬
+    //Î≥º ÏûÖÎ†•
     private void OnInsertBall(int userIndex) {
-        //∫º¿‘∑¬
+        //Î≥ºÏûÖÎ†•
         UserTableController gameObjectControl = GameObjectControl.Instance.userTableSettingList[userIndex];
         gameObjectControl.InsertBall();
 
     }
 
 
-    /* 1 -> πŸ∂˜
-   0 -> πŸ∂˜ «ÿ¡¶
-   2 -> ¿‘±∏∏∑±‚*/
+    /* 1 -> Î∞îÎûå
+   0 -> Î∞îÎûå Ìï¥Ï†ú
+   2 -> ÏûÖÍµ¨ÎßâÍ∏∞*/
 
     public void Update()
     {

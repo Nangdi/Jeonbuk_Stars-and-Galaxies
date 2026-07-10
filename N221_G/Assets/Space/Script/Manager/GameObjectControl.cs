@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +25,10 @@ public class GameObjectControl : UserTotalControl
 
     private Coroutine onLoop;
 
-    [Header("°ÔÀÓ ÁøÇà ¿©ºÎ È®ÀÎ")]
+    [Header("ê²Œì„ ì§„í–‰ ì—¬ë¶€ í™•ì¸")]
     public bool isGamePlay = false;
     public bool isGameEnd = false;
-    //¹Ì¼Ç µ¥ÀÌÅÍ ·Îµå ¼³Á¤ 
+    //ë¯¸ì…˜ ë°ì´í„° ë¡œë“œ ì„¤ì • 
     public MissionDataLoader missionDataLoader;
     public ObjectCreationManager objectCreationManager;
 
@@ -88,7 +88,7 @@ public class GameObjectControl : UserTotalControl
                 case UserTableSettingBase.StationState.waiting:
                     GameObjectControl.Instance.isGameEnd = false;
                     objectCreationManager.ResetPlayIndex();
-                    Debug.Log("´ë±âÈ­¸é ÁøÇà");
+                    Debug.Log("ëŒ€ê¸°í™”ë©´ ì§„í–‰");
                     isMissionComplete = false;
                     solarSystemObject.SetActive(false);
                     periodicTableObject.SetActive(false);
@@ -99,7 +99,7 @@ public class GameObjectControl : UserTotalControl
                     
                     break;
                 case UserTableSettingBase.StationState.experience:
-                    Debug.Log("¼ö¼Ò¸ÕÁö ¸¸µé±âÁØºñ");
+                    Debug.Log("ìˆ˜ì†Œë¨¼ì§€ ë§Œë“¤ê¸°ì¤€ë¹„");
                     SettingMakingDust();
                     isMissionComplete = false;
                     solarSystemObject.SetActive(false);
@@ -112,7 +112,7 @@ public class GameObjectControl : UserTotalControl
                     break;
                 case UserTableSettingBase.StationState.mission1:
                     isMissionPlay = true;
-                    Debug.Log("¹Ì¼Ç1 ÁøÇà");
+                    Debug.Log("ë¯¸ì…˜1 ì§„í–‰");
                     isMissionComplete = false;
                     SettingMission1();
                     solarSystemObject.SetActive(false);
@@ -125,7 +125,7 @@ public class GameObjectControl : UserTotalControl
                     break;
 
                 case UserTableSettingBase.StationState.mission2:
-                    Debug.Log("¹Ì¼Ç2 ÁøÇà");
+                    Debug.Log("ë¯¸ì…˜2 ì§„í–‰");
                     isMissionPlay = true;
                     isMissionComplete = false;
                     SettingMission2();
@@ -154,18 +154,18 @@ public class GameObjectControl : UserTotalControl
     }
 
 
-    //¼ö¼Ò¸ÕÁö¸¸µé±â ¾À ¼ÂÆÃ
+    //ìˆ˜ì†Œë¨¼ì§€ë§Œë“¤ê¸° ì”¬ ì…‹íŒ…
     private void SettingMakingDust() {
-        Debug.Log("¼ö¼Ò¸ÕÁö¸¸µé±â ¾À");
+        Debug.Log("ìˆ˜ì†Œë¨¼ì§€ë§Œë“¤ê¸° ì”¬");
         for (int i = 0; i < connectionUser.Length; i++) {
             userTableSettingList[i].SettingMakingDust(connectionUser[i]);
         }
         StartCoroutine(OnResetDevice());
     }
 
-    //·©Å· ÄÁÆ®·Ñ
+    //ë­í‚¹ ì»¨íŠ¸ë¡¤
     public void SettingRankDatas() {
-        Debug.Log("·©Å· µ¥ÀÌÅÍ Àü´Ş");
+        Debug.Log("ë­í‚¹ ë°ì´í„° ì „ë‹¬");
         for (int i = 0; i < connectionUser.Length; i++)
         {
             userTableSettingList[i].SettingRankData(connectionUser[i]);
@@ -173,7 +173,7 @@ public class GameObjectControl : UserTotalControl
     }
 
 
-    //¹Ì¼Ç 2 ¼ÂÆÃ
+    //ë¯¸ì…˜ 2 ì…‹íŒ…
     private void SettingMission2() {
 
         for (int i = 0; i < userTableSettingList.Count; i++)
@@ -204,10 +204,10 @@ public class GameObjectControl : UserTotalControl
 
     private Coroutine onResetBallCoroutine = null;
 
-    //¸ğµç °ø¹èÃâ
+    //ëª¨ë“  ê³µë°°ì¶œ
     public void OnResetBall(MonoBehaviour monoBehaviour=null) {
         
-        Debug.Log("¿øÈ°ÇÑ °ÔÀÓÁøÇàÀ» À§ÇÑ [¸ğµç °ø ¹èÃâ ÃÊ±âÈ­]");
+        Debug.Log("ì›í™œí•œ ê²Œì„ì§„í–‰ì„ ìœ„í•œ [ëª¨ë“  ê³µ ë°°ì¶œ ì´ˆê¸°í™”]");
        
         OnRemoveResetBall();
         onResetBallCoroutine = StartCoroutine(OnResetBallCoroutine(monoBehaviour));
@@ -223,7 +223,7 @@ public class GameObjectControl : UserTotalControl
     }
 
     IEnumerator OnResetBallCoroutine(MonoBehaviour monoBehaviour=null) {
-        Debug.Log("°ø¹èÃâ");
+        Debug.Log("ê³µë°°ì¶œ");
 
         OnResetData("1"); 
         yield return new WaitForSeconds(0.01f);
@@ -238,7 +238,7 @@ public class GameObjectControl : UserTotalControl
 
         OnResetData("0");
 
-        Debug.Log("ÆßÇÁ Á¤Áö");
+        Debug.Log("íŒí”„ ì •ì§€");
         
         try
         {
@@ -261,18 +261,18 @@ public class GameObjectControl : UserTotalControl
     }
 
 
-    //10ÃÊµÚ¿¡ ³Ñ¾î°¨ (´ÙÀ½¾ÀÀ¸·Î)
+    //10ì´ˆë’¤ì— ë„˜ì–´ê° (ë‹¤ìŒì”¬ìœ¼ë¡œ)
     IEnumerator OnNextScene() {
 
-        //´ë±â ¾ÀÀ¸·Î ÀÌµ¿ 
+        //ëŒ€ê¸° ì”¬ìœ¼ë¡œ ì´ë™ 
         GotoSceneClip(UserTableSettingBase.StationState.mission1,
                    GameManager.ClipState.Scene1);
 
-        //¸¶Áö¸· Á¾·á½ÃÁ¡¿¡µû¸¥ Ä«¿îÅÍÁøÇà 
+        //ë§ˆì§€ë§‰ ì¢…ë£Œì‹œì ì—ë”°ë¥¸ ì¹´ìš´í„°ì§„í–‰ 
         int mission1EndTimeDelay =
             GameObjectControl.instance.missionDataLoader.jsonLoadData.timeSetting.mission1EndTimeDelay;
         timeCountSliderImage.mission1DelaySliderImage.fillAmount = 0;
-        Debug.Log("¹Ì¼Ç1 °ÔÀÓ Á¾·á µô·¹ÀÌ Å¸ÀÓ : "+ mission1EndTimeDelay);
+        Debug.Log("ë¯¸ì…˜1 ê²Œì„ ì¢…ë£Œ ë”œë ˆì´ íƒ€ì„ : "+ mission1EndTimeDelay);
         int currentTimeCount = 0;
         if (mission1EndTimeDelay > 0) {
             while (true) {
@@ -280,19 +280,19 @@ public class GameObjectControl : UserTotalControl
                 if (mission1EndTimeDelay > currentTimeCount)
                 {
                     ++currentTimeCount; 
-                    Debug.Log("¹Ì¼Ç1Á¾·á ´ë±â ½Ã°£"+ currentTimeCount);
+                    Debug.Log("ë¯¸ì…˜1ì¢…ë£Œ ëŒ€ê¸° ì‹œê°„"+ currentTimeCount);
                     timeCountSliderImage.mission1DelaySliderImage.fillAmount = (float)currentTimeCount/ (float)mission1EndTimeDelay;
                 }
                 else
                 {
                     timeCountSliderImage.mission1DelaySliderImage.fillAmount = 1;
-                    Debug.Log("´ë±â ½Ã°£ Á¾·á");
+                    Debug.Log("ëŒ€ê¸° ì‹œê°„ ì¢…ë£Œ");
                     break;
                 }
             }
         }
       
-        Debug.Log("°ø¹èÃâ [ÇÏµå¿ş¾î ÃÊ±âÈ­]");
+        Debug.Log("ê³µë°°ì¶œ [í•˜ë“œì›¨ì–´ ì´ˆê¸°í™”]");
         /*for (int i = 0; i < GameObjectControl.Instance.userTableSettingList.Count; i++)
         {
             GameObjectControl.Instance.rsControl.multiRS.SendConsole(i, "1");
@@ -359,7 +359,7 @@ public class GameObjectControl : UserTotalControl
             if (userTableController.ballSetting.insertBallCount > 0)
             {
                 GameObjectControl.Instance.rsControl.multiRS.SendConsole(i, data);
-                Debug.Log("¸®¼Â ÁøÇà »ç¿ëÀÚ"+i);
+                Debug.Log("ë¦¬ì…‹ ì§„í–‰ ì‚¬ìš©ì"+i);
             }
         }
     }
@@ -369,7 +369,7 @@ public class GameObjectControl : UserTotalControl
     {
 
         yield return null;
-        Debug.Log("°ø¹èÃâ [ÇÏµå¿ş¾î ÃÊ±âÈ­]");
+        Debug.Log("ê³µë°°ì¶œ [í•˜ë“œì›¨ì–´ ì´ˆê¸°í™”]");
         /*for (int i = 0; i < GameObjectControl.Instance.userTableSettingList.Count; i++)
         {
             GameObjectControl.Instance.rsControl.multiRS.SendConsole(i, "1");
@@ -400,7 +400,7 @@ public class GameObjectControl : UserTotalControl
     }
 
 
-    //¹Ì¼Ç Àç»ı ¿©ºÎ ÆÄ¾Ç (À¯Àú ¸®½ºÆ®)
+    //ë¯¸ì…˜ ì¬ìƒ ì—¬ë¶€ íŒŒì•… (ìœ ì € ë¦¬ìŠ¤íŠ¸)
     public void IsMissionPlayAllUserList(bool isMission) {
         for(int i=0;i<userTableSettingList.Count ;i++){
             userTableSettingList[i].isMissionPlay = isMission;
@@ -409,7 +409,7 @@ public class GameObjectControl : UserTotalControl
 
 
     /// <summary>
-    /// Á¡¼ö ½ºÄÚ¾î Á¤ÀÇ ±¸°£
+    /// ì ìˆ˜ ìŠ¤ì½”ì–´ ì •ì˜ êµ¬ê°„
     /// </summary>
     public void ScoreRankingControl() {
 
@@ -420,7 +420,7 @@ public class GameObjectControl : UserTotalControl
         bool[] connectionList=Array.FindAll(connectionUser, item => item);
         if (connectionList.Length > 1)
         {
-            GetRenk("Áß°£ Á¡¼ö");
+            GetRenk("ì¤‘ê°„ ì ìˆ˜");
         }
         else {
 
@@ -430,27 +430,27 @@ public class GameObjectControl : UserTotalControl
             UserScoreText userScoreText = userTableController.userScoreText;
             scoreControl.SetRank(-1);
             scoreControl.SetScore(userScoreText._score);
-            scoreControl.SetText_NoUser("Áß°£ Á¡¼ö");
-            Debug.Log("´Üµ¶ÀÏ°æ¿ì ÀÛµ¿µÇ´Â±¸°£");
+            scoreControl.SetText_NoUser("ì¤‘ê°„ ì ìˆ˜");
+            Debug.Log("ë‹¨ë…ì¼ê²½ìš° ì‘ë™ë˜ëŠ”êµ¬ê°„");
 
         }
     }
 
 
-    //·©Å·Á¤º¸
+    //ë­í‚¹ì •ë³´
     public class RankData {
-        //»ç¿ëÀÚ ÀÎµ¦½º Á¤º¸
+        //ì‚¬ìš©ì ì¸ë±ìŠ¤ ì •ë³´
         public int index;
-        //·©Å· µ¥ÀÌÅÍ
+        //ë­í‚¹ ë°ì´í„°
         public int rankData;
-        //Á¡¼ö µ¥ÀÌÅÍ 
+        //ì ìˆ˜ ë°ì´í„° 
         public int scoreData;
 
         public bool isRank = false;
     }
 
 
-    //ÇöÀçÀÇ ·©Å· Á¤º¸ È­¸é¿¡ ³ëÃâ
+    //í˜„ì¬ì˜ ë­í‚¹ ì •ë³´ í™”ë©´ì— ë…¸ì¶œ
     public void GetRenk(string text) {
 
         bool[] connectionUser = GameObjectControl.instance.connectionUser;
@@ -483,19 +483,19 @@ public class GameObjectControl : UserTotalControl
 
         }
 
-        //·©Å· Á¤º¸ 
+        //ë­í‚¹ ì •ë³´ 
         for (int i = 0; i < rank.Count; i++)
         {
-            Debug.Log("·©Å· Á¤º¸] : "+rank[i].index + ":" + rank[i].scoreData + ":" + rank[i].rankData);
+            Debug.Log("ë­í‚¹ ì •ë³´] : "+rank[i].index + ":" + rank[i].scoreData + ":" + rank[i].rankData);
             int userIndex = rank[i].index;
-            //»ç¿ëÀÚ ½ºÄÚ¾î ÅØ½ºÆ® Á¤º¸
+            //ì‚¬ìš©ì ìŠ¤ì½”ì–´ í…ìŠ¤íŠ¸ ì •ë³´
             UserScoreText userScoreText = userTableSettingList[userIndex].userScoreText;
             ScoreControl scoreControl = userTableSettingList[userIndex].scoreControl;
-            //·©Å·µ¥ÀÌÅÍ Á¤º¸µî·Ï
+            //ë­í‚¹ë°ì´í„° ì •ë³´ë“±ë¡
             scoreControl.SetRank(rank[i].rankData);
             scoreControl.SetScore(rank[i].scoreData);
 
-            //Áß°£Á¡¼ö
+            //ì¤‘ê°„ì ìˆ˜
             scoreControl.SetText(text);
         }
     }

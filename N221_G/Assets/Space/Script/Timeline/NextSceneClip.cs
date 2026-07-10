@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NextSceneClip : MonoBehaviour
 {
-    //[Header("´ÙÀ½¾ÀÀ¸·Î ÀÌµ¿ÇÏ´Â±¸°£")]
+    //[Header("ë‹¤ìŒì”¬ìœ¼ë¡œ ì´ë™í•˜ëŠ”êµ¬ê°„")]
     //public UserTableSettingBase.StationState nextStationState;
     //public GameManager.ClipState nextClipState;
     public GameObjectControl gameObjectControl;

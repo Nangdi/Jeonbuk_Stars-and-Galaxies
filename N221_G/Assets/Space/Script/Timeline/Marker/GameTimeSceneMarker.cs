@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -10,7 +10,7 @@ public class GameTimeSceneMarker : Marker, INotification, INotificationOptionPro
     public bool showLineOverlay = true;
 
 
-    [Header("Å¬¸³ Àç»ıÁ¤º¸")]
+    [Header("í´ë¦½ ì¬ìƒì •ë³´")]
     public GameSceneClip.SceneStats sceneClipStats;
 
 

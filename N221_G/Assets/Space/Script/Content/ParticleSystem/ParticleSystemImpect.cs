@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,10 +7,10 @@ public class ParticleSystemImpect : MonoBehaviour
     public GameObject destroyObject;
     public ParticleSystem hitImpectParticleSystem;
 
-    //½ºÅ¾ ÀÌº¥Æ® ÇÚµé·¯ ÀÛµ¿ µÇ´ÂÁö È®ÀÎ 
+    //ìŠ¤íƒ‘ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ ì‘ë™ ë˜ëŠ”ì§€ í™•ì¸ 
     public void OnParticleSystemStopped()
     {
-        Debug.Log("ÆÄÆ¼Å¬ ½Ã½ºÅÛ Á¤Áö [Stop] : 2");
+        Debug.Log("íŒŒí‹°í´ ì‹œìŠ¤í…œ ì •ì§€ [Stop] : 2");
         GameObject.Destroy(destroyObject);
     }
 }

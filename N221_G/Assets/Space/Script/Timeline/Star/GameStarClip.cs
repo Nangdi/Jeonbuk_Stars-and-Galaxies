@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -6,17 +6,17 @@ using UnityEngine.Timeline;
 using static MainTableManager;
 
 
-//º° °ÔÀÓ Å¬¸³Ãß°¡ ÄÁÆ®·Ñ
+//ë³„ ê²Œì„ í´ë¦½ì¶”ê°€ ì»¨íŠ¸ë¡¤
 public class GameStarClip : PlayableAsset, ITimelineClipAsset, IPropertyPreview
 {
-    [Header("È­¸é Ç¥½Ã¿ëÀ¸·Î °³¹ß")]
+    [Header("í™”ë©´ í‘œì‹œìš©ìœ¼ë¡œ ê°œë°œ")]
     public string clipName = "";
 
     public enum ClipType { Init,blackHoleCreate_start, StarCreate_Start }
-    [Header("Å¬¸³ Å¸ÀÔ")]
+    [Header("í´ë¦½ íƒ€ì…")]
     public ClipType clipType;
 
-    //[Header("½ºÅÇ Á¤º¸")]
+    //[Header("ìŠ¤íƒ­ ì •ë³´")]
     //public StarStepData.Step step;
 
     public ExposedReference<StarObject> eStarObject;
@@ -31,11 +31,11 @@ public class GameStarClip : PlayableAsset, ITimelineClipAsset, IPropertyPreview
 
     public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
     {
-        //ÀúÀå º¯¼ö ¸¸µé±â ??
+        //ì €ì¥ ë³€ìˆ˜ ë§Œë“¤ê¸° ??
         //SceneBehaviour
         ScriptPlayable<GameStarBehaviour> playable = ScriptPlayable<GameStarBehaviour>.Create(graph);
         GameStarBehaviour sceneBehaviour = playable.GetBehaviour();
-        //±âº» ¼ÂÆÃ ¼³Á¤±¸°£
+        //ê¸°ë³¸ ì…‹íŒ… ì„¤ì •êµ¬ê°„
         return playable;
     }
 

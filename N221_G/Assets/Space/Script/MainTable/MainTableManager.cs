@@ -1,4 +1,4 @@
-using SpaceGraphicsToolkit.Ring;
+ï»¿using SpaceGraphicsToolkit.Ring;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,46 +9,46 @@ using UnityEngine.Rendering.UI;
 
 public class MainTableManager : MonoBehaviour
 {
-    //¸ŞÀÎ ½Ã½ºÅÛ Ä«¸Ş¶ó
+    //ë©”ì¸ ì‹œìŠ¤í…œ ì¹´ë©”ë¼
     public Camera mainSystemCamera;
 
-    //Ãæµ¹ VFX ¿ÀºêÁ§Æ®
+    //ì¶©ëŒ VFX ì˜¤ë¸Œì íŠ¸
     public List<GameObject> hitVfxObject;
 
     public StarControl starControl;
     [System.Serializable]
     public class StarControl {
 
-        [Header("º°¿ÀºêÁ§Æ® [2D ±âÁØ]")]
+        [Header("ë³„ì˜¤ë¸Œì íŠ¸ [2D ê¸°ì¤€]")]
         public StarObject starObject;
         public ElementHitCirclePoint elementHitCirclePoint;
         public Transform parentTransform;
 
-        [Header("ÀıÄ¡ ÃÊ±â µ¥ÀÌÅÍ")]
+        [Header("ì ˆì¹˜ ì´ˆê¸° ë°ì´í„°")]
         public StarStepData initStarStepData;
 
-        [Header("º° ´Ü°èÀû ºí·¢È¦ »ı¼º µ¥ÀÌÅÍ")]
+        [Header("ë³„ ë‹¨ê³„ì  ë¸”ë™í™€ ìƒì„± ë°ì´í„°")]
         public List<StarStepData> starStepDataList;
 
-        [Header("º° È­¸é »ı¼º ")]
+        [Header("ë³„ í™”ë©´ ìƒì„± ")]
         public List<StarStepData> starViewStep;
     }
 
-    //´Ü°è µ¥ÀÌÅÍ
+    //ë‹¨ê³„ ë°ì´í„°
     [System.Serializable]
     public class StarStepData {
         public enum Step {Init, Step1, Step2, Step3, Step4 };
         public Step step;
 
-        //Å©±â
+        //í¬ê¸°
         public float radius = 0;
 
-        //¹è°æ »çÀÌÁî Á¤ÀÇ
+        //ë°°ê²½ ì‚¬ì´ì¦ˆ ì •ì˜
         public float back_InnerSize = 0;
         public float back_OuterSize = 0;
     }
 
-    //¸®½ºÆ® Á¤º¸ 
+    //ë¦¬ìŠ¤íŠ¸ ì •ë³´ 
     [ReadOnly]
     public List<ElementHitCollider> elementHitColliderList;
 
@@ -59,7 +59,7 @@ public class MainTableManager : MonoBehaviour
 
 
     /// <summary>
-    /// ÀÎ½ºÅÏ½º
+    /// ì¸ìŠ¤í„´ìŠ¤
     /// </summary>
     public static MainTableManager instance
     {
@@ -70,7 +70,7 @@ public class MainTableManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ElementHitCollider Á¸Àç ¿©ºÎ ÆÄ¾Ç
+    /// ElementHitCollider ì¡´ì¬ ì—¬ë¶€ íŒŒì•…
     /// </summary>
     /// <param name="elementHitCollider"></param>
     /// <returns></returns>
@@ -95,7 +95,7 @@ public class MainTableManager : MonoBehaviour
 
 
     /// <summary>
-    /// È÷Æ® ÀÓ¼pÆ® ÁøÇàµÇ´Â±¸°£
+    /// íˆíŠ¸ ì„íŸíŠ¸ ì§„í–‰ë˜ëŠ”êµ¬ê°„
     /// </summary>
     /// <param name="CreatePosition"></param>
     public GameObject[] HitImpact(Vector3 CreatePosition) {
@@ -108,10 +108,10 @@ public class MainTableManager : MonoBehaviour
     }
 
     /// <summary>
-    /// º°»ı¼º (Ãæµ¹µÇ´Â ºÎºĞ¿¡ µû¶ó  2D ±âÁØ ¿ÀºêÁ§Æ® »ı¼º)
+    /// ë³„ìƒì„± (ì¶©ëŒë˜ëŠ” ë¶€ë¶„ì— ë”°ë¼  2D ê¸°ì¤€ ì˜¤ë¸Œì íŠ¸ ìƒì„±)
     /// </summary>
     public void CreateStar(Vector3 createPosition) {
-        Debug.Log("Ãæµ¹ À§Ä¡ : "+createPosition);
+        Debug.Log("ì¶©ëŒ ìœ„ì¹˜ : "+createPosition);
         GameObject addStarObject=GameObject.Instantiate(
             starControl.elementHitCirclePoint.gameObject, 
             createPosition, Quaternion.identity, 
@@ -123,7 +123,7 @@ public class MainTableManager : MonoBehaviour
 
     }
 
-    //»ı¼ºµÈ º°»èÁ¦
+    //ìƒì„±ëœ ë³„ì‚­ì œ
     public void RemoveStar() {
         ElementHitCirclePoint[] elementHitCirclePointList = GameObject.FindObjectsOfType<ElementHitCirclePoint>();
         for (int i= elementHitCirclePointList.Length-1;i>=0 ;i--) {
@@ -143,7 +143,7 @@ public class MainTableManager : MonoBehaviour
 
     [System.Serializable]
     public class UserTable {
-        //ÇöÀç Ä«¿îÅÍ Á¤º¸
+        //í˜„ì¬ ì¹´ìš´í„° ì •ë³´
         public int currentCount = 0;
         public int maxCount = 0;
         public Coroutine onUserInsertCountDown=null;
@@ -151,9 +151,9 @@ public class MainTableManager : MonoBehaviour
         public List<TextMeshProUGUI> textMeshProTextList;
     }
 
-    //´Ù¸¥ Ã¼ÇèÀÚ ÁøÇà ÄÁÆ®·Ñ
+    //ë‹¤ë¥¸ ì²´í—˜ì ì§„í–‰ ì»¨íŠ¸ë¡¤
     public void InsertUser() {
-        Debug.Log("»ç¿ëÀÚ Ä«¿îÅÍ ÁøÇà");
+        Debug.Log("ì‚¬ìš©ì ì¹´ìš´í„° ì§„í–‰");
         RemoveOnUserInsertCountDown();
         userTable.onUserInsertCountDown=StartCoroutine(UserInsertCountDown());
         
@@ -167,7 +167,7 @@ public class MainTableManager : MonoBehaviour
     }
 
 
-    //»ç¿ëÀÚ ÀúÀå Ä«¿îÅÍ
+    //ì‚¬ìš©ì ì €ì¥ ì¹´ìš´í„°
     IEnumerator UserInsertCountDown()
     {
         while (true)
@@ -177,7 +177,7 @@ public class MainTableManager : MonoBehaviour
 
             if (currentCount == 0)
             {
-                Debug.Log("¿µ»ó Å¸ÀÓ¶óÀÎ ½ÃÀÛÇÏ´Â±¸°£");
+                Debug.Log("ì˜ìƒ íƒ€ì„ë¼ì¸ ì‹œì‘í•˜ëŠ”êµ¬ê°„");
                 RemoveOnUserInsertCountDown();
                 userInsertTimeCompleteEvent.Invoke();
             }

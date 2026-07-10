@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +8,15 @@ public class ElementHitCollider : MonoBehaviour
 {
     public ElementObject elementObject;
 
-    //Ãæµ¹ Ã³¸® 
-    //°Å¸®·Î ÇßÀ»°æ¿ì ¹®Á¦Á¡ Á¸Àç
+    //ì¶©ëŒ ì²˜ë¦¬ 
+    //ê±°ë¦¬ë¡œ í–ˆì„ê²½ìš° ë¬¸ì œì  ì¡´ì¬
     public void OnTriggerEnter2D(Collider2D collision)
     {
         HitObject(collision);
     }
 
     /// <summary>
-    /// ¿ø¼Ò ³¢¸® Ãæµ¹½Ã ÀÛµ¿ µÇ´Â ±¸°£ -1 ÀÏ°æ¿ì ¹«Á¶°Ç Ãæµ¹ ÁøÇà
+    /// ì›ì†Œ ë¼ë¦¬ ì¶©ëŒì‹œ ì‘ë™ ë˜ëŠ” êµ¬ê°„ -1 ì¼ê²½ìš° ë¬´ì¡°ê±´ ì¶©ëŒ ì§„í–‰
     /// </summary>
     private void HitObject(Collider2D collision) {
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer(elementObject.hitLayerMask)))
@@ -34,13 +34,13 @@ public class ElementHitCollider : MonoBehaviour
                 if (!MainTableManager.instance.IsElementHitColliderDataExist(this, oppElementHitCollider))
                 {
                     MainTableManager.instance.elementHitColliderList.Add(oppElementHitCollider);
-                    //º°»ı¼º
+                    //ë³„ìƒì„±
                     StartCoroutine(OnHitObject(centerVer));
 
                 }
                 else
                 {
-                    //º°Å°¿ì±â
+                    //ë³„í‚¤ìš°ê¸°
                     StartCoroutine(OnHitImpact(centerVer));
 
                 }
@@ -58,7 +58,7 @@ public class ElementHitCollider : MonoBehaviour
     }
 
 
-    //È÷Æ® ¿ÀºêÁ§Æ®
+    //íˆíŠ¸ ì˜¤ë¸Œì íŠ¸
     IEnumerator OnHitObject(Vector3 centerVer)
     {
         yield return null;
@@ -72,7 +72,7 @@ public class ElementHitCollider : MonoBehaviour
         yield return StartCoroutine(OnHitImpact(centerVer));
     }
 
-    //È÷Æ® ÀÓÆåÆ® 
+    //íˆíŠ¸ ì„í™íŠ¸ 
     public IEnumerator OnHitImpact(Vector3 centerVer) {
         yield return null;
         elementObject.isMove = false;

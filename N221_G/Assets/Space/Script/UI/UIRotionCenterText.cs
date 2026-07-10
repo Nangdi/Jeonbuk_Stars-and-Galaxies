@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIRotionCenterText : MonoBehaviour
 {
 
-    [Header("Å¸°ÙÀÇ Transform")]
+    [Header("íƒ€ê²Ÿì˜ Transform")]
     public Transform targetTransform;
     public float speed = 0.01f;
 
@@ -22,7 +22,7 @@ public class UIRotionCenterText : MonoBehaviour
         ResetSliderUI();
     }
 
-    //½½¶óÀÌ´õ ¸®¼Â
+    //ìŠ¬ë¼ì´ë” ë¦¬ì…‹
     private void ResetSliderUI() {
         if (imageSliderUI)
         {

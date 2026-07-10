@@ -1,12 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ÄÄÆ÷³ÍÆ® °´Ã¼ 
+//ì»´í¬ë„ŒíŠ¸ ê°ì²´ 
 [System.Serializable]
 public class ComponentVO {
 
-    //ÄÄÆ÷³ÍÆ® Á¤º¸ (¹è¿­·Î °ü¸®)
+    //ì»´í¬ë„ŒíŠ¸ ì •ë³´ (ë°°ì—´ë¡œ ê´€ë¦¬)
     public List<ComponentList> componentList;
     
     [System.Serializable]
@@ -23,7 +23,7 @@ public class ComponentVO {
         
         private Vector2 vector2;
 
-        //¹éÅÍ 2D ÁÂÇ¥ (get Àü¿ë)
+        //ë°±í„° 2D ì¢Œí‘œ (get ì „ìš©)
         [Newtonsoft.Json.JsonIgnore]
         public Vector2 Vector2 { 
             get {

@@ -1,4 +1,4 @@
-using com.humanc.rsconn;
+ï»¿using com.humanc.rsconn;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,18 +11,18 @@ using static OutsideProcessControl;
 
 public class OutsideProcessControl : MonoBehaviour
 {
-    //¿ÜºÎ ÄÁÆ®·Ñ µ¥ÀÌÅÍ Á¤º¸ 
+    //ì™¸ë¶€ ì»¨íŠ¸ë¡¤ ë°ì´í„° ì •ë³´ 
     public MissionDataLoader missionDataLoader;
 
-    [Header("¿ÜºÎ ÆÄÀÏ ·Îµå °æ·Î")]
+    [Header("ì™¸ë¶€ íŒŒì¼ ë¡œë“œ ê²½ë¡œ")]
     [SerializeField]
     private string processFile;
 
-    [Header("ÇÁ·Î¼¼½º µ¥ÀÌÅÍ ¸®½ºÆ®")]
+    [Header("í”„ë¡œì„¸ìŠ¤ ë°ì´í„° ë¦¬ìŠ¤íŠ¸")]
     public List<ProcessData> processDataList;
 
 
-    [Header("ÀÌº¥Æ® ÇÚµé·¯")]
+    [Header("ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬")]
     public RsEventHandler rsEventHandler = new RsEventHandler();
 
     [System.Serializable]
@@ -42,10 +42,10 @@ public class OutsideProcessControl : MonoBehaviour
 
     [System.Serializable]
     public class ProcessData {
-        //¿ÜºÎ ÇÁ·Î¼¼½º Á¤º¸
+        //ì™¸ë¶€ í”„ë¡œì„¸ìŠ¤ ì •ë³´
         public Process process;
 
-        [Header("ÇÁ·Î¼¼½º ÀÎµ¦½º Á¤º¸")]
+        [Header("í”„ë¡œì„¸ìŠ¤ ì¸ë±ìŠ¤ ì •ë³´")]
         public int processIndex;
 
         [Header("rs232 comName")]
@@ -59,20 +59,20 @@ public class OutsideProcessControl : MonoBehaviour
     }
 
 
-    //ÇÁ·Î±×·¥ ½ÇÇà ÄÁÆ®·Ñ
+    //í”„ë¡œê·¸ë¨ ì‹¤í–‰ ì»¨íŠ¸ë¡¤
     IEnumerator Start() {
         yield return null;
         ProcessPlay();
        // yield return StartCoroutine(OnLoop());
     }
 
-    //¿ÜºÎ ÇÁ·Î¼¼½º ½ÇÇà
+    //ì™¸ë¶€ í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰
     private void ProcessPlay() {
         for (int i=0;i< processDataList.Count; i++) {
 
             ProcessData processData = processDataList[i];
             
-            //ÇÁ·Î¼¼½º ½ÇÇà ÄÁÆ®·Ñ 
+            //í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰ ì»¨íŠ¸ë¡¤ 
             processData.process = new Process();
 
             System.Diagnostics.ProcessStartInfo proinfo = new ProcessStartInfo();
@@ -111,7 +111,7 @@ public class OutsideProcessControl : MonoBehaviour
             UnityEngine.Debug.Log("On Loop]");
             if (string.IsNullOrEmpty(data)) {
                 RsReceivedData(data);
-                //ÀúÀåµÇ¾îÀÖ´Â µ¥ÀÌÅÍ Á¤º¸ ÃÊ±âÈ­ 
+                //ì €ì¥ë˜ì–´ìˆëŠ” ë°ì´í„° ì •ë³´ ì´ˆê¸°í™” 
                 //data = "";
             }
 
@@ -135,7 +135,7 @@ public class OutsideProcessControl : MonoBehaviour
     }
     public string data;
     /// <summary>
-    /// ¸®½Ã¹ö ÀÌº¥Æ® ÇÚµé·¯ ÀÛµ¿±¸°£ (¼öÁ¤ : Ãß°¡ÀûÀÎ ÀÛ¾÷ ÇÊ¿äÇÔ)
+    /// ë¦¬ì‹œë²„ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ ì‘ë™êµ¬ê°„ (ìˆ˜ì • : ì¶”ê°€ì ì¸ ì‘ì—… í•„ìš”í•¨)
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="eventArgs"></param>
@@ -153,14 +153,14 @@ public class OutsideProcessControl : MonoBehaviour
             Process process = processDataList[index].process;
             if (process != null)
             {
-                //UnityEngine.Debug.Log("Àü¼Û µ¥ÀÌÅÍ Á¤º¸"+ processDataList[index].comName);
-                //UnityEngine.Debug.Log("Àü¼Û µ¥ÀÌÅÍ Á¤º¸" + message);
+                //UnityEngine.Debug.Log("ì „ì†¡ ë°ì´í„° ì •ë³´"+ processDataList[index].comName);
+                //UnityEngine.Debug.Log("ì „ì†¡ ë°ì´í„° ì •ë³´" + message);
                 if (message.Equals("1"))
                 {
-                    UnityEngine.Debug.Log("º¼ Ãâ·Â ÁøÇà: ÀÎµ¦½º" + index);
+                    UnityEngine.Debug.Log("ë³¼ ì¶œë ¥ ì§„í–‰: ì¸ë±ìŠ¤" + index);
                 }
                 else {
-                    UnityEngine.Debug.Log("º¼ ¹Ù¶÷ Á¾·á ÁøÇà: ÀÎµ¦½º" + index);
+                    UnityEngine.Debug.Log("ë³¼ ë°”ëŒ ì¢…ë£Œ ì§„í–‰: ì¸ë±ìŠ¤" + index);
                 }
                 string s = missionDataLoader.jsonLoadData.windowsSetting.startData;
                 string e= missionDataLoader.jsonLoadData.windowsSetting.endData;
@@ -168,7 +168,7 @@ public class OutsideProcessControl : MonoBehaviour
             }
         }
         else {
-            UnityEngine.Debug.Log("¿¬°áµÇÁö ¾ÊÀ½");
+            UnityEngine.Debug.Log("ì—°ê²°ë˜ì§€ ì•ŠìŒ");
         }
        
     }
@@ -188,7 +188,7 @@ public class OutsideProcessControl : MonoBehaviour
     }*/
 
 
-    //ÇÁ·Î±×·¥ ½ÇÇà °æ·Î 
+    //í”„ë¡œê·¸ë¨ ì‹¤í–‰ ê²½ë¡œ 
     private void ProcessStart() { 
     
     }
@@ -200,7 +200,7 @@ public class OutsideProcessControl : MonoBehaviour
 
 
     /// <summary>
-    /// ÇÁ·Î¼¼½º Á¾·á
+    /// í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ
     /// </summary>
     public void OnApplicationQuit()
     {

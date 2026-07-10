@@ -1,18 +1,18 @@
-using DG.Tweening;
+Ôªøusing DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PrrtElementObject : MonoBehaviour
 {
-    //¿Œµ¶Ω∫ ¡§∫∏
+    //Ïù∏Îç±Ïä§ Ï†ïÎ≥¥
     public int index = -1;
     public SpriteRenderer spriteRenderer;
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (IsUserTableAddElementObject(collision)) {
-            Debug.Log("√Êµπ √≥∏Æ »Æ¿Œ ");
+            Debug.Log("Ï∂©Îèå Ï≤òÎ¶¨ ÌôïÏù∏ ");
             UserTableAddElementObject userTableAddElementObject =
                 collision.GetComponent<UserTableAddElementObject>();
             if (userTableAddElementObject.index.Equals(index)) {

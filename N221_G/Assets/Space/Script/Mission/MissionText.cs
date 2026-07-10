@@ -1,24 +1,24 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 
 /// <summary>
-/// ¹Ì¼Ç ÅØ½ºÆ®
+/// ë¯¸ì…˜ í…ìŠ¤íŠ¸
 /// </summary>
 public class MissionText : MonoBehaviour
 {
     public TextMeshPro textmesh;
     //[SerializeField]
-    [ReadOnly]//1.ÀÛÀº º°:°ø 1~4°³ | 2.Å«º°:°ø 5°³ ÀÌ»ó
-    private string defaultText= "1.ÀÛÀº º°:°ø 1~{Data1}°³ | 2.Å«º°:°ø {Data2}°³ ÀÌ»ó";
+    [ReadOnly]//1.ì‘ì€ ë³„:ê³µ 1~4ê°œ | 2.í°ë³„:ê³µ 5ê°œ ì´ìƒ
+    private string defaultText= "1.ì‘ì€ ë³„:ê³µ 1~{Data1}ê°œ | 2.í°ë³„:ê³µ {Data2}ê°œ ì´ìƒ";
 
     public void SetText(int data1, int data2) {
         textmesh.text = TextChange(data1, data2);
     }
 
-    //Å×½ºÆ® º¯°æ ÄÁÆ®·Ñ
+    //í…ŒìŠ¤íŠ¸ ë³€ê²½ ì»¨íŠ¸ë¡¤
     private string TextChange(int data1,int data2) {
         string text = defaultText.Replace("{Data1}",data1.ToString());
         text=text.Replace("{Data2}", data2.ToString());

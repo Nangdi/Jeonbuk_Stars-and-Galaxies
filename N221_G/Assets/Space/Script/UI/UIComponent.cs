@@ -1,16 +1,16 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 
-//UI ÄÄÆ÷³ÍÆ® ÄÁÆ®·Ñ Á¤ÀÇ ±¸°£
+//UI ì»´í¬ë„ŒíŠ¸ ì»¨íŠ¸ë¡¤ ì •ì˜ êµ¬ê°„
 public class UIComponent : UIVideoComponent
 {
 
 
 
-    //½ÃÀÛ Ä¿¸Çµå
+    //ì‹œì‘ ì»¤ë§¨ë“œ
     public void OnInit() {
      
     }

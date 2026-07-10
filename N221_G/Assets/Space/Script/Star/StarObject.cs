@@ -1,4 +1,4 @@
-using SpaceGraphicsToolkit.Flare;
+ï»¿using SpaceGraphicsToolkit.Flare;
 using SpaceGraphicsToolkit.Ring;
 using System;
 using System.Collections;
@@ -14,27 +14,27 @@ using DG.Tweening;
 using DG.Tweening.Core;
 using static StarObject;
 
-//º° ¿ÀºêÁ§Æ® ÄÁÆ®·Ñ
+//ë³„ ì˜¤ë¸Œì íŠ¸ ì»¨íŠ¸ë¡¤
 public class StarObject : MonoBehaviour
 {
 
     public PlayableDirector playableDirector;
     
-    [Header("¸ŞÀÎ ½Ã½ºÅÛ Ä«¸Ş¶ó")]
+    [Header("ë©”ì¸ ì‹œìŠ¤í…œ ì¹´ë©”ë¼")]
     public Camera mainSystemCamera;
 
     private Coroutine onLoop = null;
 
-    //ÄÁÆ®·Ñ ¿ÀºêÁ§Æ® ¼³Á¤
+    //ì»¨íŠ¸ë¡¤ ì˜¤ë¸Œì íŠ¸ ì„¤ì •
     public ControlObject controlObject;
 
     [System.Serializable]
     public class ControlObject
     {
-        [Header("º° ¹è°æ")]
+        [Header("ë³„ ë°°ê²½")]
         public SgtRing starBackgrand;
 
-        [Header("º° ¿ÀºêÁ§Æ®")]
+        [Header("ë³„ ì˜¤ë¸Œì íŠ¸")]
         public List<StarSetting> starObjectList;
 
         public Transform starAddParent;
@@ -44,7 +44,7 @@ public class StarObject : MonoBehaviour
     [System.Serializable]
     public class StarSetting {
         public GameObject starObject;
-        //¶óÀÌÆ® ¸Ş½¬ Á¤º¸
+        //ë¼ì´íŠ¸ ë©”ì‰¬ ì •ë³´
         public SgtFlareMesh sgtFlareMesh_Main;
         public SgtFlareMesh sgtFlareMesh_Sub;
     }
@@ -72,10 +72,10 @@ public class StarObject : MonoBehaviour
         playableDirector.Play();
     }
 
-    //±âº»¼ÂÆÃ ¼³Á¤±¸°£
+    //ê¸°ë³¸ì…‹íŒ… ì„¤ì •êµ¬ê°„
     private void BaseSettingData(Camera mainSystemCamera) {
         this.mainSystemCamera = mainSystemCamera;
-        //º° ·»´ı ¼³Á¤
+        //ë³„ ë Œë¤ ì„¤ì •
         selectStarIndex = UnityEngine.Random.Range(0, controlObject.starObjectList.Count-1);
         starSetting = controlObject.starObjectList[selectStarIndex];
         starSetting.starObject.SetActive(true);
@@ -98,9 +98,9 @@ public class StarObject : MonoBehaviour
 
 
     /// <summary>
-    /// ·çÇÁ ÄÁÆ®·Ñ¼³Á¤±¸°£
-    /// 1. Ä«¸Ş¶ó ¹æÇâ¿¡ µû¸¥ º°ÀÇ À§Ä¡ Á¶Á¤ ½ÃÀÛ ÇÏ´Â±¸°£ 
-    /// 2. »¡·Áµé¾î°¡´Â ºí·¢È¦ ¹è°æ ¹Ù¶óº¸´Â ¹æÇâ µ¿ÀûÀ¸·Î º¯°æ
+    /// ë£¨í”„ ì»¨íŠ¸ë¡¤ì„¤ì •êµ¬ê°„
+    /// 1. ì¹´ë©”ë¼ ë°©í–¥ì— ë”°ë¥¸ ë³„ì˜ ìœ„ì¹˜ ì¡°ì • ì‹œì‘ í•˜ëŠ”êµ¬ê°„ 
+    /// 2. ë¹¨ë ¤ë“¤ì–´ê°€ëŠ” ë¸”ë™í™€ ë°°ê²½ ë°”ë¼ë³´ëŠ” ë°©í–¥ ë™ì ìœ¼ë¡œ ë³€ê²½
     /// </summary>
     /// <returns></returns>
     IEnumerator OnLoop() {
@@ -115,7 +115,7 @@ public class StarObject : MonoBehaviour
 
     public float createStarDistance = 0;
 
-    //±âÁî¸ğ ÀÛµ¿
+    //ê¸°ì¦ˆëª¨ ì‘ë™
     public void OnDrawGizmos()
     {
         if (mainSystemCamera) {
@@ -125,7 +125,7 @@ public class StarObject : MonoBehaviour
 
             Gizmos.color = Color.blue;
             Vector3 heading = (controlObject.starAddParent.transform.position-mainSystemCamera.transform.position);
-            //°Å¸® Á¤º¸ ÇÊ¿äÇÔ
+            //ê±°ë¦¬ ì •ë³´ í•„ìš”í•¨
             var direction = heading / createStarDistance;
             Vector3 customVector = mainSystemCamera.transform.position + direction;
             Gizmos.DrawWireSphere(customVector, 1f);
@@ -135,10 +135,10 @@ public class StarObject : MonoBehaviour
         }
     }
 
-    //º°ÀÇ À§Ä¡ º¯°æ ÇÏ´Â±¸°£
+    //ë³„ì˜ ìœ„ì¹˜ ë³€ê²½ í•˜ëŠ”êµ¬ê°„
     private void StarPosition() {
         Vector3 heading = (controlObject.starAddParent.transform.position - mainSystemCamera.transform.position);
-        //°Å¸® Á¤º¸ ÇÊ¿äÇÔ
+        //ê±°ë¦¬ ì •ë³´ í•„ìš”í•¨
         var direction = heading / createStarDistance;
         Vector3 resultPosition = mainSystemCamera.transform.position + direction;
         for (int i=0;i< controlObject.starObjectList.Count; i++) {
@@ -146,7 +146,7 @@ public class StarObject : MonoBehaviour
         }
     }
 
-    //º° ¹è°æ ¹Ù¶óº¸´Â À§Ä¡ Á¶Á¤ 
+    //ë³„ ë°°ê²½ ë°”ë¼ë³´ëŠ” ìœ„ì¹˜ ì¡°ì • 
     private void StarBackgrandLookCamera() {
         Vector3 vec = mainSystemCamera.transform.position-controlObject.starBackgrand.transform.position;
         vec.Normalize();
@@ -158,7 +158,7 @@ public class StarObject : MonoBehaviour
 
     private GameStarClip.ClipType currentClipType = GameStarClip.ClipType.Init;
     
-    //±âº» ½ºÅÜ 1
+    //ê¸°ë³¸ ìŠ¤í… 1
     public StarStepData.Step insertStep= StarStepData.Step.Step1;
 
     public Tweener tweenerRadiusInner = null;
@@ -167,7 +167,7 @@ public class StarObject : MonoBehaviour
     public Tweener tweenerStarRadius_sub = null;
     private bool isTweenerComplete = true;
 
-    //Å¸ÀÓ¶óÀÎ ¿¬µ¿ ÀÌº¥Æ® ÇÚµé·¯
+    //íƒ€ì„ë¼ì¸ ì—°ë™ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬
     public void SetTimelineEvent(GameStarClip.ClipType clipType, float duration) {
 
         if (!clipType.Equals(currentClipType)) {
@@ -194,13 +194,13 @@ public class StarObject : MonoBehaviour
         this.currentClipType = clipType;
     }
 
-    //Æ®À© Á¾·á ¿©ºÎ È®ÀÎ 
+    //íŠ¸ìœˆ ì¢…ë£Œ ì—¬ë¶€ í™•ì¸ 
     void AnimationComplete() {
         isTweenerComplete = true;
     }
 
 
-    //¿¬¼â ¹İÀÀ¿¡ µû¸¥ º° È­¸é Ç¥Çö º¯È¯ 
+    //ì—°ì‡„ ë°˜ì‘ì— ë”°ë¥¸ ë³„ í™”ë©´ í‘œí˜„ ë³€í™˜ 
     public void StepStarChange() {
         StarStepData starStepData = GetStarStepData(currentClipType);
 
@@ -239,17 +239,17 @@ public class StarObject : MonoBehaviour
         int index = -1;
         switch (clipType) {
             case GameStarClip.ClipType.Init:
-                //ÃÊ±â 
+                //ì´ˆê¸° 
                 starStepData = MainTableManager.instance.starControl.initStarStepData;
                 break;
             case GameStarClip.ClipType.blackHoleCreate_start:
-                //ºí·¢È¦ »ı¼º
+                //ë¸”ë™í™€ ìƒì„±
                 List<StarStepData> starStepDataList = MainTableManager.instance.starControl.starStepDataList;
                 index = Array.FindIndex(starStepDataList.ToArray(), item => item.step.Equals(insertStep));
                 starStepData = starStepDataList[index];
                 break;
             case GameStarClip.ClipType.StarCreate_Start:
-                //ºí·¢È¦ »ı¼º
+                //ë¸”ë™í™€ ìƒì„±
                 List<StarStepData> starViewStep = MainTableManager.instance.starControl.starViewStep;
                 index = Array.FindIndex(starViewStep.ToArray(), item => item.step.Equals(insertStep));
                 starStepData = starViewStep[index];

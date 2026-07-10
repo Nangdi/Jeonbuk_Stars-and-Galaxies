@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,9 +7,9 @@ public class InsertBallText : MonoBehaviour
 {
 
     public TMP_Text _text;
-    //ÅõÀÔµÈ °ø:{Data}°³
+    //íˆ¬ì…ëœ ê³µ:{Data}ê°œ
     [ReadOnly]
-    private string defaultText = "ÅõÀÔµÈ °ø : {Data}°³";
+    private string defaultText = "íˆ¬ì…ëœ ê³µ : {Data}ê°œ";
     private int currentText = -1;
 
     public void OnEnable()
@@ -27,7 +27,7 @@ public class InsertBallText : MonoBehaviour
     }
 
 
-    //ÅØ½ºÆ® µî·Ï
+    //í…ìŠ¤íŠ¸ ë“±ë¡
     public void SetText(int data1) {
         if (data1 == 0)
         {
@@ -45,7 +45,7 @@ public class InsertBallText : MonoBehaviour
         _text.text = "";
     }
 
-    //Å×½ºÆ® º¯°æ ÄÁÆ®·Ñ
+    //í…ŒìŠ¤íŠ¸ ë³€ê²½ ì»¨íŠ¸ë¡¤
     private string TextChange(int data1)
     {
         string text = defaultText.Replace("{Data}", data1.ToString());

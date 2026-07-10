@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -10,7 +10,7 @@ public class CommonSettingEditor : Editor {
     {
         base.OnInspectorGUI();
         CommonSetting commonSetting = target as CommonSetting;
-        if (GUILayout.Button("ÀÌ¹ÌÁö ¸Ş½¬ Á¤º¸ º¯°æ")) {
+        if (GUILayout.Button("ì´ë¯¸ì§€ ë©”ì‰¬ ì •ë³´ ë³€ê²½")) {
             commonSetting.SetMeshData();
         }
 
@@ -21,18 +21,18 @@ public class CommonSettingEditor : Editor {
 
 public class CommonSetting : MonoBehaviour
 {
-    //¸Ş½¬ Á¤º¸
-    [Header("¸ŞÀÎ Sprite Á¤º¸")]
+    //ë©”ì‰¬ ì •ë³´
+    [Header("ë©”ì¸ Sprite ì •ë³´")]
     public SpriteRenderer mainSpriteRenderer;
 
-    [Header("¸ŞÀÎ Renderer Á¤º¸")]
+    [Header("ë©”ì¸ Renderer ì •ë³´")]
     public Renderer mainRenderer;
 
-    //¸Ş½¬ »çÀÌÁî º¯°æ
+    //ë©”ì‰¬ ì‚¬ì´ì¦ˆ ë³€ê²½
     public void SetMeshData()
     {
         Vector3 parentScale = this.transform.parent.lossyScale;
-        //º¹Á¦ ¿ÀºêÁ§Æ® 
+        //ë³µì œ ì˜¤ë¸Œì íŠ¸ 
         Vector3 _size = mainSpriteRenderer.bounds.extents;
         Bounds bounds = mainRenderer.localBounds;
         float scX = 1f / bounds.extents.x;

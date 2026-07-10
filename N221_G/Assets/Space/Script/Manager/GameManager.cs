@@ -1,4 +1,4 @@
-using Mono.Cecil.Cil;
+ï»¿using Mono.Cecil.Cil;
 using Newtonsoft.Json;
 using Runtime2DTransformInteractor;
 using System.Collections;
@@ -14,16 +14,16 @@ using static ComponentVO;
 using static GameManager;
 
 /// <summary>
-/// °ÔÀÓ¼³Á¤À§ÇÑ µ¥ÀÌÅÍ È­¸é ±¸¼º
+/// ê²Œì„ì„¤ì •ìœ„í•œ ë°ì´í„° í™”ë©´ êµ¬ì„±
 /// </summary>
 public class GameManager : MonoBehaviour
 {
     public bool isEditor = false;
     
-    [Header("¼ÂÆÃ ÆÄÀÏ °æ·Î")]
+    [Header("ì…‹íŒ… íŒŒì¼ ê²½ë¡œ")]
     public string settingFile = "";
 
-    [Header("°ü¸®°¡ µÇ¾î¾ß ÇÏ´Â ¿ÀºêÁ§Æ®")]
+    [Header("ê´€ë¦¬ê°€ ë˜ì–´ì•¼ í•˜ëŠ” ì˜¤ë¸Œì íŠ¸")]
     public List<UIComponent> managementTransformList;
 
     [ReadOnly]
@@ -36,18 +36,18 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     public class ManagerData {
 
-        [Header("Å°º¸µå ¼³Á¤ ¸Å´ÏÀú")]
+        [Header("í‚¤ë³´ë“œ ì„¤ì • ë§¤ë‹ˆì €")]
         public KeyboardManager keyboardManager;
 
-        [Header("Å¸ÀÓ¶óÀÎ ¸Å´ÏÀú")]
+        [Header("íƒ€ì„ë¼ì¸ ë§¤ë‹ˆì €")]
         public TimelineManager timelineManager;
 
     }
 
     /// <summary>
-    /// ¿¡µğÅÍ ¼³Á¤
+    /// ì—ë””í„° ì„¤ì •
     /// </summary>
-    [Header("·±Å¸ÀÓ ¿¡µğÅÍ ¼³Á¤")]
+    [Header("ëŸ°íƒ€ì„ ì—ë””í„° ì„¤ì •")]
     public EditorControl editorControl;
     [System.Serializable]
     public class EditorControl {
@@ -78,11 +78,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //À§Ä¡ Á¶Á¤ ÄÁÆ®·Ñ·¯
+    //ìœ„ì¹˜ ì¡°ì • ì»¨íŠ¸ë¡¤ëŸ¬
     public TransformInteractorController transformInteractorController;
 
     /// <summary>
-    /// ÀÎ½ºÅÏ½º
+    /// ì¸ìŠ¤í„´ìŠ¤
     /// </summary>
     public static GameManager instance
     {
@@ -92,9 +92,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //°ÔÀÓ Å¸ÀÔ Á¤º¸
-    public enum GameState { ÃÊ±âÈ­¸é,»ç¿ëÀÚ´ë±âÄ«¿îÅÍÁøÇà,°øÅõÀÔ,È¸ÀüÆÇº°»ı¼º, °ÔÀÓ¼³¸í};
-    public GameState gameType = GameState.ÃÊ±âÈ­¸é;
+    //ê²Œì„ íƒ€ì… ì •ë³´
+    public enum GameState { ì´ˆê¸°í™”ë©´,ì‚¬ìš©ìëŒ€ê¸°ì¹´ìš´í„°ì§„í–‰,ê³µíˆ¬ì…,íšŒì „íŒë³„ìƒì„±, ê²Œì„ì„¤ëª…};
+    public GameState gameType = GameState.ì´ˆê¸°í™”ë©´;
 
     //public enum StationState { waiting, experience, mission1, mission2};
 
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isEditor)
         {
-            //±âº» ¼ÂÆÃ 
+            //ê¸°ë³¸ ì…‹íŒ… 
             OnInit();
         }
         Cursor.visible = false;
@@ -114,27 +114,27 @@ public class GameManager : MonoBehaviour
 
 
 
-    //ÆÄÀÏ °æ·Î ¼³Á¤ ±¸°£
+    //íŒŒì¼ ê²½ë¡œ ì„¤ì • êµ¬ê°„
     private string GetPath()
     {
         return Application.streamingAssetsPath;
         //return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
     }
 
-    //½ÃÀÛ Ä¿¸Çµå
+    //ì‹œì‘ ì»¤ë§¨ë“œ
     private void OnInit() {
         IsSettingJsonFile();
         //OnInitInteractorController();
     }
 
 
-    //ÄÁÆ®·Ñ·¯ ÃÊ±âÈ­
+    //ì»¨íŠ¸ë¡¤ëŸ¬ ì´ˆê¸°í™”
     private void OnInitInteractorController() {
         transformInteractorController.enabled = false;
     }
 
     /// <summary>
-    /// µ¥ÀÌÅÍ ¸®¼Â(ÃÊ±âÈ­)
+    /// ë°ì´í„° ë¦¬ì…‹(ì´ˆê¸°í™”)
     /// </summary>
     public void DataComponentVOReset() {
         componentVO.componentList.Clear();
@@ -149,14 +149,14 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //¿ÜºÎ Json ÀúÀå¿ä¼Ò°¡ Á¸Àç ÇÏ´ÂÁö È®ÀÎ)
+    //ì™¸ë¶€ Json ì €ì¥ìš”ì†Œê°€ ì¡´ì¬ í•˜ëŠ”ì§€ í™•ì¸)
     private void IsSettingJsonFile() {
         string filePath = GetJsonPath();
 
         if (!File.Exists(filePath))
         {
             Debug.Log(filePath);
-            //±âº» µ¥ÀÌÅÍ°¡ Á¸Àç ÇÏÁö¾ÊÀ»°æ¿ì
+            //ê¸°ë³¸ ë°ì´í„°ê°€ ì¡´ì¬ í•˜ì§€ì•Šì„ê²½ìš°
             //componentVO = new ComponentVO();
             componentVO.componentList = new List<ComponentVO.ComponentList>();
             for (int i=0;i< managementTransformList.Count; i++) {
@@ -168,19 +168,19 @@ public class GameManager : MonoBehaviour
 
             string dateText=JsonConvert.SerializeObject(componentVO, Formatting.Indented);
             Debug.Log(dateText);
-            //±âº» µ¥ÀÌÅÍ »ı¼º
+            //ê¸°ë³¸ ë°ì´í„° ìƒì„±
             File.WriteAllText(filePath, dateText);
         }
         else {
 
-            //ÆÄÀÏ Á¸ÀçÇÔ
+            //íŒŒì¼ ì¡´ì¬í•¨
             Debug.Log(filePath);
             RemoveOnFileLoadCoroutine();
             onJsonFileLoadCoroutine =StartCoroutine(OnJsonFileLoadCoroutine(filePath));
         }
     }
 
-    //ÃÊ±âÈ­
+    //ì´ˆê¸°í™”
     private void RemoveOnFileLoadCoroutine() {
         if (onJsonFileLoadCoroutine != null) {
             StopCoroutine(onJsonFileLoadCoroutine);
@@ -188,21 +188,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //¿ÜºÎ ÆÄÀÏ·Îµå
+    //ì™¸ë¶€ íŒŒì¼ë¡œë“œ
     IEnumerator OnJsonFileLoadCoroutine(string path) {
         yield return null;
         UnityWebRequest uwr = UnityWebRequest.Get(path);
         yield return uwr.SendWebRequest();
         if (uwr.result.Equals(UnityWebRequest.Result.Success))
         {
-            Debug.Log("µ¥ÀÌÅÍ ·Îµå ¼º°ø");
+            Debug.Log("ë°ì´í„° ë¡œë“œ ì„±ê³µ");
             string _text = uwr.downloadHandler.text;
             componentVO = JsonConvert.DeserializeObject<ComponentVO>(_text);
-            Debug.Log("-----´ÙÀ½ÁøÇà UIµ¥ÀÌÅÍ À§Ä¡ Á¶Á¤ ½ÃÀÛ-----");
+            Debug.Log("-----ë‹¤ìŒì§„í–‰ UIë°ì´í„° ìœ„ì¹˜ ì¡°ì • ì‹œì‘-----");
             SetUIComponentData();
         }
         else {
-            SetEditorText("¿ÜºÎ ÆÄÀÏ ·Îµå¿À·ù");
+            SetEditorText("ì™¸ë¶€ íŒŒì¼ ë¡œë“œì˜¤ë¥˜");
         }
 
 
@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// ¿¡µğÅÍ ÅØ½ºÆ® ±ÛÀÚ Ç¥Çö
+    /// ì—ë””í„° í…ìŠ¤íŠ¸ ê¸€ì í‘œí˜„
     /// </summary>
     /// <param name="text"></param>
     public void SetEditorText(string text) {
@@ -233,7 +233,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ÇÁ·Î±×·¥ Á¾·á 
+    /// í”„ë¡œê·¸ë¨ ì¢…ë£Œ 
     /// </summary>
     public void OnApplicationQuit()
     {
@@ -244,13 +244,13 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼ÂÆÃ µ¥ÀÌÅÍ ÀúÀå
+    /// ì…‹íŒ… ë°ì´í„° ì €ì¥
     /// </summary>
     public void SettingDataSave() {
         string filePath = GetJsonPath();
         string dateText = JsonConvert.SerializeObject(componentVO, Formatting.Indented);
         
-        //±âº» µ¥ÀÌÅÍ »ı¼º
+        //ê¸°ë³¸ ë°ì´í„° ìƒì„±
         File.WriteAllText(filePath, dateText);
     }
 

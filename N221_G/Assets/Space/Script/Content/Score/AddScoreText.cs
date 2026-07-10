@@ -1,27 +1,27 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 
-//Á¡¼ö ÅØ½ºÆ® µî·Ï Ã³¸® ±¸°£
+//ì ìˆ˜ í…ìŠ¤íŠ¸ ë“±ë¡ ì²˜ë¦¬ êµ¬ê°„
 public class AddScoreText : MonoBehaviour
 {
     public TextMeshPro text;
-    //Á¤´ä À¯¹« °ü·Ã
+    //ì •ë‹µ ìœ ë¬´ ê´€ë ¨
     private bool isRightAnswer = false;
 
-    //Á¤´ä ÄÃ·¯
+    //ì •ë‹µ ì»¬ëŸ¬
     public Color rightAnswerColor;
     
-    //¿À´ä ÄÃ·¯
+    //ì˜¤ë‹µ ì»¬ëŸ¬
     public Color mustColor;
-    //¿¡´Ï¸ŞÀÌÅÍ Á¤º¸
+    //ì—ë‹ˆë©”ì´í„° ì •ë³´
     public Animator animator;
 
     /// <summary>
-    /// ÅØ½ºÆ® ½ºÄÉÀÏ Á¤º¸
+    /// í…ìŠ¤íŠ¸ ìŠ¤ì¼€ì¼ ì •ë³´
     /// </summary>
     private void TextScale() {
         Vector3 scale = text.transform.localScale;
@@ -30,7 +30,7 @@ public class AddScoreText : MonoBehaviour
     }
 
 
-    //½ÃÀÛ Ä¿¸Çµå ÀÛµ¿ ±¸°£
+    //ì‹œì‘ ì»¤ë§¨ë“œ ì‘ë™ êµ¬ê°„
     public void OnInit(bool isRightAnswer, int score) { 
         Debug.Log("OnInit");
         this.isRightAnswer = isRightAnswer;
@@ -58,14 +58,14 @@ public class AddScoreText : MonoBehaviour
     }
 
 
-    //ÆÄ±« ¿ÀºêÁ§Æ®(ÇØ´ç Ç°¸ñ Á¦°Å)
+    //íŒŒê´´ ì˜¤ë¸Œì íŠ¸(í•´ë‹¹ í’ˆëª© ì œê±°)
     public void OnDestroyObject() {
-        //¿ÀºêÁ§Æ® »èÁ¦
+        //ì˜¤ë¸Œì íŠ¸ ì‚­ì œ
         GameObject.Destroy(this.gameObject);
     }
 
 
-    //ÅØ½ºÆ® µî·Ï
+    //í…ìŠ¤íŠ¸ ë“±ë¡
     private void SetText(string textData) {
         text.text = textData;
 

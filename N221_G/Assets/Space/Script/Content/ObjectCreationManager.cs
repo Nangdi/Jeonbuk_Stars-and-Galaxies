@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using JetBrains.Annotations;
@@ -15,57 +15,57 @@ public class ObjectCreationManagerEditor : Editor
         ObjectCreationManager objectCreationManager = target as ObjectCreationManager;
         
         
-        if (GUILayout.Button("À¯Àú 1 ¿µ¿ª »ı¼º"))
+        if (GUILayout.Button("ìœ ì € 1 ì˜ì—­ ìƒì„±"))
         {
             objectCreationManager.GUILayoutLoad(0);
         }
 
-        if (GUILayout.Button("À¯Àú 1 ¿µ¿ª »ı¼º"))
+        if (GUILayout.Button("ìœ ì € 1 ì˜ì—­ ìƒì„±"))
         {
             
             objectCreationManager.CreateUserObject(objectCreationManager.user1Data, 0);
         }
 
         /*
-        if (GUILayout.Button("À¯Àú 1 ¿µ¿ª ÀÚ¼¼º¸Á¤"))
+        if (GUILayout.Button("ìœ ì € 1 ì˜ì—­ ìì„¸ë³´ì •"))
         {
             objectCreationManager.AngleChange();
         }*/
 
 
-        if (GUILayout.Button("À¯Àú 2 ¿µ¿ª »ı¼º"))
+        if (GUILayout.Button("ìœ ì € 2 ì˜ì—­ ìƒì„±"))
         {
             objectCreationManager.GUILayoutLoad(1);
         }
 
-        if (GUILayout.Button("À¯Àú 2 ¿µ¿ª »ı¼º-1"))
+        if (GUILayout.Button("ìœ ì € 2 ì˜ì—­ ìƒì„±-1"))
         {
             objectCreationManager.CreateUserObject(objectCreationManager.user2Data,0);
         }
-        if (GUILayout.Button("À¯Àú 2 ¿µ¿ª »ı¼º-2"))
+        if (GUILayout.Button("ìœ ì € 2 ì˜ì—­ ìƒì„±-2"))
         {
             objectCreationManager.CreateUserObject(objectCreationManager.user2Data, 1);
         }
 
-        if (GUILayout.Button("À¯Àú 3 ¿µ¿ª »ı¼º"))
+        if (GUILayout.Button("ìœ ì € 3 ì˜ì—­ ìƒì„±"))
         {
 
         }
 
 
-        if (GUILayout.Button("À¯Àú 4 ¿µ¿ª »ı¼º"))
+        if (GUILayout.Button("ìœ ì € 4 ì˜ì—­ ìƒì„±"))
         {
 
         }
 
-        if (GUILayout.Button("À¯Àú 5 ¿µ¿ª »ı¼º"))
+        if (GUILayout.Button("ìœ ì € 5 ì˜ì—­ ìƒì„±"))
         {
 
         }
     }
 }
 #endif
-//»ç¹° »ı¼º ¸Å´ÏÀú
+//ì‚¬ë¬¼ ìƒì„± ë§¤ë‹ˆì €
 public class ObjectCreationManager : MonoBehaviour
 {
     /**
@@ -88,7 +88,7 @@ public class ObjectCreationManager : MonoBehaviour
     [System.Serializable]
     public class UserRectAreaDataView {
 
-        [Header("»ı¼º ¿ÀºêÁ§Æ®")]
+        [Header("ìƒì„± ì˜¤ë¸Œì íŠ¸")]
         public GameObject createObject;
 
         public List<RectAreaDataView> rectAreaDataViewList;
@@ -111,15 +111,15 @@ public class ObjectCreationManager : MonoBehaviour
     }
 
 
-    //°¢µµ º¯°æ
+    //ê°ë„ ë³€ê²½
     public void AngleChange() {
         objectDeployment.AngleChange();
     }
 
-    //GUI ·¹ÀÌ¾î ·Îµå
+    //GUI ë ˆì´ì–´ ë¡œë“œ
     public void GUILayoutLoad(int userCount) {
         switch (userCount) {
-            case 1://»ç¿ëÀÚ 1¸íÀÏ°æ¿ì
+            case 1://ì‚¬ìš©ì 1ëª…ì¼ê²½ìš°
                 if (!user1Data.createObject.activeSelf)
                 {
                     BaseObjectLoad();
@@ -131,7 +131,7 @@ public class ObjectCreationManager : MonoBehaviour
                     OnDesData(user1Data);
                 }
                 break;
-            case 2://»ç¿ëÀÚ 2¸íÀÏ°æ¿ì
+            case 2://ì‚¬ìš©ì 2ëª…ì¼ê²½ìš°
                 if (!user2Data.createObject.activeSelf)
                 {
                     BaseObjectLoad();
@@ -143,7 +143,7 @@ public class ObjectCreationManager : MonoBehaviour
                     OnDesData(user2Data);
                 }
                 break;
-            case 3://»ç¿ëÀÚ 3¸íÀÏ°æ¿ì
+            case 3://ì‚¬ìš©ì 3ëª…ì¼ê²½ìš°
                 if (!user3Data.createObject.activeSelf)
                 {
                     BaseObjectLoad();
@@ -155,7 +155,7 @@ public class ObjectCreationManager : MonoBehaviour
                     OnDesData(user3Data);
                 }
                 break;
-            case 4://»ç¿ëÀÚ 4¸íÀÏ°æ¿ì
+            case 4://ì‚¬ìš©ì 4ëª…ì¼ê²½ìš°
                 if (!user4Data.createObject.activeSelf)
                 {
                     BaseObjectLoad();
@@ -167,7 +167,7 @@ public class ObjectCreationManager : MonoBehaviour
                     OnDesData(user4Data);
                 }
                 break;
-            case 5://»ç¿ëÀÚ 5¸íÀÏ°æ¿ì
+            case 5://ì‚¬ìš©ì 5ëª…ì¼ê²½ìš°
                 if (!user5Data.createObject.activeSelf)
                 {
                     BaseObjectLoad();
@@ -184,7 +184,7 @@ public class ObjectCreationManager : MonoBehaviour
 
 
 
-    //¿ÀºêÁ§Æ® »õ·Ó°Ô »ı¼º ÄÁÆ®·Ñ(·»´ıÇÏ°Ô Ç¥½Ã ÁøÇà)
+    //ì˜¤ë¸Œì íŠ¸ ìƒˆë¡­ê²Œ ìƒì„± ì»¨íŠ¸ë¡¤(ë Œë¤í•˜ê²Œ í‘œì‹œ ì§„í–‰)
     public void BaseObjectLoad() {
         objectDeployment.CreateFloorObject();
         objectDeployment.CreateFloor2Object();
@@ -192,17 +192,17 @@ public class ObjectCreationManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿ÀºêÁ§Æ® »ı¼º
+    /// ì˜¤ë¸Œì íŠ¸ ìƒì„±
     /// </summary>
-    /// <param name="userCount">»ç¿ëÀÚ ÀÎ¿ø</param>
-    /// <param name="index">º¸¿©Áö´Â ÀÎµ¦½º ¹øÈ£ Á¤º¸</param>
+    /// <param name="userCount">ì‚¬ìš©ì ì¸ì›</param>
+    /// <param name="index">ë³´ì—¬ì§€ëŠ” ì¸ë±ìŠ¤ ë²ˆí˜¸ ì •ë³´</param>
     public void CreateUserObject(UserRectAreaDataView userData, int index = 0) {
         List<RectAreaDataView> rectAreaDataViewList = userData.rectAreaDataViewList;
         ArrangementObject[] customArrangementObjectList = rectAreaDataViewList[index].customArrangementObjectList;
         CreateObjectPlay(customArrangementObjectList);
     }
 
-    //¹è¿­ ·£´ı 
+    //ë°°ì—´ ëœë¤ 
     private T[] ShuffleArray<T>(T[] array)
     {
         int random1, random2;
@@ -221,7 +221,7 @@ public class ObjectCreationManager : MonoBehaviour
         return array;
     }
 
-    //»ı¼º½ÃÅ³ ¿ÀºêÁ§Æ® ¿¡´Ï¸ŞÀÌ¼Ç ÀÛµ¿ 
+    //ìƒì„±ì‹œí‚¬ ì˜¤ë¸Œì íŠ¸ ì—ë‹ˆë©”ì´ì…˜ ì‘ë™ 
     private void CreateObjectPlay(ArrangementObject[] customArrangementObjectList)
     {
         
@@ -233,7 +233,7 @@ public class ObjectCreationManager : MonoBehaviour
 
     
 
-    //»ı¼º ÄÚ·çÆ¾ ÀÛµ¿
+    //ìƒì„± ì½”ë£¨í‹´ ì‘ë™
     private void StartCreateObjectPlay(ArrangementObject[] customArrangementObjectList)
     {
         //StopCreateObjectPlay();
@@ -241,7 +241,7 @@ public class ObjectCreationManager : MonoBehaviour
     }
 
  
-    //¿ÀºêÁ§Æ® »ı¼º ·çÆ¾ µô·¹ÀÌ Àû¿ë
+    //ì˜¤ë¸Œì íŠ¸ ìƒì„± ë£¨í‹´ ë”œë ˆì´ ì ìš©
     IEnumerator OnCreateObjectPlay(ArrangementObject[] customArrangementObjectList) {
 
         customArrangementObjectList = ShuffleArray(customArrangementObjectList);
@@ -253,7 +253,7 @@ public class ObjectCreationManager : MonoBehaviour
         }
     }
 
-    //¿¡´Ï¸ŞÀÌ¼Ç ÃÊ±âÈ­ ¿µ¿ª
+    //ì—ë‹ˆë©”ì´ì…˜ ì´ˆê¸°í™” ì˜ì—­
     public void OnDesData(UserRectAreaDataView userData) {
         List<RectAreaDataView> rectAreaDataViewList = userData.rectAreaDataViewList;
         for (int i=0; i< rectAreaDataViewList.Count; i++){
@@ -266,7 +266,7 @@ public class ObjectCreationManager : MonoBehaviour
         }
     }
 
-    //ÄÚ·çÆ¾ Á¤Áö
+    //ì½”ë£¨í‹´ ì •ì§€
     private void StopCreateObjectPlay() {
         if (onCreateObjectPlay != null) {
             StopCoroutine(onCreateObjectPlay);

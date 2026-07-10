@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -18,25 +18,25 @@ public class ObjectDeploymentEditor : Editor {
         base.OnInspectorGUI();
         ObjectDeployment objectDeployment = target as ObjectDeployment;
 
-        //³ª¹«/ºôµù(¶¥)
-        if (GUILayout.Button("Æ÷ÀÎÆ® »ı¼º(³ª¹«/ºôµù)")) {
+        //ë‚˜ë¬´/ë¹Œë”©(ë•…)
+        if (GUILayout.Button("í¬ì¸íŠ¸ ìƒì„±(ë‚˜ë¬´/ë¹Œë”©)")) {
             objectDeployment.AddChildPoint();
         }
-        if(GUILayout.Button("ÀÚ½Äµé À§Ä¡ Á¶Á¤À» À§ÇÑ ¹è¿­ Á¤º¸(³ª¹«/ºôµù)")) {
+        if(GUILayout.Button("ìì‹ë“¤ ìœ„ì¹˜ ì¡°ì •ì„ ìœ„í•œ ë°°ì—´ ì •ë³´(ë‚˜ë¬´/ë¹Œë”©)")) {
             objectDeployment.CreateFloorObject();
         }
 
-        //±¸¸§ / ºñÇà±â(ÇÏ´Ã) À§Ä¡ ¼±Á¤ ±¸°£
-        if (GUILayout.Button("Æ÷ÀÎÆ® »ı¼º(±¸¸§/ºñÇà±â)"))
+        //êµ¬ë¦„ / ë¹„í–‰ê¸°(í•˜ëŠ˜) ìœ„ì¹˜ ì„ ì • êµ¬ê°„
+        if (GUILayout.Button("í¬ì¸íŠ¸ ìƒì„±(êµ¬ë¦„/ë¹„í–‰ê¸°)"))
         {
             objectDeployment.AddCloudChildPoint();
         }
-        if (GUILayout.Button("ÀÚ½Äµé À§Ä¡ Á¶Á¤À» À§ÇÑ ¹è¿­ Á¤º¸(±¸¸§/ºñÇà±â)"))
+        if (GUILayout.Button("ìì‹ë“¤ ìœ„ì¹˜ ì¡°ì •ì„ ìœ„í•œ ë°°ì—´ ì •ë³´(êµ¬ë¦„/ë¹„í–‰ê¸°)"))
         {
             objectDeployment.CreateSkyObject();
         }
 
-        if (GUILayout.Button("Æ÷ÀÎÆ® ¹× °¢µµ »ı¼º(ÀÚµ¿Â÷/ÀÚÀü°Å)"))
+        if (GUILayout.Button("í¬ì¸íŠ¸ ë° ê°ë„ ìƒì„±(ìë™ì°¨/ìì „ê±°)"))
         {
             List<Vector3> posList = objectDeployment.posList2;
             List<float> angList = objectDeployment._angleList2;
@@ -45,12 +45,12 @@ public class ObjectDeploymentEditor : Editor {
             objectDeployment.AddChildPointCustom(posList, angList, objectCount, radius);
         }
 
-        if (GUILayout.Button("ÀÚ½Äµé À§Ä¡ Á¶Á¤À» À§ÇÑ ¹è¿­ Á¤º¸(ÀÚµ¿Â÷/ÀÚÀü°Å)"))
+        if (GUILayout.Button("ìì‹ë“¤ ìœ„ì¹˜ ì¡°ì •ì„ ìœ„í•œ ë°°ì—´ ì •ë³´(ìë™ì°¨/ìì „ê±°)"))
         {
             objectDeployment.CreateFloor2Object();
         }
 
-        //º¸Æ®/¿äÆ® ¹Ù´Ù À§Ä¡ ¼±Á¤ ±¸°£
+        //ë³´íŠ¸/ìš”íŠ¸ ë°”ë‹¤ ìœ„ì¹˜ ì„ ì • êµ¬ê°„
 
     }
 }
@@ -58,11 +58,11 @@ public class ObjectDeploymentEditor : Editor {
 
 public class ObjectDeployment : MonoBehaviour
 {
-    //¿ÀºêÁ§Æ® Á¤º¸ 
+    //ì˜¤ë¸Œì íŠ¸ ì •ë³´ 
     public GameObject _object;
 
-    //ºÎ¸ğ ¿ÀºêÁ§Æ® Á¤º¸
-    [Header("ºÎ¸ğ ¿ÀºêÁ§Æ® Á¤º¸")]
+    //ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ ì •ë³´
+    [Header("ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ ì •ë³´")]
     public GameObject parentObject;
     public GameObject parentCloudObject;
     public GameObject parentObject_2;
@@ -73,16 +73,16 @@ public class ObjectDeployment : MonoBehaviour
     public List<float> _angleList;
     public float radius;
 
-    //±¸¸§ ¸®½ºÆ® 
+    //êµ¬ë¦„ ë¦¬ìŠ¤íŠ¸ 
     public List<Vector3> cloudListPos;
 
-    //±¸¸§ ¹èÄ¡ À§Ä¡ °¢µµ 
+    //êµ¬ë¦„ ë°°ì¹˜ ìœ„ì¹˜ ê°ë„ 
     public List<float> angleCloudList;
     public int createCloudIndex = 0;
     public int createCloudRadius = 0;
 
-    //¶¥2(ÀÚµ¿Â÷ ÀÚÀü°Å µî ÄÁÆ®·Ñ¿ë
-    [Header("¶¥2")]
+    //ë•…2(ìë™ì°¨ ìì „ê±° ë“± ì»¨íŠ¸ë¡¤ìš©
+    [Header("ë•…2")]
     public List<Vector3> posList_2;
     public List<float> po_angleList;
 
@@ -92,7 +92,7 @@ public class ObjectDeployment : MonoBehaviour
     public int pos2Count;
     public int radius2Radius;
     
-    //º¸Æ® ¿¡¾î¸®¾î
+    //ë³´íŠ¸ ì—ì–´ë¦¬ì–´
     public SetBoatAreaControl setBoatAreaControl;
 
     public void OnDrawGizmos()
@@ -118,7 +118,7 @@ public class ObjectDeployment : MonoBehaviour
         }
     }
 
-    //ÀÚ½Ä ¹èÄ¡¸¦ À§Ä¡¸¦ À§ÇÑ Æ÷ÀÎÆ® Á¤º¸
+    //ìì‹ ë°°ì¹˜ë¥¼ ìœ„ì¹˜ë¥¼ ìœ„í•œ í¬ì¸íŠ¸ ì •ë³´
     public void AddChildPoint() {
         posList.Clear();
         _angleList.Clear();
@@ -131,18 +131,18 @@ public class ObjectDeployment : MonoBehaviour
         }
     }
 
-    //¶¥/ÇÏ´Ã/¹Ù´Ù ¿¬µ¿
+    //ë•…/í•˜ëŠ˜/ë°”ë‹¤ ì—°ë™
     public void CreateFloorObject() {
-        CreateObject(ArrangementObject.ObjectType.¶¥, parentObject, posList);
+        CreateObject(ArrangementObject.ObjectType.ë•…, parentObject, posList);
     }
 
     public void CreateSkyObject() {
-        CreateObject(ArrangementObject.ObjectType.ÇÏ´Ã, parentCloudObject, cloudListPos);
+        CreateObject(ArrangementObject.ObjectType.í•˜ëŠ˜, parentCloudObject, cloudListPos);
     }
 
     public void CreateFloor2Object()
     {
-        CreateObject(ArrangementObject.ObjectType.¹Ù´Ù, parentObject_2, posList2);
+        CreateObject(ArrangementObject.ObjectType.ë°”ë‹¤, parentObject_2, posList2);
         setBoatAreaControl.SetBoatAreaObject();
     }
 
@@ -153,7 +153,7 @@ public class ObjectDeployment : MonoBehaviour
         AngleChange(parentObject_2);
     }
 
-    //°¢µµ º¯°æ
+    //ê°ë„ ë³€ê²½
     public void AngleChange(GameObject parentObject)
     {
         ArrangementObject[] chList = parentObject.GetComponentsInChildren<ArrangementObject>();
@@ -174,7 +174,7 @@ public class ObjectDeployment : MonoBehaviour
         }
     }
 
-    //¿ÀºêÁ§Æ® »ı¼º
+    //ì˜¤ë¸Œì íŠ¸ ìƒì„±
     public void CreateObject(ArrangementObject.ObjectType objectType,
         GameObject parentObject,List<Vector3> posList) {
 
@@ -187,7 +187,7 @@ public class ObjectDeployment : MonoBehaviour
 #endif
         }
 
-        if (objectType.Equals(ArrangementObject.ObjectType.¹Ù´Ù))
+        if (objectType.Equals(ArrangementObject.ObjectType.ë°”ë‹¤))
         {
             setBoatAreaControl.arrangementObjectList.Clear();
         }
@@ -195,7 +195,7 @@ public class ObjectDeployment : MonoBehaviour
         int index = 0;
         for (int i=0;i< posList.Count; i++) {
 
-            //ÀÚ½Ä ¿ÀºêÁ§Æ® »ı¼º Ã³¸® ±¸°£
+            //ìì‹ ì˜¤ë¸Œì íŠ¸ ìƒì„± ì²˜ë¦¬ êµ¬ê°„
             GameObject gameObject = GameObject.Instantiate(_object, parentObject.transform);
             gameObject.transform.position = posList[i];
 
@@ -213,7 +213,7 @@ public class ObjectDeployment : MonoBehaviour
 
             ArrangementObject arrangementObject = gameObject.GetComponent<ArrangementObject>();
            
-            if (objectType.Equals(ArrangementObject.ObjectType.¹Ù´Ù))
+            if (objectType.Equals(ArrangementObject.ObjectType.ë°”ë‹¤))
             {
                 arrangementObject.SetImage(objectType, i);
                 if (i < 2)
@@ -230,7 +230,7 @@ public class ObjectDeployment : MonoBehaviour
         }
     }
 
-    //±¸¸§ ÀÚ½Ä Æ÷ÀÎÆ® µî·Ï ±¸°£
+    //êµ¬ë¦„ ìì‹ í¬ì¸íŠ¸ ë“±ë¡ êµ¬ê°„
     public void AddCloudChildPoint() {
         cloudListPos.Clear();
         angleCloudList.Clear();
@@ -244,7 +244,7 @@ public class ObjectDeployment : MonoBehaviour
     }
 
 
-    //±¸¸§ ÀÚ½Ä Æ÷ÀÎÆ® µî·Ï ±¸°£
+    //êµ¬ë¦„ ìì‹ í¬ì¸íŠ¸ ë“±ë¡ êµ¬ê°„
     public void AddChildPointCustom(List<Vector3> posList, List<float> angList,int objectCount,int radius)
     {
         posList.Clear();

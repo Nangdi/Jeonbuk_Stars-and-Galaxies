@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,7 +8,7 @@ public class UserWaitingCountText : MonoBehaviour
 
     public TextMeshPro _text;
 
-    //≈ÿΩ∫∆Æ µ•¿Ã≈Õ µÓ∑œ
+    //ÌÖçÏä§Ìä∏ Îç∞Ïù¥ÌÑ∞ Îì±Î°ù
     public void SetText(int index) {
         _text.text = index.ToString();
     }

@@ -1,13 +1,13 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//UI ½ºÅ©¸° ¼³Á¤ »çÀÌÁî¹× Á¤·Ä Á¶°Ç 
+//UI ìŠ¤í¬ë¦° ì„¤ì • ì‚¬ì´ì¦ˆë° ì •ë ¬ ì¡°ê±´ 
 public class UIScreen : MonoBehaviour
 {
-    //Sprite ·»´õ·¯ ¼³Á¤ 
+    //Sprite ë Œë”ëŸ¬ ì„¤ì • 
     public SpriteRenderer spriteRenderer;
-    //Äµ¹ö½º
+    //ìº”ë²„ìŠ¤
     public Canvas canvas;
     public RectTransform canvasRectTransform;
 
@@ -23,13 +23,13 @@ public class UIScreen : MonoBehaviour
         
     }
 
-    //À§Ä¡ Á¶Á¤
+    //ìœ„ì¹˜ ì¡°ì •
     private void SettingArea() {
-        //À§Ä¡ 
+        //ìœ„ì¹˜ 
         canvasRectTransform.anchoredPosition = spriteRenderer.transform.position;
-        //»çÀÌÁîÁ¤ÀÇ 
+        //ì‚¬ì´ì¦ˆì •ì˜ 
         canvasRectTransform.sizeDelta = spriteRenderer.bounds.size;
-        //½ºÄÉÀÏ Á¤ÀÇ
+        //ìŠ¤ì¼€ì¼ ì •ì˜
         canvasRectTransform.localScale = Vector3.one;
     }
 

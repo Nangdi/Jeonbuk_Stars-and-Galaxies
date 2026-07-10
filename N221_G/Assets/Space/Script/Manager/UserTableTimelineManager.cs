@@ -1,4 +1,4 @@
-using RenderHeads.Media.AVProVideo;
+ï»¿using RenderHeads.Media.AVProVideo;
 using RenderHeads.Media.AVProVideo.Demos;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using static UserTableTimelineManager;
 using static VideoFileLoadManager;
 
 /// <summary>
-/// »ç¿ëÀÚ Å×ÀÌºí Å¸ÀÓ¶óÀÎ ¸Å´ÏÀú
+/// ì‚¬ìš©ì í…Œì´ë¸” íƒ€ì„ë¼ì¸ ë§¤ë‹ˆì €
 /// </summary>
 public class UserTableTimelineManager : TimelineManager
 {
@@ -21,22 +21,22 @@ public class UserTableTimelineManager : TimelineManager
     public enum Mission { mission1 ,mission2, mission3 }
     public Mission mission;
 
-    //º° »óÅÂ 
+    //ë³„ ìƒíƒœ 
     public enum StarState {None, StarBirth, StarEvolution, StarDeath }
     
-    //ºñµğ¿À ´Ü°è
-    public enum VideoStep { Step_1/*°­ÇÏ°Ô*/, Step_2/*¾àÇÏ°Ô*/}
+    //ë¹„ë””ì˜¤ ë‹¨ê³„
+    public enum VideoStep { Step_1/*ê°•í•˜ê²Œ*/, Step_2/*ì•½í•˜ê²Œ*/}
 
-    [Header("ÇöÀç º°ÀÇ »óÅÂ Á¤º¸")]
+    [Header("í˜„ì¬ ë³„ì˜ ìƒíƒœ ì •ë³´")]
     public StarState currentStarState;
 
-    #region ¹Ìµğ¾î ÇÃ·¹ÀÌ¾î ±³Â÷ ÁøÇàÀ» À§ÇÑ ºñµğ¿À ÇÃ·¹ÀÌ¾î 2 º°ÀÇ ÁøÈ­ °úÁ¤ ¿µ»ó µû·Î ±¸»ç
+    #region ë¯¸ë””ì–´ í”Œë ˆì´ì–´ êµì°¨ ì§„í–‰ì„ ìœ„í•œ ë¹„ë””ì˜¤ í”Œë ˆì´ì–´ 2 ë³„ì˜ ì§„í™” ê³¼ì • ì˜ìƒ ë”°ë¡œ êµ¬ì‚¬
 
-    //»ı¼º
+    //ìƒì„±
     public MediaPlayer mediaPlayerBirth;
-    //ÁøÈ­
+    //ì§„í™”
     public MediaPlayer mediaPlayerEvolution;
-    //Á×À½
+    //ì£½ìŒ
     public MediaPlayer mediaPlayerDeath;
 
     #endregion
@@ -44,19 +44,19 @@ public class UserTableTimelineManager : TimelineManager
     public int currentBall = 0;
     public int currentHandleData = 0;
 
-    //¸ÕÁö ÄÁÆ®·Ñ
+    //ë¨¼ì§€ ì»¨íŠ¸ë¡¤
     public DustControl dustControl;
 
     [System.Serializable]
     public class DustControl {
 
-        [Header("¸ÕÁö ¿ÀºêÁ§Æ®")]
+        [Header("ë¨¼ì§€ ì˜¤ë¸Œì íŠ¸")]
         public GameObject dustObject;
         public Transform parentDustObject;
 
         public List<Transform> pointList;
        
-        //Æ÷ÀÎÆ® ÀÎµ¦½º ¹è¿­Á¤º¸
+        //í¬ì¸íŠ¸ ì¸ë±ìŠ¤ ë°°ì—´ì •ë³´
         public List<int> selectPointIndex;
         public System.Random random;
         public int[] randomIndexArray;
@@ -73,7 +73,7 @@ public class UserTableTimelineManager : TimelineManager
     public bool isReady = false;
 
 
-    //ºñµğ¿À ¿ÀºêÁ§Æ® ·Îµå ¿Ï·á Å×½ºÆ®
+    //ë¹„ë””ì˜¤ ì˜¤ë¸Œì íŠ¸ ë¡œë“œ ì™„ë£Œ í…ŒìŠ¤íŠ¸
     public override void OnInit()
     {
         base.OnInit();
@@ -91,14 +91,14 @@ public class UserTableTimelineManager : TimelineManager
         GoToSceneClip(initTimelineGameState);
     }
 
-    //ºñµğ¿À Àç»ı ÄÄÇÃ·¿Æ® ÀÌº¥Æ® ÇÚµé·¯ 
+    //ë¹„ë””ì˜¤ ì¬ìƒ ì»´í”Œë ›íŠ¸ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ 
     private void VideoLoadComplete() {
         VideoReference currentVideoReference = VideoFileLoadManager.instance.GetVideoReference(StarState.StarBirth);
         mediaPlayerBirth.OpenMedia(currentVideoReference.mediaReference,false);
     }
 
     /// <summary>
-    /// ¹Ìµğ¾î ÇÃ·¹ÀÌ¾î ÀÌº¥Æ® ÇÚµé·¯
+    /// ë¯¸ë””ì–´ í”Œë ˆì´ì–´ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬
     /// </summary>
     /// <param name="_mediaPlayer"></param>
     /// <param name="_eventType"></param>
@@ -106,64 +106,64 @@ public class UserTableTimelineManager : TimelineManager
     public void MediaPlayerEventHandler(MediaPlayer _mediaPlayer, MediaPlayerEvent.EventType _eventType, ErrorCode errorCode) {
         Debug.Log(_eventType.ToString());
         switch (_eventType) {
-            case MediaPlayerEvent.EventType.FirstFrameReady://Àç»ıÁØºñ¿Ï·á
+            case MediaPlayerEvent.EventType.FirstFrameReady://ì¬ìƒì¤€ë¹„ì™„ë£Œ
                 Debug.Log("[FirstFrameReady]  : ");
                 isReady = true;
                 break;
 
            /** case MediaPlayerEvent.EventType.PlaylistFinished:
-                Debug.Log("[PlaylistFinished]  :  ¿µ»ó Á¾·á ÀÛµ¿ ±¸°£ ");
+                Debug.Log("[PlaylistFinished]  :  ì˜ìƒ ì¢…ë£Œ ì‘ë™ êµ¬ê°„ ");
 
-                //ÁØºñ ´Ü°è ÃÊ±âÈ­
+                //ì¤€ë¹„ ë‹¨ê³„ ì´ˆê¸°í™”
                 isReady = false;
                 videoSeekData = 0;
                 break;*/
 
             //FinishedPlaying
             case MediaPlayerEvent.EventType.FinishedPlaying:
-                Debug.Log("[PlaylistFinished]  :  ¿µ»ó Á¾·á ÀÛµ¿ ±¸°£ ");
+                Debug.Log("[PlaylistFinished]  :  ì˜ìƒ ì¢…ë£Œ ì‘ë™ êµ¬ê°„ ");
                 isReady = false;
                 videoSeekData = 0;
                 break;
         }
     }
 
-    //1. »ç¿ëÀÚ ÀÔ·Â
+    //1. ì‚¬ìš©ì ì…ë ¥
     private void InsertUser() {
 
         Debug.Log("[InsertUser]");
         GameManager.GameState gameState=GetSceneClip();
-        if (!gameState.Equals(GameManager.GameState.»ç¿ëÀÚ´ë±âÄ«¿îÅÍÁøÇà))
+        if (!gameState.Equals(GameManager.GameState.ì‚¬ìš©ìëŒ€ê¸°ì¹´ìš´í„°ì§„í–‰))
         {
-            //»ç¿ëÀÚ ´ë±â Ä«¿îÅÍ ÁøÇà 
-            GoToSceneClip(GameManager.GameState.»ç¿ëÀÚ´ë±âÄ«¿îÅÍÁøÇà);
+            //ì‚¬ìš©ì ëŒ€ê¸° ì¹´ìš´í„° ì§„í–‰ 
+            GoToSceneClip(GameManager.GameState.ì‚¬ìš©ìëŒ€ê¸°ì¹´ìš´í„°ì§„í–‰);
         }
-        //»ç¿ëÀÚ Ä«¿îÅÍ ÁøÇà
+        //ì‚¬ìš©ì ì¹´ìš´í„° ì§„í–‰
         MainTableManager.instance.InsertUser();
     }
 
-    //Àü´Ü°è È¸Àüµ¥ÀÌÅÍ ÀÔ·Â½ÅÈ£ Á¤º¸
+    //ì „ë‹¨ê³„ íšŒì „ë°ì´í„° ì…ë ¥ì‹ í˜¸ ì •ë³´
     private float elapsedMilliseconds = 0;
     
     /// <summary>
-    /// È¸Àü ÇÚµé µ¥ÀÌÅÍ
+    /// íšŒì „ í•¸ë“¤ ë°ì´í„°
     /// </summary>
     public void InsertRotationHandle() {
         GameManager.GameState gameState = GetSceneClip();
         switch (gameState) {
-            case GameManager.GameState.ÃÊ±âÈ­¸é:
+            case GameManager.GameState.ì´ˆê¸°í™”ë©´:
                 InsertUser();
                 break;
-            case GameManager.GameState.È¸ÀüÆÇº°»ı¼º:
-                //È¸Àü½Ã ¿µ»ó Àç»ı½ÃÀÛÇÏ´Â±¸°£
-                //Debug.Log("È¸Àü µ¥ÀÌÅÍ È®ÀÎ ±¸°£");
+            case GameManager.GameState.íšŒì „íŒë³„ìƒì„±:
+                //íšŒì „ì‹œ ì˜ìƒ ì¬ìƒì‹œì‘í•˜ëŠ”êµ¬ê°„
+                //Debug.Log("íšŒì „ ë°ì´í„° í™•ì¸ êµ¬ê°„");
                
                 break;
         }
 
         stopwatch.Stop();
         
-        //±âÁ¸ µğÆúÆ® ¼Óµµ 
+        //ê¸°ì¡´ ë””í´íŠ¸ ì†ë„ 
         if (elapsedMilliseconds == 0) {
             currentStarState = StarState.StarBirth;
         }
@@ -196,7 +196,7 @@ public class UserTableTimelineManager : TimelineManager
                 break;
         }
 
-        Debug.Log("È¸Àü ¼Óµµ Á¤º¸ :"+stopwatch.ElapsedMilliseconds+" ms");
+        Debug.Log("íšŒì „ ì†ë„ ì •ë³´ :"+stopwatch.ElapsedMilliseconds+" ms");
         elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
         videoSeekData += 1f;
         TurnHandleScore();
@@ -213,7 +213,7 @@ public class UserTableTimelineManager : TimelineManager
     private Coroutine onLoop = null;
     public float videoSeekData = 0;
 
-    [Header("ºñµğ¿À ¼ÂÆÃ")]
+    [Header("ë¹„ë””ì˜¤ ì…‹íŒ…")]
     public VideoSpeed videoSpeed;
 
     [System.Serializable]
@@ -235,7 +235,7 @@ public class UserTableTimelineManager : TimelineManager
     }
 
     /// <summary>
-    /// ¿µ»ó ¼Óµµ Á¦¾î¸¦ À§ÇÑ ·çÇÁ ±¸°£
+    /// ì˜ìƒ ì†ë„ ì œì–´ë¥¼ ìœ„í•œ ë£¨í”„ êµ¬ê°„
     /// </summary>
     /// <returns></returns>
     IEnumerator OnLoop() {
@@ -269,7 +269,7 @@ public class UserTableTimelineManager : TimelineManager
                             }
                         }
                         else {
-                            Debug.Log("¹Ìµğ¾î ¸ºÈû");
+                            Debug.Log("ë¯¸ë””ì–´ ë§í˜");
                         }
                         break;
                     case StarState.StarEvolution:
@@ -324,7 +324,7 @@ public class UserTableTimelineManager : TimelineManager
 
                             if (currentFramePercent * 100 > 99f)
                             {
-                                Debug.Log("ÃÖÁ¾ ¿µ»ó Á¾·á ½ÃÁ¡");
+                                Debug.Log("ìµœì¢… ì˜ìƒ ì¢…ë£Œ ì‹œì ");
                                 //currentStarState = StarState.StarDeath;
                                 isReady = false;
                                 videoSeekData = 0;
@@ -339,7 +339,7 @@ public class UserTableTimelineManager : TimelineManager
 
     private bool isStarDeath = false;
 
-    //º°ÀÇ Åº»ı ¿µ»ó Àç»ı ½ÃÀÛ 
+    //ë³„ì˜ íƒ„ìƒ ì˜ìƒ ì¬ìƒ ì‹œì‘ 
     private void VideoPlayerBirth() {
         if (!mediaPlayerBirth.MediaOpened) {
             VideoReference currentVideoReference = VideoFileLoadManager.instance.GetVideoReference(StarState.StarBirth);
@@ -369,7 +369,7 @@ public class UserTableTimelineManager : TimelineManager
     }
 
     /// <summary>
-    /// °øÅõÀÔ  :  Å¸ÀÓ¶óÀÎ°ú º°µµ·Î ±¸Çö ½ÃÀÛ
+    /// ê³µíˆ¬ì…  :  íƒ€ì„ë¼ì¸ê³¼ ë³„ë„ë¡œ êµ¬í˜„ ì‹œì‘
     /// </summary>
     public void InsertBall()
     {
@@ -379,52 +379,52 @@ public class UserTableTimelineManager : TimelineManager
             GameManager.GameState gameState = GetSceneClip();
             switch (gameState)
             {
-                case GameManager.GameState.ÃÊ±âÈ­¸é:
-                    Debug.Log("ÃÊ±âÈ­¸é¿¡¼­ °øÅõÀÔÇÔ");
+                case GameManager.GameState.ì´ˆê¸°í™”ë©´:
+                    Debug.Log("ì´ˆê¸°í™”ë©´ì—ì„œ ê³µíˆ¬ì…í•¨");
                     break;
 
-                case GameManager.GameState.°øÅõÀÔ:
-                    Debug.Log("°øÅõÀÔ ÁøÇà ½ÃÀÛÇÏ´Â±¸°£ ÀÔ·Â È®ÀÎ ÇÊ¿ä");
+                case GameManager.GameState.ê³µíˆ¬ì…:
+                    Debug.Log("ê³µíˆ¬ì… ì§„í–‰ ì‹œì‘í•˜ëŠ”êµ¬ê°„ ì…ë ¥ í™•ì¸ í•„ìš”");
                     OnInsertDustObject(currentBall);
                     break;
             }
             ++currentBall;
-            Debug.Log("ÇöÀç ÀÔ·Â °ø Ä«¿îÅÍ : "+currentBall);
+            Debug.Log("í˜„ì¬ ì…ë ¥ ê³µ ì¹´ìš´í„° : "+currentBall);
         }
         else {
-            Debug.Log("°øÀÌ ÃÖ´ë·Î ÀÔ·ÂµÇ¾úÀ½");
+            Debug.Log("ê³µì´ ìµœëŒ€ë¡œ ì…ë ¥ë˜ì—ˆìŒ");
         }
        
     }
 
 
-    //¸ÕÁö±¸¸§ µî·Ï
+    //ë¨¼ì§€êµ¬ë¦„ ë“±ë¡
     private void OnInsertDustObject(int currentBall) {
         GameObject targetGameObject=GameObject.Instantiate(
             dustControl.dustObject,
             dustControl.parentDustObject);
         targetGameObject.transform.position = dustControl.pointList[currentBall].position;
         
-        //¹è¿­ ¼¯±â ÁøÇà
+        //ë°°ì—´ ì„ê¸° ì§„í–‰
         //Debug.Log(dustControl.randomIndexArray.Length);
-        //Debug.Log("°øÅõÀÔ Á¤º¸" + currentBall);
-        //Debug.Log("Ä«¿îÅÍ Á¤º¸ : "+dustControl.pointList.Count);
+        //Debug.Log("ê³µíˆ¬ì… ì •ë³´" + currentBall);
+        //Debug.Log("ì¹´ìš´í„° ì •ë³´ : "+dustControl.pointList.Count);
 
     }
 
 
 
 
-    //º¼ ¹èÃâ
+    //ë³¼ ë°°ì¶œ
     public void BallOut() {
-        Debug.Log("°ø ¹èÃâ ¸Ş¼¼Áö Àü¼Û");
+        Debug.Log("ê³µ ë°°ì¶œ ë©”ì„¸ì§€ ì „ì†¡");
         OnResetBall();
 
     }
 
 
     /// <summary>
-    /// µ¥ÀÌÅÍ ÃÊ±âÈ­
+    /// ë°ì´í„° ì´ˆê¸°í™”
     /// </summary>
     public void OnResetData() {
         OnResetBall();
@@ -440,24 +440,24 @@ public class UserTableTimelineManager : TimelineManager
     }
 
 
-    //Å¸ÀÓ ¿Ï·á ÀÌº¥Æ® 
+    //íƒ€ì„ ì™„ë£Œ ì´ë²¤íŠ¸ 
     public void UserInsertTimeCompleteEvent() {
         Debug.Log("[UserInsertTimeCompleteEvent]");
-        //´ÙÀ½¾ÀÀ¸·Î ÀÌµ¿
-        GoToSceneClip(GameManager.GameState.°øÅõÀÔ);
+        //ë‹¤ìŒì”¬ìœ¼ë¡œ ì´ë™
+        GoToSceneClip(GameManager.GameState.ê³µíˆ¬ì…);
 
     }
 
 
 
-    #region »ó¼Ó ¿µ¿ª
+    #region ìƒì† ì˜ì—­
     /// <summary>
-    /// »ç¿ëÀÚ Á¡¼ö 
+    /// ì‚¬ìš©ì ì ìˆ˜ 
     /// </summary>
     public virtual void UserScore() { }
-    //È¸ÀüÇÚµé Á¡¼ö
+    //íšŒì „í•¸ë“¤ ì ìˆ˜
     public virtual void TurnHandleScore() { }
-    //Á¾·á Æø¹ßÁ¡¼ö 
+    //ì¢…ë£Œ í­ë°œì ìˆ˜ 
     public virtual void EndExplosionScore() { }
     #endregion
 

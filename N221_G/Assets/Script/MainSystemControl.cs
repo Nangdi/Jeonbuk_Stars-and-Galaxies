@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,16 +28,16 @@ public class MainSystemControl : MonoBehaviour
         OnInit();
     }
 
-    //½ÃÀÛ ¼³Á¤ µÇ´Â±¸°£
+    //ì‹œì‘ ì„¤ì • ë˜ëŠ”êµ¬ê°„
     private void OnInit()
     {
         OnSetting();
     }
 
-    //±âº» ¼ÂÆÃ 
+    //ê¸°ë³¸ ì…‹íŒ… 
     private void OnSetting()
     {
-        //½ºÅ©¸° Ä«¸Ş¶ó 
+        //ìŠ¤í¬ë¦° ì¹´ë©”ë¼ 
         canvasControl.topCanvas.renderMode = UnityEngine.RenderMode.ScreenSpaceCamera;
         canvasControl.bottomCanvas.renderMode = UnityEngine.RenderMode.ScreenSpaceCamera;
         canvasControl.topCanvas.worldCamera = canvasControl.mainCamera;

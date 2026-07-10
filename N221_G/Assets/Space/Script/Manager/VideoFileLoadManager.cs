@@ -1,4 +1,4 @@
-using RenderHeads.Media.AVProVideo;
+ï»¿using RenderHeads.Media.AVProVideo;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,23 +8,23 @@ using static VideoFileLoadManager;
 
 
 /// <summary>
-/// ºñµğ¿À ÆÄÀÏ ·Îµå ¸Å´ÏÀú 
+/// ë¹„ë””ì˜¤ íŒŒì¼ ë¡œë“œ ë§¤ë‹ˆì € 
 /// </summary>
 public class VideoFileLoadManager : MonoBehaviour
 {
-    //¹Ìµğ¾î ÇÃ·¹ÀÌ¾î
+    //ë¯¸ë””ì–´ í”Œë ˆì´ì–´
     public List<VideoReference> mediaPlayerList;
 
     [System.Serializable]
     public class VideoReference {
         
-        [Header("º°ÀÇ »óÅÂ")]
+        [Header("ë³„ì˜ ìƒíƒœ")]
         public UserTableTimelineManager.StarState starState;
         
-        [Header("º° ´Ü°è ºĞ¸®")]
+        [Header("ë³„ ë‹¨ê³„ ë¶„ë¦¬")]
         public UserTableTimelineManager.VideoStep videoStep;
 
-        //¹Ìµğ¾î ·¹ÆÛ·±½º Á¤º¸
+        //ë¯¸ë””ì–´ ë ˆí¼ëŸ°ìŠ¤ ì •ë³´
         public MediaReference mediaReference;
     }
 
@@ -43,7 +43,7 @@ public class VideoFileLoadManager : MonoBehaviour
        
     }
 
-    //ºñµğ¿À ¼ÂÆÃÁ¤º¸
+    //ë¹„ë””ì˜¤ ì…‹íŒ…ì •ë³´
     private void SettingVideoData() {
         for (int i=0;i< mediaPlayerList.Count; i++) {
             //mediaPlayerList[i];
@@ -51,7 +51,7 @@ public class VideoFileLoadManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ÇØ´ç ¾À¿¡ ´ëÇÑ ¿µ»ó Àç»ı
+    /// í•´ë‹¹ ì”¬ì— ëŒ€í•œ ì˜ìƒ ì¬ìƒ
     /// </summary>
     /// <param name="starState"></param>
     /// <returns></returns>

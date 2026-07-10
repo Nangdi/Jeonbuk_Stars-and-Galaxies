@@ -1,24 +1,24 @@
-using AllIn1VfxToolkit;
+ï»¿using AllIn1VfxToolkit;
 using RenderHeads.Media.AVProVideo;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-//ºñµğ¿À ÄÄÆ÷³ÍÆ® ÄÁÆ®·Ñ·¯
+//ë¹„ë””ì˜¤ ì»´í¬ë„ŒíŠ¸ ì»¨íŠ¸ë¡¤ëŸ¬
 public class UIVideoComponent : UILocationComponent
 {
     // Start is called before the first frame update
    
-    //ºñµğ¿À ÆÄÀÏ °æ·Î
+    //ë¹„ë””ì˜¤ íŒŒì¼ ê²½ë¡œ
     public string path="";
 
-    //¹Ìµğ¾î ÇÃ·¹ÀÌ¾î
+    //ë¯¸ë””ì–´ í”Œë ˆì´ì–´
     public MediaPlayer mediaPlayer;
 
-    [Header("ÀÌ¹ÌÁö º¯°æ ·»´õ·¯")]
+    [Header("ì´ë¯¸ì§€ ë³€ê²½ ë Œë”ëŸ¬")]
     public SpriteRenderer spriteRenderer;
     
-    //¸ŞÆ®¸®¾ó Á¶ÀÛ 
+    //ë©”íŠ¸ë¦¬ì–¼ ì¡°ì‘ 
     public MaterialPropertyBlock materialPropertyBlock;
 
     private Coroutine onLoop = null;
@@ -32,13 +32,13 @@ public class UIVideoComponent : UILocationComponent
         VideoLoadSetting();
     }
 
-    //±âº» ¼ÂÆÃ 
+    //ê¸°ë³¸ ì…‹íŒ… 
     private void SettingData(){
         materialPropertyBlock=new MaterialPropertyBlock();
     }
 
 
-    //ºñµğ¿À ÆÄÀÏ ·Îµå ÁØºñ
+    //ë¹„ë””ì˜¤ íŒŒì¼ ë¡œë“œ ì¤€ë¹„
     public void VideoLoadSetting(){
         string VideoFilePath = Application.streamingAssetsPath + Path.DirectorySeparatorChar + path;
         MediaPath mediaPath = new MediaPath(VideoFilePath, MediaPathType.RelativeToStreamingAssetsFolder);
@@ -47,7 +47,7 @@ public class UIVideoComponent : UILocationComponent
         onLoop=StartCoroutine(OnLoop());
     }
 
-    //·çÇÁ ÃÊ±âÈ­ 
+    //ë£¨í”„ ì´ˆê¸°í™” 
     private void RemoveOnLoop(){
         if(onLoop!=null){
             StopCoroutine(onLoop);
@@ -74,17 +74,17 @@ public class UIVideoComponent : UILocationComponent
         }
     }
 
-    //ÀÌº¥Æ® »ç¿ë¹æ¹ı Å×½ºÆ®
+    //ì´ë²¤íŠ¸ ì‚¬ìš©ë°©ë²• í…ŒìŠ¤íŠ¸
     public void VideoEvents(MediaPlayer mp, MediaPlayerEvent.EventType eventType,ErrorCode errorCode) {
         
         Debug.Log("eventType] : "+eventType);
         switch (eventType) {
-            case MediaPlayerEvent.EventType.ReadyToPlay://ÁØºñ¹× Àç»ı ½ÃÀÛ ÀÏ°æ¿ì ÀÛµ¿µÇ´Â±¸°£
+            case MediaPlayerEvent.EventType.ReadyToPlay://ì¤€ë¹„ë° ì¬ìƒ ì‹œì‘ ì¼ê²½ìš° ì‘ë™ë˜ëŠ”êµ¬ê°„
                 Debug.Log(isPlay);
                 isPlay = true;
                 break ;
             case MediaPlayerEvent.EventType.FirstFrameReady:
-                //Àç»ı ÁØºñ°¡ ¿Ï·áµÇ¾úÀ»°æ¿ì ÀÛµ¿ 
+                //ì¬ìƒ ì¤€ë¹„ê°€ ì™„ë£Œë˜ì—ˆì„ê²½ìš° ì‘ë™ 
                 VideoPlayer();
                 break;
             case MediaPlayerEvent.EventType.FinishedPlaying:
@@ -93,7 +93,7 @@ public class UIVideoComponent : UILocationComponent
         }
     }
 
-    //ÀçÁú º¯°æ ½ÃÀÛ
+    //ì¬ì§ˆ ë³€ê²½ ì‹œì‘
     public void MaterialChange(){
         //spriteRenderer.sprite.te
         materialPropertyBlock.SetTexture("_MainTex",VideoTexture);

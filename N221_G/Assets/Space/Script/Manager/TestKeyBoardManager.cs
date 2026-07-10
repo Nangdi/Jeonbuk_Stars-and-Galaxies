@@ -1,4 +1,4 @@
-using com.humanc.rsconn;
+ï»¿using com.humanc.rsconn;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class TestKeyBoardManager : MonoBehaviour
 {
-    //ÃÑÀÎ¿ø 5¸í ÄÁÆ®·Ñ Á¦¾î´Â ÃßÈÄ ´ÙÀ½ÁÖ¿¡ ÄÁÆ®·Ñ·¯ Á¦ÀÛ
+    //ì´ì¸ì› 5ëª… ì»¨íŠ¸ë¡¤ ì œì–´ëŠ” ì¶”í›„ ë‹¤ìŒì£¼ì— ì»¨íŠ¸ë¡¤ëŸ¬ ì œì‘
 
 
     public ElementObject elementObject;
@@ -70,7 +70,7 @@ public class TestKeyBoardManager : MonoBehaviour
         switch (key) {
 
             case RawKey.L:
-                Debug.Log("RS232 µğ¹ö±×Ã¢ »ı¼º");
+                Debug.Log("RS232 ë””ë²„ê·¸ì°½ ìƒì„±");
                 TestDebujgTextView();
                 break;
             case RawKey.T:
@@ -112,16 +112,16 @@ public class TestKeyBoardManager : MonoBehaviour
 
     }
 
-    //À¯Àú »ç¿ëÀÚ Á¢¼Ó 
+    //ìœ ì € ì‚¬ìš©ì ì ‘ì† 
     public void OnUserAccess(InputValue value) {
-        Debug.Log("»ç¿ëÀÚ Á¢¼Ó ½ÃÀÛ ÇÏ´Â±¸°£");
+        Debug.Log("ì‚¬ìš©ì ì ‘ì† ì‹œì‘ í•˜ëŠ”êµ¬ê°„");
         Debug.Log("[OnUserAccess] : " + value.isPressed);
-        //¿µ»ó ÁøÇà ÇÏ´Â±¸°£ 
+        //ì˜ìƒ ì§„í–‰ í•˜ëŠ”êµ¬ê°„ 
         UserAccess();
     }
 
     /// <summary>
-    /// »ç¿ëÀÚ Á¢±Ù ½ÃÀÛ ÄÁÆ®·Ñ
+    /// ì‚¬ìš©ì ì ‘ê·¼ ì‹œì‘ ì»¨íŠ¸ë¡¤
     /// </summary>
     void UserAccess() {
         UserControlManager.instance.userControlList[0].Stage2_OnPlay();
@@ -131,10 +131,10 @@ public class TestKeyBoardManager : MonoBehaviour
 
 
     public void OnBandingWheel(InputValue value) {
-        //ÃÊ±âÈ£¸éÀÏ°æ¿ì ´ÙÀ½È­¸éÀ¸·Î ÀÌµ¿ ÄÁÆ®·Ñ( Å¸ÀÓ¶óÀÎÄÁÆ®·Ñ)
-        if (GameManager.instance.gameType.Equals(GameManager.GameState.ÃÊ±âÈ­¸é)) {
-            Debug.Log("È¸ÀüÆÇ ¿òÁ÷ÀÓÀÛµ¿ ÀÓ½Ã ¹öÆ° Å×½ºÆ®");
-            //Àç»ı ½ÃÀÛÇÏ´Â±¸°£
+        //ì´ˆê¸°í˜¸ë©´ì¼ê²½ìš° ë‹¤ìŒí™”ë©´ìœ¼ë¡œ ì´ë™ ì»¨íŠ¸ë¡¤( íƒ€ì„ë¼ì¸ì»¨íŠ¸ë¡¤)
+        if (GameManager.instance.gameType.Equals(GameManager.GameState.ì´ˆê¸°í™”ë©´)) {
+            Debug.Log("íšŒì „íŒ ì›€ì§ì„ì‘ë™ ì„ì‹œ ë²„íŠ¼ í…ŒìŠ¤íŠ¸");
+            //ì¬ìƒ ì‹œì‘í•˜ëŠ”êµ¬ê°„
             UserControlManager.instance.userControlList[0].Stage1_OnPlay();
         }   
     }
@@ -161,7 +161,7 @@ public class TestKeyBoardManager : MonoBehaviour
     }
  
 
-    //¿ø¼Ò ¿ÀºêÁ§Æ® ¿òÁ÷ÀÓ Ã³¸® Å°º¸µå ÀÌº¥Æ® ÇÚµé·¯ ÀÛµ¿ ¼³Á¤ ±¸°£(Å°º¸µå ºÎºĞ)
+    //ì›ì†Œ ì˜¤ë¸Œì íŠ¸ ì›€ì§ì„ ì²˜ë¦¬ í‚¤ë³´ë“œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ ì‘ë™ ì„¤ì • êµ¬ê°„(í‚¤ë³´ë“œ ë¶€ë¶„)
     public void OnElementMove(InputValue value)
     {
 
@@ -187,23 +187,23 @@ public class TestKeyBoardManager : MonoBehaviour
         }
         else if (Keyboard.current.tKey.isPressed)
         {
-            /*Debug.Log("»çÀÌÁî Áõ°¡");
+            /*Debug.Log("ì‚¬ì´ì¦ˆ ì¦ê°€");
             Vector2 _size = edigRectTransform.sizeDelta;
             _size.y += 1f;
             edigRectTransform.sizeDelta = _size;*/
 
             rsConnection.SendData("1");
         } else if (Keyboard.current.gKey.isPressed) {
-            /*Debug.Log("»çÀÌÁî ÇÏ°­");
+            /*Debug.Log("ì‚¬ì´ì¦ˆ í•˜ê°•");
             Vector2 _size = edigRectTransform.sizeDelta;
             _size.y -= 1f;
             edigRectTransform.sizeDelta = _size;*/
             rsConnection.SendData("0");
         }
     }
-    /* 1 -> ¹Ù¶÷
-    0 -> ¹Ù¶÷ ÇØÁ¦
-    2 -> ÀÔ±¸¸·±â*/
+    /* 1 -> ë°”ëŒ
+    0 -> ë°”ëŒ í•´ì œ
+    2 -> ì…êµ¬ë§‰ê¸°*/
     public void OnStarCreate()
     {
         Debug.Log("[OnStarCreate]");

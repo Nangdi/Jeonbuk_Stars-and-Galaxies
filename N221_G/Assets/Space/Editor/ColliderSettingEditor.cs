@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -12,7 +12,7 @@ public class ColliderSettingEditor : Editor
     {
         base.OnInspectorGUI();
         ColliderSetting colliderSetting = target as ColliderSetting;
-        if (GUILayout.Button("πˆ∆∞ ≈¨∏Ø")) {
+        if (GUILayout.Button("Î≤ÑÌäº ÌÅ¥Î¶≠")) {
             colliderSetting.SetPoint();
         }
     }

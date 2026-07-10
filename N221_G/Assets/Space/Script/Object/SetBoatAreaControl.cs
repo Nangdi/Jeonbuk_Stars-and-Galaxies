@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
@@ -12,7 +12,7 @@ public class SetBoatAreaControlEditor : Editor
     {
         base.OnInspectorGUI();
         SetBoatAreaControl setBoatAreaControl = target as SetBoatAreaControl;
-        if (GUILayout.Button("¹è À§Ä¡ ¼±Á¤")) {
+        if (GUILayout.Button("ë°° ìœ„ì¹˜ ì„ ì •")) {
             setBoatAreaControl.SetBoatAreaObject();
         }
     }
@@ -20,16 +20,16 @@ public class SetBoatAreaControlEditor : Editor
 #endif
 
 /// <summary>
-/// º¸Æ® ¹èÄ¡¿¡ ´ëÇÑ ·ÎÁ÷ 
+/// ë³´íŠ¸ ë°°ì¹˜ì— ëŒ€í•œ ë¡œì§ 
 /// </summary>
 public class SetBoatAreaControl : MonoBehaviour
 {
     public List<ArrangementObject> arrangementObjectList;
 
-    //¹èÄ¡ ¿µ¿ª ÅØ½ºÃÄ Á¤º¸ 
+    //ë°°ì¹˜ ì˜ì—­ í…ìŠ¤ì³ ì •ë³´ 
     public Texture2D areaTexture;
 
-    //º¸Æ® ¿µ¿ª ¹èÄ¡ ¿ÀºêÁ§Æ®
+    //ë³´íŠ¸ ì˜ì—­ ë°°ì¹˜ ì˜¤ë¸Œì íŠ¸
     public void SetBoatAreaObject() {
 
         GetPos();
@@ -61,7 +61,7 @@ public class SetBoatAreaControl : MonoBehaviour
     
 
 
-    //»ı¼º Æ÷Áö¼Ç Á¤º¸
+    //ìƒì„± í¬ì§€ì…˜ ì •ë³´
     public List<Vector2> posList1;
     public List<Vector2> posList2;
     private void GetPos() {
@@ -71,7 +71,7 @@ public class SetBoatAreaControl : MonoBehaviour
         for (int i=0;i< areaTexture.width; i = i+10) { 
             for (int j = 0; j < areaTexture.height; j = j+10)
             {
-                //ÄÃ·¯ Á¤º¸
+                //ì»¬ëŸ¬ ì •ë³´
                 Color _color = areaTexture.GetPixel(i, j);
                 if (_color.r.Equals(1) && _color.g.Equals(1) && _color.b.Equals(1))
                 {

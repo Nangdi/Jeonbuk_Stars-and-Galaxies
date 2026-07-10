@@ -1,15 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//¿ÀºêÁ§Æ® ÀÌ¹ÌÁö ±³Ã¼ ÁøÇà °¡´ÉÇÑÁö È®ÀÎÇÏ´Â±¸°£
+//ì˜¤ë¸Œì íŠ¸ ì´ë¯¸ì§€ êµì²´ ì§„í–‰ ê°€ëŠ¥í•œì§€ í™•ì¸í•˜ëŠ”êµ¬ê°„
 public class ContentObject : MonoBehaviour
 {
 
     public SpriteRenderer spriteRenderer;
     private MaterialPropertyBlock materialPropertyBlock;
     
-    //º¯°æ ÅØ½ºÃÄ Á¤º¸
+    //ë³€ê²½ í…ìŠ¤ì³ ì •ë³´
     public Texture2D changeTexture;
 
     void Start()
@@ -21,14 +21,14 @@ public class ContentObject : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.V)) {
-            Debug.Log("Å° ÀÔ·Â Å×½ºÆ®");
+            Debug.Log("í‚¤ ì…ë ¥ í…ŒìŠ¤íŠ¸");
             Met();
         }        
     }
 
     private void Met() {
 
-        //º¯°æ ÅØ½ºÃÄ Á¤º¸
+        //ë³€ê²½ í…ìŠ¤ì³ ì •ë³´
         materialPropertyBlock.SetTexture("_MainTex", changeTexture);
         spriteRenderer.SetPropertyBlock(materialPropertyBlock);
         //spriteRenderer.material.setp

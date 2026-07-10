@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +6,12 @@ public class CommandConnection : MonoBehaviour
 {
     public UserTableController userTableController;
 
-    //º¼µ¥ÀÌÅÍ µî·Ï
+    //ë³¼ë°ì´í„° ë“±ë¡
     public void OnInsertBall() {
         userTableController.InsertBall();
     }
 
-    //È¸Àüµ¥ÀÌÅÍ
+    //íšŒì „ë°ì´í„°
     public void OnRotatingDevice() {
         userTableController.RotatingDevice();
 
@@ -21,16 +21,16 @@ public class CommandConnection : MonoBehaviour
         userTableController.OnReset();
     }
 
-    //¹Ù¶÷ »ı¼º ÄÁÆ®·Ñ ±¸°£
+    //ë°”ëŒ ìƒì„± ì»¨íŠ¸ë¡¤ êµ¬ê°„
     public void OnEndPointBallStart() {
         if (!userTableController.isReEndPointBall)
         {
-            Debug.Log("¹èÃâ ÁøÇà");
+            Debug.Log("ë°°ì¶œ ì§„í–‰");
             userTableController.ReEndPointBallStartCall();
         }
         else
         {
-            Debug.Log("¹èÃâ Á¤Áö");
+            Debug.Log("ë°°ì¶œ ì •ì§€");
             userTableController.OnStopReEndPointBall();
         }
        

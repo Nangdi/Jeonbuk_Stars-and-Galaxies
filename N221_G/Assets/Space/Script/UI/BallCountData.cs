@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,13 +7,13 @@ using static UserTableSettingBase;
 public class BallCountData : MonoBehaviour
 {
 
-    //ÅØ½ºÆ® Á¤º¸
+    //í…ìŠ¤íŠ¸ ì •ë³´
     public TMP_Text text;
     [ReadOnly]
     [TextArea]
-    private string defaultText = "°øÀ» ÅõÀÔ±¸¿¡ ³Ö¾î\r\n¿ìÁÖ¸ÕÁö¸¦ ¸¸µé¾î º¸¼¼¿ä.\r\n<size=60%>1.ÀÛÀº º°:°ø 1~4°³ | 2.Å«º°:°ø 5°³ ÀÌ»ó</size>";
+    private string defaultText = "ê³µì„ íˆ¬ì…êµ¬ì— ë„£ì–´\r\nìš°ì£¼ë¨¼ì§€ë¥¼ ë§Œë“¤ì–´ ë³´ì„¸ìš”.\r\n<size=60%>1.ì‘ì€ ë³„:ê³µ 1~4ê°œ | 2.í°ë³„:ê³µ 5ê°œ ì´ìƒ</size>";
 
-    //È°¼ºÈ­½Ã ÀÛµ¿
+    //í™œì„±í™”ì‹œ ì‘ë™
     /**public void OnEnable()
     {
         GameObjectControl.instance.
@@ -22,13 +22,13 @@ public class BallCountData : MonoBehaviour
         SetTextData(data1, data2);
     }*/
 
-    //ÅØ½ºÆ® º¯°æ
+    //í…ìŠ¤íŠ¸ ë³€ê²½
     public void SetText(int data1, int data2)
     {
         text.text = TextChange(data1, data2);
     }
 
-    //ÅØ½ºÆ® º¯°æ ±¸°£
+    //í…ìŠ¤íŠ¸ ë³€ê²½ êµ¬ê°„
     private string TextChange(int data1, int data2) {
         string text= defaultText.Replace("{Data1}", data1.ToString());
         text = text.Replace("{Data2}", data2.ToString());

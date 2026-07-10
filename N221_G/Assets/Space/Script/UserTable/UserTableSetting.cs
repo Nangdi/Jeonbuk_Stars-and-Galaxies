@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+ï»¿using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,33 +7,33 @@ using UnityEngine;
 
 
 /// <summary>
-/// »ç¿ëÀÚ Å×ÀÌºí ¼ÂÆÃ ¼³Á¤
+/// ì‚¬ìš©ì í…Œì´ë¸” ì…‹íŒ… ì„¤ì •
 /// </summary>
 public class UserTableSetting : CommonSetting
 {
     /// <summary>
-    /// ÅØ½ºÆ® »çÀÌÁî º¯°æ ¼³Á¤±¸°£
+    /// í…ìŠ¤íŠ¸ ì‚¬ì´ì¦ˆ ë³€ê²½ ì„¤ì •êµ¬ê°„
     /// </summary>
     public List<TextMeshProUGUI> textMeshProUGUIList;
     public float fontMaxSize = 10;
 
-    [Header("¿ø¼Ò µ¥ÀÌÅÍ Á¤º¸")]
+    [Header("ì›ì†Œ ë°ì´í„° ì •ë³´")]
     public List<ElementData> elementDataList;
 
-    [Header("¿ø¼Ò ¿ÀºêÁ§Æ®")]
+    [Header("ì›ì†Œ ì˜¤ë¸Œì íŠ¸")]
     public GameObject elementObject;
 
     [System.Serializable]
     public class ElementData {
 
-        //¿ø¼Ò Å¸ÀÔ
+        //ì›ì†Œ íƒ€ì…
         public enum ElementType { littleStar, bigStar };
 
-        [Header("¿ø¼Ò Å¸ÀÔ")]
+        [Header("ì›ì†Œ íƒ€ì…")]
         public ElementType elementType;
 
         public enum ElementName { H,He,C,N,O,Na,Mg,Si,Fe,Ni,Cu,Ag,Au,Pb,U}
-        [Header("¿ø¼Ò ÀÌ¸§")]
+        [Header("ì›ì†Œ ì´ë¦„")]
         public ElementName elementName;
 
         public Sprite elementImage;
@@ -50,11 +50,11 @@ public class UserTableSetting : CommonSetting
     }
 
     /// <summary>
-    /// ÅØ½ºÆ® »çÀÌÁî º¯°æ
+    /// í…ìŠ¤íŠ¸ ì‚¬ì´ì¦ˆ ë³€ê²½
     /// </summary>
     public void TextSizeChange() {
 
-        Debug.Log("ÇÏÀ§ ±ÛÀÚ º¯°æ");
+        Debug.Log("í•˜ìœ„ ê¸€ì ë³€ê²½");
         for (int i=0;i< textMeshProUGUIList.Count; i++) {
             textMeshProUGUIList[i].fontSizeMax = fontMaxSize;
         }

@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+ï»¿using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,41 +12,41 @@ using static MissionDataLoader.MissionData;
 using Formatting = Newtonsoft.Json.Formatting;
 
 /// <summary>
-///  µ¥ÀÌÅÍ ¹®±¸ º¯°æ Ç×¸ñ 
+///  ë°ì´í„° ë¬¸êµ¬ ë³€ê²½ í•­ëª© 
 /// </summary>
 public class MissionDataLoader : MonoBehaviour
 {
     private Coroutine onLoader = null;
     
-    //»ç¿ëÀÚ ÀüÃ¼ ÄÁÆ®·Ñ
+    //ì‚¬ìš©ì ì „ì²´ ì»¨íŠ¸ë¡¤
     public UserTotalControl userTotalControl;
 
-    //json ÆÄÀÏÁ¤º¸
+    //json íŒŒì¼ì •ë³´
     public JsonLoadData jsonLoadData;
 
     [System.Serializable]
     public class JsonLoadData {
-        //¹Ì¼Ç µ¥ÀÌÅÍ Á¤º¸(¿ÜºÎ ·Îµå ¼³Á¤ ±¸°£)
+        //ë¯¸ì…˜ ë°ì´í„° ì •ë³´(ì™¸ë¶€ ë¡œë“œ ì„¤ì • êµ¬ê°„)
         [ReadOnly]
         public List<MissionData> missionDataList;
 
-        //Å¸ÀÌ¸Ó ¼ÂÆÃ ¼³Á¤±¸°£
+        //íƒ€ì´ë¨¸ ì…‹íŒ… ì„¤ì •êµ¬ê°„
         [ReadOnly]
         public TimeSetting timeSetting;
 
-        //À©µµ¿ì ¼ÂÆÃ
+        //ìœˆë„ìš° ì…‹íŒ…
         [ReadOnly]
         public WindowsSetting windowsSetting;
 
-        //¿¬½À ¸ğµå Á¡¼ö ºÎ¿© ÄÁÆ®·Ñ
+        //ì—°ìŠµ ëª¨ë“œ ì ìˆ˜ ë¶€ì—¬ ì»¨íŠ¸ë¡¤
         [ReadOnly]
         public PracticeScoreSetting practiceScoreSetting;
 
-        //¹Ì¼Ç1 Á¡¼ö
+        //ë¯¸ì…˜1 ì ìˆ˜
         [ReadOnly]
         public MissionScoreSetting mission1ScoreSetting;
 
-        //¹Ì¼Ç2 Á¡¼ö
+        //ë¯¸ì…˜2 ì ìˆ˜
         [ReadOnly]
         public MissionScoreSetting mission2ScoreSetting;
 
@@ -55,20 +55,20 @@ public class MissionDataLoader : MonoBehaviour
     [System.Serializable]
     public class MissionData {
         public enum MissionType { mission1, mission2 }
-        //¹Ì¼Ç Å¸ÀÔ Á¤º¸
+        //ë¯¸ì…˜ íƒ€ì… ì •ë³´
         public MissionType missionType;
 
-        public string problemData = "¹®Á¦ Á¤º¸";
-        //Á¤´ä ¹üÀ§
+        public string problemData = "ë¬¸ì œ ì •ë³´";
+        //ì •ë‹µ ë²”ìœ„
         public string rightAnswerRange;
 
-        //Á¤´ä
-        public string rightAnswer = "Á¤´äÀÔ´Ï´Ù!";
+        //ì •ë‹µ
+        public string rightAnswer = "ì •ë‹µì…ë‹ˆë‹¤!";
         public string right_messageData1;
         public string right_messageData2;
 
-        //¿À´ä
-        public string wrongAnswer = "¿À´äÀÔ´Ï´Ù.";
+        //ì˜¤ë‹µ
+        public string wrongAnswer = "ì˜¤ë‹µì…ë‹ˆë‹¤.";
         public string wrong_messageData1;
         public string wrong_messageData2;
     }
@@ -77,93 +77,93 @@ public class MissionDataLoader : MonoBehaviour
     [System.Serializable]
     public class TimeSetting {
 
-        [Header("»ç¿ëÀÚ Á¢±Ù Ä«¿îÅÍ")]
+        [Header("ì‚¬ìš©ì ì ‘ê·¼ ì¹´ìš´í„°")]
         public int connectionTime;
 
-        [Header("¿¬½ÀÅ¸ÀÓ Á¤º¸")]
+        [Header("ì—°ìŠµíƒ€ì„ ì •ë³´")]
         public int practiceTime;
         
-        [Header("¹Ì¼Ç1Å¸ÀÓ Á¤º¸")]
+        [Header("ë¯¸ì…˜1íƒ€ì„ ì •ë³´")]
         public int mission1Time;
 
-        [Header("¹Ì¼Ç1Å¸ÀÓ ´ÙÀ½ÅÏÀ¸·Î ³Ñ¾î°¡´Â Å¸ÀÓ Á¤º¸")]
+        [Header("ë¯¸ì…˜1íƒ€ì„ ë‹¤ìŒí„´ìœ¼ë¡œ ë„˜ì–´ê°€ëŠ” íƒ€ì„ ì •ë³´")]
         public int mission1EndTimeDelay;
 
-        [Header("¹Ì¼Ç2Å¸ÀÓ Á¤º¸")]
+        [Header("ë¯¸ì…˜2íƒ€ì„ ì •ë³´")]
         public int mission2Time;
 
     }
 
     [System.Serializable]
     public class WindowsSetting {
-        //¸¶¿ì½º Ä¿¼­ ÄÁÆ®·Ñ
+        //ë§ˆìš°ìŠ¤ ì»¤ì„œ ì»¨íŠ¸ë¡¤
         public bool isMouseCursor = false;
-        //½ÃÀÛ µ¥ÀÌÅÍ
+        //ì‹œì‘ ë°ì´í„°
         public string startData= "";
-        //Á¾·á µ¥ÀÌÅÍ
+        //ì¢…ë£Œ ë°ì´í„°
         public string endData = "";
     }
 
-    //¿¬½À°ÔÀÓ Á¡¼ö ¼ÂÆÃ ¼³Á¤ ±¸°£
+    //ì—°ìŠµê²Œì„ ì ìˆ˜ ì…‹íŒ… ì„¤ì • êµ¬ê°„
     [System.Serializable]
     public class PracticeScoreSetting {
-        [Header("ÀÛÀºº° È¸Àü Á¡¼ö")]
+        [Header("ì‘ì€ë³„ íšŒì „ ì ìˆ˜")]
         public int littleRotScore;
 
-        [Header("ÀÛÀºº° °á°ú Á¡¼ö")]
+        [Header("ì‘ì€ë³„ ê²°ê³¼ ì ìˆ˜")]
         public int littleRotResultScore;
 
-        [Header("ÀÛÀºº° È¸Àü Ä«¿îÅÍ")]
+        [Header("ì‘ì€ë³„ íšŒì „ ì¹´ìš´í„°")]
         public int littleRotatingNumberMaxRot;
 
-        [Header("Å«º° È¸Àü Á¡¼ö")]
+        [Header("í°ë³„ íšŒì „ ì ìˆ˜")]
         public int bigRotScore;
         
-        [Header("Å«º° °á°ú Á¡¼ö")]
+        [Header("í°ë³„ ê²°ê³¼ ì ìˆ˜")]
         public int bigRotResultScore;
         
-        [Header("Å«º° È¸Àü Ä«¿îÅÍ")]
+        [Header("í°ë³„ íšŒì „ ì¹´ìš´í„°")]
         public int bigRotatingNumberMaxRot;
     }
 
-    //Á¡¼ö µ¥ÀÌÅÍ µî·Ï ±¸°£
+    //ì ìˆ˜ ë°ì´í„° ë“±ë¡ êµ¬ê°„
     [System.Serializable]
     public class MissionScoreSetting {
 
         public int rightAnswerScore = 0;
         public int mustScore = 0;
-        //Æ²¸² Á¡¼ö Àû¿ë
+        //í‹€ë¦¼ ì ìˆ˜ ì ìš©
         public bool applyWrongScore = false;
 
-        /*//Á¤´ä ¹İº¹
+        /*//ì •ë‹µ ë°˜ë³µ
         public bool isRightAnswerRepeat = false;
-        //Æ²¸² ¹İº¹
+        //í‹€ë¦¼ ë°˜ë³µ
         public bool isMustScoreRepeat = false;*/
     }
 
 
 
-    //Á¤´ä/¿À´ä Ç¥±â¿¡ µû¸¥ µ¥ÀÌÅÍ Á¤º¸ Ç¥±â 
+    //ì •ë‹µ/ì˜¤ë‹µ í‘œê¸°ì— ë”°ë¥¸ ë°ì´í„° ì •ë³´ í‘œê¸° 
     public List<AnswerControlData> answerControlDataList;
     
     [System.Serializable]
     public class AnswerControlData {
         
-        //Á¤´ä ÄÁÆ®·Ñ(¹Ì¼Ç1)
+        //ì •ë‹µ ì»¨íŠ¸ë¡¤(ë¯¸ì…˜1)
         public RightAnswerControl rightAnswerControl_Mission1;
 
-        //¿À´ä ÄÁÆ®·Ñ(¹Ì¼Ç1)
+        //ì˜¤ë‹µ ì»¨íŠ¸ë¡¤(ë¯¸ì…˜1)
         public ErrorControl errorControl_Mission1;
 
-        //Á¤´ä ÄÁÆ®·Ñ(¹Ì¼Ç2)
+        //ì •ë‹µ ì»¨íŠ¸ë¡¤(ë¯¸ì…˜2)
         public RightAnswerControl rightAnswerControl_Mission2;
 
-        //¿À´ä ÄÁÆ®·Ñ(¹Ì¼Ç2)
+        //ì˜¤ë‹µ ì»¨íŠ¸ë¡¤(ë¯¸ì…˜2)
         public ErrorControl errorControl_Mission2;
 
     }
 
-    [Header("¿ÜºÎ ÅØ½ºÆ® ÆÄÀÏ ·Îµå ¿Ï·á ÀÌº¥Æ® ÇÚµé·¯")]
+    [Header("ì™¸ë¶€ í…ìŠ¤íŠ¸ íŒŒì¼ ë¡œë“œ ì™„ë£Œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬")]
     public LoadCompleteEvent loadCompleteEvent;
 
     [System.Serializable]
@@ -188,11 +188,11 @@ public class MissionDataLoader : MonoBehaviour
         onLoader = StartCoroutine(OnLoader(missionText));
     }
 
-    //¿ÜºÎ ÆÄÀÏ ·Îµå 
+    //ì™¸ë¶€ íŒŒì¼ ë¡œë“œ 
     IEnumerator OnLoader(string path) {
         if (!File.Exists(path))
         {
-            Debug.Log("ÆÄÀÏ»ı¼º");
+            Debug.Log("íŒŒì¼ìƒì„±");
             jsonLoadData = new JsonLoadData();
             jsonLoadData.missionDataList = new List<MissionData>();
             MissionData missionData = new MissionData();
@@ -210,20 +210,20 @@ public class MissionDataLoader : MonoBehaviour
             UnityWebRequest request = UnityWebRequest.Get(path);
             yield return request.SendWebRequest();
             if (string.IsNullOrEmpty(request.error)) {
-                //¸®½ºÆ® Á¤º¸ ¸®ÅÏ ±¸°£
+                //ë¦¬ìŠ¤íŠ¸ ì •ë³´ ë¦¬í„´ êµ¬ê°„
                 jsonLoadData = JsonConvert.DeserializeObject<JsonLoadData>(request.downloadHandler.text);
                 SetDataValue();
             }
         }
     }
 
-    //µ¥ÀÌÅÍ °ª ¿¬µ¿ ±¸°£ 
+    //ë°ì´í„° ê°’ ì—°ë™ êµ¬ê°„ 
     private void SetDataValue()
     {
-        Debug.Log("[SetDataValue] µ¥ÀÌÅÍ ¿¬°á¼º");
+        Debug.Log("[SetDataValue] ë°ì´í„° ì—°ê²°ì„±");
         for(int i=0;i< answerControlDataList.Count; i++){
 
-            //¹Ì¼Ç1
+            //ë¯¸ì…˜1
             RightAnswerControl rightAnswerControl= answerControlDataList[i].rightAnswerControl_Mission1;
             rightAnswerControl.textDataList[0].problemTextObject.text = jsonLoadData.missionDataList[0].problemData;
             rightAnswerControl.textDataList[0].phraseTextObject.text = jsonLoadData.missionDataList[0].rightAnswer;
@@ -235,7 +235,7 @@ public class MissionDataLoader : MonoBehaviour
             errorControl.textDataList[0].textData1 = jsonLoadData.missionDataList[0].wrong_messageData1;
             errorControl.textDataList[0].textData2 = jsonLoadData.missionDataList[0].wrong_messageData2;
 
-            //¹Ì¼Ç2
+            //ë¯¸ì…˜2
             RightAnswerControl rightAnswerControl2 = answerControlDataList[i].rightAnswerControl_Mission2;
             rightAnswerControl2.textDataList[0].problemTextObject.text = jsonLoadData.missionDataList[1].problemData;
             rightAnswerControl2.textDataList[0].phraseTextObject.text = jsonLoadData.missionDataList[1].rightAnswer;
@@ -248,7 +248,7 @@ public class MissionDataLoader : MonoBehaviour
             errorControl2.textDataList[0].textData2 = jsonLoadData.missionDataList[1].wrong_messageData2;
         }
 
-        //¹®Á¦ Ç®ÀÌ ¹üÀ§
+        //ë¬¸ì œ í’€ì´ ë²”ìœ„
         for (int i=0;i < userTotalControl.missionDataList.Count; i++) {
             Debug.Log(userTotalControl.missionDataList[i].stationState.ToString());
             MissionData missionData= Array.Find(jsonLoadData.missionDataList.ToArray(), item => item.missionType.ToString().Equals(userTotalControl.missionDataList[i].stationState.ToString()));
@@ -265,7 +265,7 @@ public class MissionDataLoader : MonoBehaviour
             }
         }
 
-        //»ç¿ëÀÚ ¿¬°á Ä«¿îÆ® ´Ù¿î
+        //ì‚¬ìš©ì ì—°ê²° ì¹´ìš´íŠ¸ ë‹¤ìš´
         GameObjectControl.Instance.userWaitingCountDown.maxCount = jsonLoadData.timeSetting.connectionTime;
         GameObjectControl.Instance.practiceCountDown.maxCount = jsonLoadData.timeSetting.practiceTime;
         GameObjectControl.Instance.missionCount.maxCount = jsonLoadData.timeSetting.mission1Time;

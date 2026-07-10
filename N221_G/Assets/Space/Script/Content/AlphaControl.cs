@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,12 +8,12 @@ using UnityEngine;
 public class AlphaControl : UIGroup
 {
 
-    //°øÅõÀÔ½Ã ¾È³» ¹®±¸ »èÁ¦
+    //ê³µíˆ¬ìž…ì‹œ ì•ˆë‚´ ë¬¸êµ¬ ì‚­ì œ
     public void OnInsertBallEvent() {
         DOTween.To(() => alphaValue,value=> alphaValue=value,1,0.5f); 
     }
 
-    //È¸Àü½Ã ¾È³» ¹®±¸ »èÁ¦
+    //íšŒì „ì‹œ ì•ˆë‚´ ë¬¸êµ¬ ì‚­ì œ
     public void OnRotatingDataEvent() {
         DOTween.To(() => alphaValue, value => alphaValue = value, 0, 0.5f);
     }

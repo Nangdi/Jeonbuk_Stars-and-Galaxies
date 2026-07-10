@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,7 +46,7 @@ public partial class UserTableSettingBase : MonoBehaviour
         SendLoopData("1");
         //yield return new WaitForSeconds(2f);
         //ballSetting.insertBallCount = 0;
-        Debug.Log("[º¼ Ãâ·Â ÇÏ´Â±¸°£]");
+        Debug.Log("[ë³¼ ì¶œë ¥ í•˜ëŠ”êµ¬ê°„]");
         //rotatingDeviceEvent.Invoke();
         //insertBallEvent.Invoke(ballSetting.insertBallCount);
     }

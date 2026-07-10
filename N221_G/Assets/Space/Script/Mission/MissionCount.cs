@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -17,15 +17,15 @@ public class MissionCount : NextSceneClip
     public bool isEnd = false;
 
 
-    [Header("Å¸ÀÌ¸Ó Á¾·á")]
+    [Header("íƒ€ì´ë¨¸ ì¢…ë£Œ")]
     public EndTimeCountEvent endTimeCountEvent;
     [System.Serializable]
     public class EndTimeCountEvent : UnityEvent { }
 
-    //±×¶óµ¥ÀÌ¼Ç »ö»ó 
+    //ê·¸ë¼ë°ì´ì…˜ ìƒ‰ìƒ 
     public Gradient gradient;
 
-    //½½¶óÀÌ´õ ÀÌ¹ÌÁö
+    //ìŠ¬ë¼ì´ë” ì´ë¯¸ì§€
     public Image sliderImage;
     
     private void OnEnable()
@@ -37,7 +37,7 @@ public class MissionCount : NextSceneClip
     }
 
     /// <summary>
-    /// ¹Ì¼Ç ½ºÅ¸Æ®
+    /// ë¯¸ì…˜ ìŠ¤íƒ€íŠ¸
     /// </summary>
     private void MissionStart() {
         Debug.Log("MissionStart");
@@ -52,7 +52,7 @@ public class MissionCount : NextSceneClip
         OnRemoveLoop();
     }
 
-    //Ä«¿îÅÍ ·çÇÁ ÁøÇà
+    //ì¹´ìš´í„° ë£¨í”„ ì§„í–‰
     IEnumerator OnLoop() {
         while (true)
         {
@@ -94,7 +94,7 @@ public class MissionCount : NextSceneClip
     }
 
 
-    //½Ã°£ ÃÊ±âÈ­
+    //ì‹œê°„ ì´ˆê¸°í™”
     public void ResetTimer() {
         isEnd = true;
         currentCount = maxCount;
@@ -102,13 +102,13 @@ public class MissionCount : NextSceneClip
         SetText();
     }
 
-    //Å¸ÀÌ¸Ó ÀÛµ¿
+    //íƒ€ì´ë¨¸ ì‘ë™
     public void StartTimer() {
         isEnd = false;
         GameObjectControl.Instance.isGamePlay = true;
     }
 
-    //ÀÏ½ÃÁ¤Áö
+    //ì¼ì‹œì •ì§€
     public void PauseTimer() {
         isEnd = true;
     }

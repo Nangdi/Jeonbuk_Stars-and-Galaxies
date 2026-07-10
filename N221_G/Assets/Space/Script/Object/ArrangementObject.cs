@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,68 +25,68 @@ public class ArrangementObjectEditor : Editor
 
 public class ArrangementObject : MonoBehaviour
 {
-    public enum ObjectType { ¶¥, ÇÏ´Ã, ¹Ù´Ù}
-    [Header("¿ÀºêÁ§Æ® Å¸ÀÔ Á¤º¸")]
+    public enum ObjectType { ë•…, í•˜ëŠ˜, ë°”ë‹¤}
+    [Header("ì˜¤ë¸Œì íŠ¸ íƒ€ì… ì •ë³´")]
     public ObjectType objectType;
 
-    public enum AnimationType { ºñÇà±â,±¸¸§,ÀÚµ¿Â÷,¹è}
+    public enum AnimationType { ë¹„í–‰ê¸°,êµ¬ë¦„,ìë™ì°¨,ë°°}
     public AnimationType animationType;
 
     //public List<SpriteData> spriteList;
 
-    //¶¥¿¡ »ı°Ü³ª´Â ÀÌ¹ÌÁö ¸®½ºÆ®
+    //ë•…ì— ìƒê²¨ë‚˜ëŠ” ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸
     public List<SpriteData> landSpriteList;
     
-    //ÇÏ´Ã ÀÌ¹ÌÁö ¸®½ºÆ®
+    //í•˜ëŠ˜ ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸
     public List<SpriteData> skySpriteList;
     
-    //¹Ù´Ù ÀÌ¹ÌÁö ¸®½ºÆ®
+    //ë°”ë‹¤ ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸
     public List<SpriteData> seaSpriteList;
 
-    [Header("¿¡´Ï¸ŞÀÌÅÍ ÀÛµ¿")]
+    [Header("ì—ë‹ˆë©”ì´í„° ì‘ë™")]
     public Animator targetAnimator;
 
     [System.Serializable]
     public class SpriteData {
-        [Header("¿ÀºêÁ§Æ® Å¸ÀÔ Á¤º¸")]
+        [Header("ì˜¤ë¸Œì íŠ¸ íƒ€ì… ì •ë³´")]
         public ObjectType objectType;
         public Sprite targetSprite;
-        //¿¡´Ï¸ŞÀÌ¼Ç Å¸ÀÔ Á¤º¸
+        //ì—ë‹ˆë©”ì´ì…˜ íƒ€ì… ì •ë³´
         public AnimationType animationType;
     }
 
-    //Å¸°Ù ÀÌ¹ÌÁö
+    //íƒ€ê²Ÿ ì´ë¯¸ì§€
     public Image targetImage;
 
-    //ÀÌ¹ÌÁö ±³Ã¼ ÁøÇà 
+    //ì´ë¯¸ì§€ êµì²´ ì§„í–‰ 
     public void SetImage(ObjectType objectType,int _index=0,bool isRandom=false) {
 
         List<SpriteData> targetSpriteDataList = null;
         switch (objectType) {
-            case ObjectType.¶¥:
+            case ObjectType.ë•…:
                 targetSpriteDataList = landSpriteList;
                 break;
-            case ObjectType.ÇÏ´Ã:
+            case ObjectType.í•˜ëŠ˜:
                 targetSpriteDataList = skySpriteList;
                 break;
-            case ObjectType.¹Ù´Ù:
+            case ObjectType.ë°”ë‹¤:
                 targetSpriteDataList = seaSpriteList;
                 break;
         }
         
-        if (objectType.Equals(ArrangementObject.ObjectType.¹Ù´Ù))
+        if (objectType.Equals(ArrangementObject.ObjectType.ë°”ë‹¤))
         {
             if (_index < 2)
             {
 
                 targetSpriteDataList = Array.FindAll(targetSpriteDataList.ToArray(),
-                    item => item.animationType.Equals(ArrangementObject.AnimationType.¹è)).ToList();
+                    item => item.animationType.Equals(ArrangementObject.AnimationType.ë°°)).ToList();
                 
             }
             else
             {
                 targetSpriteDataList = Array.FindAll(targetSpriteDataList.ToArray(),
-                    item => !item.animationType.Equals(ArrangementObject.AnimationType.¹è)).ToList();
+                    item => !item.animationType.Equals(ArrangementObject.AnimationType.ë°°)).ToList();
                 
             }
         }

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ public class UserTableAddElementParentObjectEditor : Editor
     {
         base.OnInspectorGUI();
         UserTableAddElementParentObject userTableAddElementParentObject = (UserTableAddElementParentObject)target;
-        if (GUILayout.Button("ÀÌ¹ÌÁö ±³Ã¼ ÁøÇà&½ºÅ©¸³Æ® µî·Ï"))
+        if (GUILayout.Button("ì´ë¯¸ì§€ êµì²´ ì§„í–‰&ìŠ¤í¬ë¦½íŠ¸ ë“±ë¡"))
         {
             userTableAddElementParentObject.elementIndexList.Clear();
             for (int i = 0; i < 118; i++) {
@@ -32,10 +32,10 @@ public class UserTableAddElementParentObjectEditor : Editor
 
 public class UserTableAddElementParentObject : MonoBehaviour
 {
-    //ÅØ½ºÆ® ¸®½ºÆ®
+    //í…ìŠ¤íŠ¸ ë¦¬ìŠ¤íŠ¸
     public List<Texture2D> texturtList;
 
-    [Header("»ı¼º ¿øÀÚ ¿ÀºêÁ§Æ®")]
+    [Header("ìƒì„± ì›ì ì˜¤ë¸Œì íŠ¸")]
     public UserTableAddElementObject createElementObject;
 
     public Transform elementParentObject;
@@ -45,23 +45,23 @@ public class UserTableAddElementParentObject : MonoBehaviour
 
     public enum PlayState { 
         None,
-        RightAnswer/*Á¤´ä*/,
-        TimeOut/*½Ã°£ Å¸ÀÓ¾Æ¿ô*/ }
+        RightAnswer/*ì •ë‹µ*/,
+        TimeOut/*ì‹œê°„ íƒ€ì„ì•„ì›ƒ*/ }
 
-    [Header("ÇÃ·¹ÀÌ »óÅÂ Á¤º¸")]
+    [Header("í”Œë ˆì´ ìƒíƒœ ì •ë³´")]
     public PlayState playState;
 
-    //½ºÅ×ÀÌ¼Ç »óÅÂ Á¤º¸
+    //ìŠ¤í…Œì´ì…˜ ìƒíƒœ ì •ë³´
     public UserTableSettingBase.StationState _stationState;
 
     public ObjectCreationManager objectCreationManager;
 
-    //¸®¼Â 
+    //ë¦¬ì…‹ 
     public void OnReset() {
         playState = PlayState.None;
     }
 
-    //¿øÀÚ ÁøÇà
+    //ì›ì ì§„í–‰
     public void OnInsertElementStart() {
         OnRemoveInsertElement();
         onInsertElement = StartCoroutine(OnInsertElement());
@@ -74,17 +74,17 @@ public class UserTableAddElementParentObject : MonoBehaviour
         }
     }
 
-    //¿øÀÚ »ı¼º 
+    //ì›ì ìƒì„± 
     IEnumerator OnInsertElement() {
         yield return null;
-        //Á¤´äÀÏ°æ¿ì ÀÛµ¿
+        //ì •ë‹µì¼ê²½ìš° ì‘ë™
         yield return new WaitUntil(() => (int)playState>0);
         int maxCount = 0;
         switch (playState) {
-            case PlayState.RightAnswer://Á¤´äÀÏ°æ¿ì
+            case PlayState.RightAnswer://ì •ë‹µì¼ê²½ìš°
                 maxCount = elementIndexList.Count;
                 break;
-            case PlayState.TimeOut://Å¸ÀÓ¾Æ¿ôÀÏ°æ¿ì
+            case PlayState.TimeOut://íƒ€ì„ì•„ì›ƒì¼ê²½ìš°
                 maxCount = elementIndexList.Count;
                 //maxCount = 6;
                 break;
@@ -132,10 +132,10 @@ public class UserTableAddElementParentObject : MonoBehaviour
     }
 
     public UserTableController userTableController;
-    // ¹Ì¼Ç2ÀÇ »ı¼º Ç¥Àû À§Ä¡ ÁöÁ¤
-    // Á¢¼ÓÇÑ ÀÎ¿ø¼ö ´ëºñ ÀÛµ¿ ¿©ºÎ º¯°æ ÇØ¾ßÇÔ
+    // ë¯¸ì…˜2ì˜ ìƒì„± í‘œì  ìœ„ì¹˜ ì§€ì •
+    // ì ‘ì†í•œ ì¸ì›ìˆ˜ ëŒ€ë¹„ ì‘ë™ ì—¬ë¶€ ë³€ê²½ í•´ì•¼í•¨
     public Transform TargetSelectArea() {
-        //°¡±î¿î ¿ÀºêÁ§Æ® °ËÃâ
+        //ê°€ê¹Œìš´ ì˜¤ë¸Œì íŠ¸ ê²€ì¶œ
         Transform targetTransform = null;
 
         bool[] isConnections = GameObjectControl.Instance.connectionUser;

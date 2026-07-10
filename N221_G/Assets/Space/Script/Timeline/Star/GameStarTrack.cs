@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,7 +16,7 @@ public class GameStarTrack : TrackAsset
         gameSceneMixerBehaviour.GetClips = this.GetClips().Cast<TimelineClip>().ToList();
        
         //
-        //≈¨∏≥ ¿Ã∏ß ¿Á¡§¿« ±∏∞£ 
+        //ÌÅ¥Î¶Ω Ïù¥Î¶Ñ Ïû¨Ï†ïÏùò Íµ¨Í∞Ñ 
         for (int i = 0; i < gameSceneMixerBehaviour.GetClips.Count; i++)
         {
             GameStarClip sceneClip = gameSceneMixerBehaviour.GetClips[i].asset as GameStarClip;

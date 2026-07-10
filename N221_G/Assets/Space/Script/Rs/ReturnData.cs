@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,10 +6,10 @@ using UnityEngine;
 public class ReturnData : MonoBehaviour
 {
 
-    //µğ¹ö±× ÅØ½ºÆ® 
+    //ë””ë²„ê·¸ í…ìŠ¤íŠ¸ 
     public TextMeshProUGUI debugText;
 
-    //µ¥ÀÌÅÍ ¸®ÅÏ Á¤º¸ È®ÀÎ(µğ¹ö±×Ã¢)
+    //ë°ì´í„° ë¦¬í„´ ì •ë³´ í™•ì¸(ë””ë²„ê·¸ì°½)
     public void Rs_returnData(string data) {
         Debug.Log("Rs232 Data : "+data);
         string[] texts = debugText.text.Split('\n');

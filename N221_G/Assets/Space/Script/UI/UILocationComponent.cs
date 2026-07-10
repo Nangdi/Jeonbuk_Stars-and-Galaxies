@@ -1,17 +1,17 @@
-using Runtime2DTransformInteractor;
+ï»¿using Runtime2DTransformInteractor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
 /// <summary>
-/// º°°úÀºÇÏÀÇ Åº»ı /Áö±¸ ´ŞÀÇ Åº»ı UI ÇöÀå À§Ä¡ Á¶Á¤¿ëÀ¸·Î »ç¿ë 
-/// °¢ Å×ÀÌºí À§Ä¡ ¸¶¿ì½º·Î Á¶Á¤(·±Å¸ÀÓÀ¸·Î Á¶Á¤ °¡´ÉÇÏµµ·Ï ±¸»ç)
+/// ë³„ê³¼ì€í•˜ì˜ íƒ„ìƒ /ì§€êµ¬ ë‹¬ì˜ íƒ„ìƒ UI í˜„ì¥ ìœ„ì¹˜ ì¡°ì •ìš©ìœ¼ë¡œ ì‚¬ìš© 
+/// ê° í…Œì´ë¸” ìœ„ì¹˜ ë§ˆìš°ìŠ¤ë¡œ ì¡°ì •(ëŸ°íƒ€ì„ìœ¼ë¡œ ì¡°ì • ê°€ëŠ¥í•˜ë„ë¡ êµ¬ì‚¬)
 /// </summary>
 public class UILocationComponent : MonoBehaviour
 {
-    //ÀÎµ¦½º Á¤º¸
-    [Header("»ç¿ëÀÚ ÀÎµ¦½º")]
+    //ì¸ë±ìŠ¤ ì •ë³´
+    [Header("ì‚¬ìš©ì ì¸ë±ìŠ¤")]
     public int index = 0;
 
     [SerializeField]
@@ -33,12 +33,12 @@ public class UILocationComponent : MonoBehaviour
 
     public TransformInteractor transformInteractor;
     
-    //ÀÌ¹ÌÁö ·»´õ·¯
+    //ì´ë¯¸ì§€ ë Œë”ëŸ¬
     public SpriteRenderer spriteRenderer;
 
     private Coroutine onSelectObject = null;
 
-    //Æ÷Áö¼Ç Á¤ÀÇ ±¸°£
+    //í¬ì§€ì…˜ ì •ì˜ êµ¬ê°„
     private void SetPos(Vector2 _pos)
     {
         if (targetTF)
@@ -47,11 +47,11 @@ public class UILocationComponent : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Å¸°ÙÀÌ ÁöÁ¤µÇ¾îÀÖÁö¾ÊÀ½! È®ÀÎ ÇÊ¿ä");
+            Debug.LogError("íƒ€ê²Ÿì´ ì§€ì •ë˜ì–´ìˆì§€ì•ŠìŒ! í™•ì¸ í•„ìš”");
         }
     }
    
-    //È°¼ºÈ­
+    //í™œì„±í™”
     public virtual void OnEnable()
     {
         RemoveOnSelectObject();
@@ -65,7 +65,7 @@ public class UILocationComponent : MonoBehaviour
         }
     }
 
-    //µ¥ÀÌÅÍ ¾÷µ¥ÀÌÆ®
+    //ë°ì´í„° ì—…ë°ì´íŠ¸
     IEnumerator OnSelectObject() {
         while (true) {
             yield return null;
@@ -81,7 +81,7 @@ public class UILocationComponent : MonoBehaviour
     }
 
     /// <summary>
-    /// ·»´õ·¯ µ¥ÀÌÅÍ
+    /// ë Œë”ëŸ¬ ë°ì´í„°
     /// </summary>
     public void RendererSprite(float value) {
         Color _color = spriteRenderer.color;

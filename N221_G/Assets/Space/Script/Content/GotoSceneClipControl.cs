@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class GotoSceneClipControl : MonoBehaviour
 
     public virtual void OnEnable()
     {
-        //Ŭ�� �ʱ�ȭ
+        //클립 초기화
         gameObjectControl.GotoSceneClip(stationState,
            clipState);
         //GameObjectControl.Instance.OnResetSceneClip();

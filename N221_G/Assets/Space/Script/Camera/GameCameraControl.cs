@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameCameraControl : MonoBehaviour
 {
-    //Ÿ�� ī�޶�
+    //타겟 카메라
     public Transform targetCamera;
     [SerializeField][Range(0f, 10f)] private float speed = 1;
     [SerializeField][Range(0f, 10f)] private float radius = 1;

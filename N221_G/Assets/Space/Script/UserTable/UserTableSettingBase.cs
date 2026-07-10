@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,26 +17,26 @@ using static UserTotalControl;
 
 public partial class UserTableSettingBase : MonoBehaviour
 {
-    //»ç¿ëÀÚ Å×ÀÌºí ÀÎµ¦½º ¼±¾ğ ±¸°£
+    //ì‚¬ìš©ì í…Œì´ë¸” ì¸ë±ìŠ¤ ì„ ì–¸ êµ¬ê°„
     public enum StarIndex { None, User1, User2, User3, User4, User5 }
-    [Header("»ç¿ëÀÚ Å×ÀÌºí ÀÎµ¦½º Á¤º¸")]
+    [Header("ì‚¬ìš©ì í…Œì´ë¸” ì¸ë±ìŠ¤ ì •ë³´")]
     public StarIndex starIndex;
 
     private Coroutine onInit = null;
 
-    [Header("½ºÅ×ÀÌ¼Ç »óÅÂ Á¤º¸")]
+    [Header("ìŠ¤í…Œì´ì…˜ ìƒíƒœ ì •ë³´")]
     public StationState stationState;
     public enum StationState { waiting, experience, mission1, mission2,MissionComplete }
 
-    [Header("Å¸ÀÓ¶óÀÎ ¼³Á¤")]
+    [Header("íƒ€ì„ë¼ì¸ ì„¤ì •")]
     public PlayableDirector pd;
 
-    //º¼ ÄÁÆ®·Ñ
+    //ë³¼ ì»¨íŠ¸ë¡¤
     public BallSetting ballSetting;
 
     [System.Serializable]
     public class BallSetting {
-        [Header("º¼Ä«¿îÅÍ µ¥ÀÌÅÍ ")]
+        [Header("ë³¼ì¹´ìš´í„° ë°ì´í„° ")]
         public BallCountData ballCountData;
         public MissionText mission1Text;
         public MissionText mission2Text;
@@ -50,45 +50,45 @@ public partial class UserTableSettingBase : MonoBehaviour
         public float rotatingDeviceCount = 0;
 
         [ReadOnly]
-        [Header("ÀÛÀºº° È¸Àü ÀúÀå Ä«¿îÅÍ")]
+        [Header("ì‘ì€ë³„ íšŒì „ ì €ì¥ ì¹´ìš´í„°")]
         public float littleSaveRotatingDeviceCount;
-        //ÀÛÀºº° È¸Àü Max µ¥ÀÌÅÍ °ª
+        //ì‘ì€ë³„ íšŒì „ Max ë°ì´í„° ê°’
         public float littleRotatingNumberMaxRot;
 
         [ReadOnly]
-        [Header("Å«º° È¸Àü ÀúÀå Ä«¿îÅÍ")]
+        [Header("í°ë³„ íšŒì „ ì €ì¥ ì¹´ìš´í„°")]
         public float bigSaveRotatingDeviceCount;
-        //Å«º° È¸Àü Max µ¥ÀÌÅÍ °ª
+        //í°ë³„ íšŒì „ Max ë°ì´í„° ê°’
         public float bigRotatingNumberMaxRot;
 
-        /**[Header("°øÅõÀÔ Á¤º¸(¹Ì¼Ç1)")]
+        /**[Header("ê³µíˆ¬ì… ì •ë³´(ë¯¸ì…˜1)")]
         public InsertBallText m1_insertBallText;
 
-        [Header("°øÅõÀÔ Á¤º¸(¹Ì¼Ç2)")]
+        [Header("ê³µíˆ¬ì… ì •ë³´(ë¯¸ì…˜2)")]
         public InsertBallText m2_insertBallText;**/
 
     }
 
-    [Header("Å«º°")]
+    [Header("í°ë³„")]
     public StarControl bigStar;
 
-    [Header("ÀÛÀºº°")]
+    [Header("ì‘ì€ë³„")]
     public StarControl littleStar;
 
-    //º° ÄÁÆ®·Ñ
+    //ë³„ ì»¨íŠ¸ë¡¤
     [System.Serializable]
     public class StarControl
     {
 
         public Texture texture = null;
         
-        //ºñµğ¿À Àç»ı ¿©ºÎ
+        //ë¹„ë””ì˜¤ ì¬ìƒ ì—¬ë¶€
         public bool isStarVideoPlay = false;
 
-        //ºñµğ¿À Àç»ıÀ§Ä¡ Á¶Á¤
+        //ë¹„ë””ì˜¤ ì¬ìƒìœ„ì¹˜ ì¡°ì •
         public float videoValue = 0;
 
-        //·çÇÁ ÄÁÆ®·Ñ
+        //ë£¨í”„ ì»¨íŠ¸ë¡¤
         private Coroutine onLoop = null;
 
         public bool isPlay = false;
@@ -97,12 +97,12 @@ public partial class UserTableSettingBase : MonoBehaviour
     }
 
     /// <summary>
-    /// ºñµğ¿À Àç»ıÀ§Ä¡
+    /// ë¹„ë””ì˜¤ ì¬ìƒìœ„ì¹˜
     /// </summary>
     public float bigVideoPosition = 0;
 
     /// <summary>
-    /// º° ºñµğ¿À Å¸ÀÓ Á¤ÀÇ ±¸°£
+    /// ë³„ ë¹„ë””ì˜¤ íƒ€ì„ ì •ì˜ êµ¬ê°„
     /// </summary>
     public enum StarVideoType {ConnectionUser, BigStar, LittleStar }
     public StarVideoType starVideoType;
@@ -114,23 +114,23 @@ public partial class UserTableSettingBase : MonoBehaviour
     public Renderer renderer;
     public MaterialPropertyBlock materialPropertyBlock;
     
-    [Header("½ÇÇà ¿©ºÎ")]
+    [Header("ì‹¤í–‰ ì—¬ë¶€")]
     public bool isPlaying = false;
 
     public bool isMissionPlay = true;
 
     public UserTableAddElementParentObject userTableAddElementParentObject;
 
-    //ºñµğ¿À ¿Ï·á ÀÌº¥Æ® ÇÚµé·¯
+    //ë¹„ë””ì˜¤ ì™„ë£Œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬
     public VideoCompleteEvent videoCompleteEvent;
     [System.Serializable]
     public class VideoCompleteEvent : UnityEvent<UserTableController> { }
 
-    //¸ÕÁö Á¤º¸
+    //ë¨¼ì§€ ì •ë³´
     public List<DustControl> makingDustDataList;
 
 
-    //»ç¿îµå µ¥ÀÌÅÍ
+    //ì‚¬ìš´ë“œ ë°ì´í„°
     public SoundData soundData;
     [System.Serializable]
     public class SoundData
@@ -140,10 +140,10 @@ public partial class UserTableSettingBase : MonoBehaviour
         public AudioClip rotionAudioClip;
     }
 
-    [Header("½ºÄÚ¾î Á¤º¸")]
+    [Header("ìŠ¤ì½”ì–´ ì •ë³´")]
     public ScoreControl scoreControl;
     
-    [Header("Á¡¼ö Á¤º¸")]
+    [Header("ì ìˆ˜ ì •ë³´")]
     public UserScoreText userScoreText;
 
     public void OnEnable()
@@ -180,7 +180,7 @@ public partial class UserTableSettingBase : MonoBehaviour
         }
     }
 
-    //½ÃÀÛ ÄÚ·çÆ¾ ¼³Á¤ ±¸°£
+    //ì‹œì‘ ì½”ë£¨í‹´ ì„¤ì • êµ¬ê°„
     IEnumerator OnInitCoroutine() {
         yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(()=> !starIndex.Equals(StarIndex.None));
@@ -201,21 +201,21 @@ public partial class UserTableSettingBase : MonoBehaviour
         return null;
     }
 
-        //¹®Á¦ ÁøÇà
+        //ë¬¸ì œ ì§„í–‰
     public void SetUserScene()
     {
         switch (stationState)
         {
-            case StationState.waiting: //±â´Ù¸²
+            case StationState.waiting: //ê¸°ë‹¤ë¦¼
                 UserTableGotoClip(UserTableSettingBase.StationState.waiting, GameManager.ClipState.Scene0);
                 break;
-            case StationState.experience://Ã¼Çè
+            case StationState.experience://ì²´í—˜
                 UserTableGotoClip(UserTableSettingBase.StationState.experience, GameManager.ClipState.Scene0);
                 break;
-            case StationState.mission1://¹Ì¼Ç1
+            case StationState.mission1://ë¯¸ì…˜1
                 UserTableGotoClip(UserTableSettingBase.StationState.mission1, GameManager.ClipState.Scene0);
                 break;
-            case StationState.mission2://¹Ì¼Ç 2
+            case StationState.mission2://ë¯¸ì…˜ 2
                 UserTableGotoClip(UserTableSettingBase.StationState.mission2, GameManager.ClipState.Scene0);
                 break;
         }
@@ -224,30 +224,30 @@ public partial class UserTableSettingBase : MonoBehaviour
     public void SettingMission1(bool isConnection)
     {
 
-        //¿¬°áµÇÁö ¾Ê¾ÒÀ»°æ¿ì (´ë±â È­¸éÀ¸·Îº¯°æ)
+        //ì—°ê²°ë˜ì§€ ì•Šì•˜ì„ê²½ìš° (ëŒ€ê¸° í™”ë©´ìœ¼ë¡œë³€ê²½)
         if (!isConnection)
         {
             isDisable = false;
-            //´ë±â È­¸éÀ¸·Î ÀÌµ¿
+            //ëŒ€ê¸° í™”ë©´ìœ¼ë¡œ ì´ë™
             UserTableGotoClip(UserTableSettingBase.StationState.mission1, GameManager.ClipState.Scene0);
 
         }
         else
         {
-            Debug.Log("»ç¿ëÀÚ ¿¬°áµÇ´Â±¸°£");
+            Debug.Log("ì‚¬ìš©ì ì—°ê²°ë˜ëŠ”êµ¬ê°„");
             UserTableGotoClip(UserTableSettingBase.StationState.mission1, GameManager.ClipState.Scene1);
             //isDisable = false;
         }
     }
 
-    //¹Ì¼Ç 2 ¼ÂÆÃ
+    //ë¯¸ì…˜ 2 ì…‹íŒ…
     public void SettingMission2(bool isConnection) {
 
-        //¿¬°áµÇÁö ¾Ê¾ÒÀ»°æ¿ì (´ë±â È­¸éÀ¸·Îº¯°æ)
+        //ì—°ê²°ë˜ì§€ ì•Šì•˜ì„ê²½ìš° (ëŒ€ê¸° í™”ë©´ìœ¼ë¡œë³€ê²½)
         if (!isConnection)
         {
             isDisable = true;
-            //´ë±â È­¸éÀ¸·Î ÀÌµ¿
+            //ëŒ€ê¸° í™”ë©´ìœ¼ë¡œ ì´ë™
             UserTableGotoClip(UserTableSettingBase.StationState.mission2, GameManager.ClipState.Scene1);
 
         }
@@ -258,12 +258,12 @@ public partial class UserTableSettingBase : MonoBehaviour
 
     public void SettingMakingDust(bool isConnection)
     {
-        //¿¬°áµÇÁö ¾Ê¾ÒÀ»°æ¿ì (´ë±â È­¸éÀ¸·Îº¯°æ)
+        //ì—°ê²°ë˜ì§€ ì•Šì•˜ì„ê²½ìš° (ëŒ€ê¸° í™”ë©´ìœ¼ë¡œë³€ê²½)
         if (!isConnection)
         {
             isDisable = true;
-            //´ë±â È­¸éÀ¸·Î ÀÌµ¿
-            //ÃÊ±â ¿¬½À°ÔÀÓÀÏ°æ¿ì ÅÂ±â È­¸é 
+            //ëŒ€ê¸° í™”ë©´ìœ¼ë¡œ ì´ë™
+            //ì´ˆê¸° ì—°ìŠµê²Œì„ì¼ê²½ìš° íƒœê¸° í™”ë©´ 
             UserTableGotoClip(UserTableSettingBase.StationState.experience, GameManager.ClipState.Scene6);
             
         }
@@ -280,7 +280,7 @@ public partial class UserTableSettingBase : MonoBehaviour
     }
 
 
-    //·©Å· µ¥ÀÌÅÍ Á¤º¸ µî·Ï
+    //ë­í‚¹ ë°ì´í„° ì •ë³´ ë“±ë¡
     public void SettingRankData(bool isConnection) {
         if (!isConnection)
         {
@@ -298,32 +298,32 @@ public partial class UserTableSettingBase : MonoBehaviour
             if (connectionList.Length > 1)
             {
 
-                Debug.Log("-´Üµ¶ÀÎ¿øÀÏ°æ¿ì ÀÛµ¿µÇ´Â±¸°£ ");
-                //ÀÎ¿ø¼ö¿¡ µû¸¥ È­¸éÇ¥ÇöÀÌ ´Ù¸£°Ô ±¸Çö ÀÏ´Ü 1
+                Debug.Log("-ë‹¨ë…ì¸ì›ì¼ê²½ìš° ì‘ë™ë˜ëŠ”êµ¬ê°„ ");
+                //ì¸ì›ìˆ˜ì— ë”°ë¥¸ í™”ë©´í‘œí˜„ì´ ë‹¤ë¥´ê²Œ êµ¬í˜„ ì¼ë‹¨ 1
                 UserTableGotoClip(UserTableSettingBase.StationState.experience, GameManager.ClipState.Scene7);
             }else{
-                Debug.Log("-´Ù¼ö ÀÎ¿ø Á¢±Ù ÁøÇà");
+                Debug.Log("-ë‹¤ìˆ˜ ì¸ì› ì ‘ê·¼ ì§„í–‰");
                 UserTableGotoClip(UserTableSettingBase.StationState.experience, GameManager.ClipState.Scene8);
             }
-            //±âÁ¸ÀÇ ¿µ»ó Á¤º¸ ÃÊ±âÈ­ 
+            //ê¸°ì¡´ì˜ ì˜ìƒ ì •ë³´ ì´ˆê¸°í™” 
             GameObjectControl.Instance.OnResetBall();
         }
     }
 
 
-    [Header("----µ¥ÀÌÅÍ ÀÔ·Â----")]
-    //°øÅõÀÔ ÀÌº¥Æ® ÇÚµé·¯
+    [Header("----ë°ì´í„° ì…ë ¥----")]
+    //ê³µíˆ¬ì… ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬
     public InsertBallEvent insertBallEvent;
     [System.Serializable]
     public class InsertBallEvent : UnityEvent<int> { }
 
-    //È¸Àü µ¥ÀÌÅÍ Á¤º¸
+    //íšŒì „ ë°ì´í„° ì •ë³´
     public RotatingDeviceEvent rotatingDeviceEvent;
     [System.Serializable]
     public class RotatingDeviceEvent : UnityEvent { }
 
 
-    //º¼ ÀÔ·Â ÄÁÆ®·Ñ(º¼ÀÔ·Â½Ã ¸ÕÁö »ı¼º)
+    //ë³¼ ì…ë ¥ ì»¨íŠ¸ë¡¤(ë³¼ì…ë ¥ì‹œ ë¨¼ì§€ ìƒì„±)
     public void InsertBall() {
         ++ballSetting.insertBallCount;
         InsertSoundPlay();
@@ -340,13 +340,13 @@ public partial class UserTableSettingBase : MonoBehaviour
     }
 
 
-    [Header("----È¸Àü ¸ÕÁö ÄÁÆ®·Ñ Á¤º¸----")]
-    //°øÅõÀÔ ÀÌº¥Æ® ÇÚµé·¯
+    [Header("----íšŒì „ ë¨¼ì§€ ì»¨íŠ¸ë¡¤ ì •ë³´----")]
+    //ê³µíˆ¬ì… ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬
     public InsertBallCreateDust insertBallCreateDust;
     [System.Serializable]
     public class InsertBallCreateDust : UnityEvent<int> { }
 
-    //È¸Àü µ¥ÀÌÅÍ Á¤º¸
+    //íšŒì „ ë°ì´í„° ì •ë³´
     public RotatingDeviceDust rotatingDeviceDust;
     [System.Serializable]
     public class RotatingDeviceDust:UnityEvent<int> { }
@@ -354,12 +354,12 @@ public partial class UserTableSettingBase : MonoBehaviour
 
 
 
-    //¸ÕÁö »ı¼º ÄÁÆ®·Ñ
+    //ë¨¼ì§€ ìƒì„± ì»¨íŠ¸ë¡¤
     public void CreateDustObject() {
-        //Ã¼Çè È­¸é¿¡¼­¸¸ ÀÛµ¿ 
+        //ì²´í—˜ í™”ë©´ì—ì„œë§Œ ì‘ë™ 
         if (stationState.Equals(UserTableSettingBase.StationState.experience))
         {
-            //¸ÕÁö »ı¼º
+            //ë¨¼ì§€ ìƒì„±
             if (ballSetting.insertBallCount > 0)
             {
                 UserTableGotoClip(UserTableSettingBase.StationState.experience, GameManager.ClipState.Scene1);
@@ -384,7 +384,7 @@ public partial class UserTableSettingBase : MonoBehaviour
     }
 
     /// <summary>
-    /// ¸ÕÁö ¿ÀºêÁ§Æ® ¼û±â±â(ÃÊ±âÈ­)
+    /// ë¨¼ì§€ ì˜¤ë¸Œì íŠ¸ ìˆ¨ê¸°ê¸°(ì´ˆê¸°í™”)
     /// </summary>
     public void OnResetDustObject() {
         for (int i = 0; i < makingDustDataList.Count; i++)
@@ -420,7 +420,7 @@ public partial class UserTableSettingBase : MonoBehaviour
 
 
 
-    //º¼ Á¤º¸ ¸®¼Â
+    //ë³¼ ì •ë³´ ë¦¬ì…‹
     public void ResetBall() {
         ballSetting.insertBallCount = 0;
         ballSetting.littleSaveRotatingDeviceCount = 0;
@@ -429,21 +429,21 @@ public partial class UserTableSettingBase : MonoBehaviour
 
     public bool isDisable = false;
 
-    [Header("½ºÄÚ¾î ÀÌº¥Æ®")]
+    [Header("ìŠ¤ì½”ì–´ ì´ë²¤íŠ¸")]
     public ScoreDataEvent scoreDataEvent;
     [System.Serializable]
     public class ScoreDataEvent : UnityEvent<int, UserTableController> { }
 
-    //ºñµğ¿À Àç»ı ÄÁÆ®·Ñ
+    //ë¹„ë””ì˜¤ ì¬ìƒ ì»¨íŠ¸ë¡¤
     [SerializeField]
     [ReadOnly]
     private bool noVideoPlay = true;
 
-    //È¸Àü µ¥ÀÌÅÍ
+    //íšŒì „ ë°ì´í„°
     public void RotatingDevice()
     {
         isDisable = false;
-        Debug.Log("È¸Àüµ¥ÀÌÅÍ] : " + ballSetting.insertBallCount);
+        Debug.Log("íšŒì „ë°ì´í„°] : " + ballSetting.insertBallCount);
         if (!GameObjectControl.Instance.isGamePlay ) {
             VideoViewTween(0); 
         }
@@ -451,7 +451,7 @@ public partial class UserTableSettingBase : MonoBehaviour
         //&& !isDisable
         if ((int)starVideoType == 0 )
         {
-            Debug.Log("»ç¿ëÀÚ ¿¬°á ½ÃÀÛ");
+            Debug.Log("ì‚¬ìš©ì ì—°ê²° ì‹œì‘");
             GameObjectControl.Instance.UserConnection(this);
 
             if (ballSetting.insertBallCount > 0)
@@ -463,7 +463,7 @@ public partial class UserTableSettingBase : MonoBehaviour
             return;
         }
 
-        //´ë±â È­¸éÀÏ°æ¿ì ÀÛµ¿ ÇÏÁö¾ÊÀ½
+        //ëŒ€ê¸° í™”ë©´ì¼ê²½ìš° ì‘ë™ í•˜ì§€ì•ŠìŒ
         if (stationState.Equals(StationState.waiting) || !isMissionPlay  )
         {
             if (ballSetting.insertBallCount > 0) {
@@ -500,7 +500,7 @@ public partial class UserTableSettingBase : MonoBehaviour
             }
         }
 
-        //°ø¹ß»ç¸¦ À§ÇÑ È¸Àü Ä«¿îÅÍ Á¤º¸
+        //ê³µë°œì‚¬ë¥¼ ìœ„í•œ íšŒì „ ì¹´ìš´í„° ì •ë³´
         if (ballSetting.insertBallCount > 0)
         {
             resetValue = 1;
@@ -510,7 +510,7 @@ public partial class UserTableSettingBase : MonoBehaviour
             {
                 if (noVideoPlay)
                 {
-                    Debug.Log("ÀÛÀº º° »ı¼º");
+                    Debug.Log("ì‘ì€ ë³„ ìƒì„±");
 
                     /**ballSetting.rotatingDeviceCount += 0.3333333f;
                     isPlaying = true;
@@ -519,25 +519,25 @@ public partial class UserTableSettingBase : MonoBehaviour
                     {
                         noVideoPlay = false;
                         ballSetting.rotatingDeviceCount = 1;
-                        Debug.Log("ÀÛÀº º° »ı¼º¿Ï·á");
+                        Debug.Log("ì‘ì€ ë³„ ìƒì„±ì™„ë£Œ");
                         OnVideoResetStart();
                     }
                     scoreDataEvent.Invoke(10,this as UserTableController);
                     LittleVideoChangeDetectionValue(ballSetting.rotatingDeviceCount);
                     starVideoType = StarVideoType.LittleStar;
                     RotionSoundPlay();*/
-                    //°ª º¯°æ½Ã Àû¿ë °¡´ÉÇÔ
+                    //ê°’ ë³€ê²½ì‹œ ì ìš© ê°€ëŠ¥í•¨
                     ballSetting.littleSaveRotatingDeviceCount += 1f/ ballSetting.littleRotatingNumberMaxRot;
                     
                     isPlaying = true;
                     VideoViewTween(1);
 
-                    //1°ú °°°Å³ª Å¬°æ¿ì Á¾·áµÇ´Â±¸°£
+                    //1ê³¼ ê°™ê±°ë‚˜ í´ê²½ìš° ì¢…ë£Œë˜ëŠ”êµ¬ê°„
                     if (ballSetting.littleSaveRotatingDeviceCount >= 1f)
                     {
                         noVideoPlay = false;
                         ballSetting.littleSaveRotatingDeviceCount = 1;
-                        Debug.Log("ÀÛÀº º° »ı¼º¿Ï·á");
+                        Debug.Log("ì‘ì€ ë³„ ìƒì„±ì™„ë£Œ");
                         OnVideoResetStart();
                     }
                     scoreDataEvent.Invoke(userScoreText.practiceScore.littleRotScore, this as UserTableController);
@@ -553,7 +553,7 @@ public partial class UserTableSettingBase : MonoBehaviour
             {
                 if (noVideoPlay)
                 {
-                    Debug.Log("Å« º° »ı¼º");
+                    Debug.Log("í° ë³„ ìƒì„±");
                     //ballSetting.littleSaveRotatingDeviceCount += 1f / ballSetting.littleRotatingNumberMaxRot;
                     ballSetting.bigSaveRotatingDeviceCount += 1f/ballSetting. bigRotatingNumberMaxRot;
 
@@ -563,7 +563,7 @@ public partial class UserTableSettingBase : MonoBehaviour
                     {
                         noVideoPlay = false;
                         ballSetting.bigSaveRotatingDeviceCount = 1;
-                        Debug.Log("Å« º° »ı¼º¿Ï·á");
+                        Debug.Log("í° ë³„ ìƒì„±ì™„ë£Œ");
                         OnVideoResetStart();
                     }
                     scoreDataEvent.Invoke(userScoreText.practiceScore.bigRotScore, this as UserTableController);
@@ -574,7 +574,7 @@ public partial class UserTableSettingBase : MonoBehaviour
             }
         }
         else {
-            Debug.Log("ÀÛµ¿µÇÁö ¾ÊÀ½ [°øÀÌ ÅõÀÔµÇÁö ¾Ê¾ÒÀ½]");
+            Debug.Log("ì‘ë™ë˜ì§€ ì•ŠìŒ [ê³µì´ íˆ¬ì…ë˜ì§€ ì•Šì•˜ìŒ]");
         }
     }
 
@@ -597,12 +597,12 @@ public partial class UserTableSettingBase : MonoBehaviour
     public float resetValue = 0;
 
     /// <summary>
-    /// ºñµğ¿À »óÅÂ ¸®¼Â
+    /// ë¹„ë””ì˜¤ ìƒíƒœ ë¦¬ì…‹
     /// </summary>
     /// <returns></returns>
     IEnumerator OnVideoReset() {
-        //¿µ»ó Á¾·á È­¸é Àü¼Û ÀÌº¥Æ® ÇÚµé·¯ À§Ä¡ 
-        //Á¤´ä ¿©ºÎ È®ÀÎ
+        //ì˜ìƒ ì¢…ë£Œ í™”ë©´ ì „ì†¡ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ ìœ„ì¹˜ 
+        //ì •ë‹µ ì—¬ë¶€ í™•ì¸
         AnswerResult(ballSetting.insertBallCount);
         videoCompleteEvent.Invoke((UserTableController)this);
         
@@ -611,7 +611,7 @@ public partial class UserTableSettingBase : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         GameObjectControl.Instance.rsControl.multiRS.SendConsole((int)starIndex - 1, "0");
         
-        //¸ÕÁö¿ÀºêÁ§Æ® ¼û±â±â
+        //ë¨¼ì§€ì˜¤ë¸Œì íŠ¸ ìˆ¨ê¸°ê¸°
         OnResetDustObject();
         ballSetting.insertBallCount = 0;
         //ballSetting.m2_insertBallText.OnTextHide(false);
@@ -647,13 +647,13 @@ public partial class UserTableSettingBase : MonoBehaviour
             onBallOut = null;
         }
     }
-    //º¼ ³»º¸³»±â ¾Æ¿ô ÀÌº¥Æ® ¸®½º³Ê
+    //ë³¼ ë‚´ë³´ë‚´ê¸° ì•„ì›ƒ ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆ
     private void OnBallOutStart() {
         onBallOut = StartCoroutine(OnBallOut());
         VideoReset();
     }
 
-    //º¼ ³»º¸³»±â
+    //ë³¼ ë‚´ë³´ë‚´ê¸°
     IEnumerator OnBallOut() {
        
         rotatingDeviceEvent.Invoke();
@@ -661,7 +661,7 @@ public partial class UserTableSettingBase : MonoBehaviour
         SendLoopData("1"); 
         yield return new WaitForSeconds(0.01f);
         ballSetting.insertBallCount = 0;
-        Debug.Log("[º¼ Ãâ·Â ÇÏ´Â±¸°£]");
+        Debug.Log("[ë³¼ ì¶œë ¥ í•˜ëŠ”êµ¬ê°„]");
         //rotatingDeviceEvent.Invoke();
         insertBallEvent.Invoke(ballSetting.insertBallCount);
         yield return new WaitForSeconds(1.5f);
@@ -671,9 +671,9 @@ public partial class UserTableSettingBase : MonoBehaviour
     }
 
 
-    //Á¤´ä°á°ú
+    //ì •ë‹µê²°ê³¼
     public void AnswerResult(int insertBallCount) {
-        //¹Ì¼Ç Á¤´ä °øÀ¯
+        //ë¯¸ì…˜ ì •ë‹µ ê³µìœ 
         UserTotalControl.MissionData missionData = GameObjectControl.Instance.GetMissionData(stationState);
         int index = GameObjectControl.Instance.GetUserData(GameObjectControl.Instance.stationState);
         if (index > -1)
@@ -716,11 +716,11 @@ public partial class UserTableSettingBase : MonoBehaviour
     }
 
 
-    //ºñµğ¿À ¸®¼Â
+    //ë¹„ë””ì˜¤ ë¦¬ì…‹
     public virtual void VideoReset() { }
 
     /// <summary>
-    /// »ç¿ëÀÚ Å×ÀÌºí ºñµğ¿À È­¸é ³ëÃâ ¿©ºÎ Tween
+    /// ì‚¬ìš©ì í…Œì´ë¸” ë¹„ë””ì˜¤ í™”ë©´ ë…¸ì¶œ ì—¬ë¶€ Tween
     /// </summary>
     /// <param name="value"></param>
     private void VideoViewTween(float value) {
@@ -761,24 +761,24 @@ public partial class UserTableSettingBase : MonoBehaviour
 
     public virtual void LittleVideoChangeDetectionValue(float value) { }
 
-    //¸®¼Â (È­¸é ÃÊ±âÈ­)
+    //ë¦¬ì…‹ (í™”ë©´ ì´ˆê¸°í™”)
     public void OnReset() {
-        Debug.Log("»ç¿ëÀÚ ÃÊ±âÈ­ ¼³Á¤ ±¸°£");
+        Debug.Log("ì‚¬ìš©ì ì´ˆê¸°í™” ì„¤ì • êµ¬ê°„");
         VideoReset();
         isDisable = false;
         noVideoPlay = true;
-        //´ë±â·Î ÀÌµ¿
+        //ëŒ€ê¸°ë¡œ ì´ë™
         stationState = StationState.waiting;
         starVideoType = StarVideoType.ConnectionUser;
         VideoViewTween(0); 
         UserTableGotoClip(UserTableSettingBase.StationState.waiting, GameManager.ClipState.Scene0);
 
-        //¸ÕÁö¿ÀºêÁ§Æ® ¼û±â±â
+        //ë¨¼ì§€ì˜¤ë¸Œì íŠ¸ ìˆ¨ê¸°ê¸°
         OnResetDustObject();
         userTableAddElementParentObject.OnReset();
 
 
-       // Debug.Log("¸ğµç °ø ¹èÃâ ·ÎÁ÷ Ãß°¡");
+       // Debug.Log("ëª¨ë“  ê³µ ë°°ì¶œ ë¡œì§ ì¶”ê°€");
         /**ballSetting.rotatingDeviceCount = 0;
         ballSetting.insertBallCount = 0;
         isRotating = false;
@@ -787,12 +787,12 @@ public partial class UserTableSettingBase : MonoBehaviour
 
     }
 
-    //ºñµğ¿À È­¸é ºñÈ°¼ºÈ­
+    //ë¹„ë””ì˜¤ í™”ë©´ ë¹„í™œì„±í™”
     public void VideoViewDisable() {
         VideoViewTween(0);
     }
 
-    //º¼ ¸®¼Â
+    //ë³¼ ë¦¬ì…‹
     public void OnResetBall() {
        
         ballSetting.insertBallCount = 0;
@@ -806,7 +806,7 @@ public partial class UserTableSettingBase : MonoBehaviour
         BigVideoChangeDetectionValue(0);
     }
 
-    //°ÔÀÓÁ¾·á½ÃÀÛµ¿
+    //ê²Œì„ì¢…ë£Œì‹œì‘ë™
     public void TotalGameEnd()
     {
         isDisable = false;
@@ -824,13 +824,13 @@ public partial class UserTableSettingBase : MonoBehaviour
                 UserTableGotoClip(UserTableSettingBase.StationState.mission2, GameManager.ClipState.Scene2);
                 break;
             default:
-                Debug.Log("Á¤´äÀÌ ¼³Á¤µÇ¾îÀÖÁö ¾ÊÀ½");
+                Debug.Log("ì •ë‹µì´ ì„¤ì •ë˜ì–´ìˆì§€ ì•ŠìŒ");
                 break;
         }
-        Debug.Log("Á¤´ä ÀÛµ¿");
+        Debug.Log("ì •ë‹µ ì‘ë™");
     }
 
-    //Æ²¸²
+    //í‹€ë¦¼
     public void MustScene(UserTableSettingBase.StationState stationState) {
         switch (stationState)
         {
@@ -842,10 +842,10 @@ public partial class UserTableSettingBase : MonoBehaviour
                 UserTableGotoClip(UserTableSettingBase.StationState.mission2, GameManager.ClipState.Scene4);
                 break;
             default:
-                Debug.Log("Æ²¸²ÀÌ ¼³Á¤µÇ¾îÀÖÁö ¾ÊÀ½");
+                Debug.Log("í‹€ë¦¼ì´ ì„¤ì •ë˜ì–´ìˆì§€ ì•ŠìŒ");
                 break;
         }
-        Debug.Log("Æ²¸²");
+        Debug.Log("í‹€ë¦¼");
     }
 
     public void EndMustScene(UserTableSettingBase.StationState stationState)
@@ -860,13 +860,13 @@ public partial class UserTableSettingBase : MonoBehaviour
                 UserTableGotoClip(UserTableSettingBase.StationState.mission2, GameManager.ClipState.Scene3);
                 break;
             default:
-                Debug.Log("Æ²¸²ÀÌ ¼³Á¤µÇ¾îÀÖÁö ¾ÊÀ½");
+                Debug.Log("í‹€ë¦¼ì´ ì„¤ì •ë˜ì–´ìˆì§€ ì•ŠìŒ");
                 break;
         }
-        Debug.Log("Æ²¸²");
+        Debug.Log("í‹€ë¦¼");
     }
 
-    //¿ÀºêÁ§Æ® »ı¼º(¿ø¼Ò ÁÖ±âÀ²Ç¥ Á¤º¸ ³¯¶ó°¡±â)
+    //ì˜¤ë¸Œì íŠ¸ ìƒì„±(ì›ì†Œ ì£¼ê¸°ìœ¨í‘œ ì •ë³´ ë‚ ë¼ê°€ê¸°)
     public void CreateElementObject(UserTableAddElementParentObject.PlayState playState, 
         UserTableSettingBase.StationState mission) {
 
@@ -875,20 +875,20 @@ public partial class UserTableSettingBase : MonoBehaviour
         /*
         switch (playState) {
             case UserTableAddElementParentObject.PlayState.TimeOut:
-                //Å¸ÀÓ ¾Æ¿ô
+                //íƒ€ì„ ì•„ì›ƒ
                 userTableAddElementParentObject._stationState = UserTableSettingBase.StationState.mission1;
                 userTableAddElementParentObject.playState = UserTableAddElementParentObject.PlayState.TimeOut;
                 break;
 
             case UserTableAddElementParentObject.PlayState.RightAnswer:
-                //Á¤´ä ¼öÇà
+                //ì •ë‹µ ìˆ˜í–‰
                 userTableAddElementParentObject._stationState = UserTableSettingBase.StationState.mission2;
                 userTableAddElementParentObject.playState = UserTableAddElementParentObject.PlayState.RightAnswer;
                 break;
         }*/
     }
 
-    //½ºÄÚ¾î ÅØ½ºÆ® 
+    //ìŠ¤ì½”ì–´ í…ìŠ¤íŠ¸ 
     public void UserScoreTextMove(float move)
     {
         Vector3 localPos = userScoreText.transform.localPosition;
@@ -897,17 +897,17 @@ public partial class UserTableSettingBase : MonoBehaviour
             new Vector3(move, localPos.y, localPos.z), 0.5f);*/
     }
 
-    //¿ÜºÎ json ÆÄÀÏ ·Îµå ¿Ï·á ÀÌº¥Æ® ÇÚµé·¯ 
+    //ì™¸ë¶€ json íŒŒì¼ ë¡œë“œ ì™„ë£Œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ 
     public void JsonLoadCompleteEvent(JsonLoadData jsonLoadData)
     {
 
         //**********************************************************************************************
-        //¿¬½À Á¢¼ö ºÎ¿©
-        //ÀÛÀºº° Á¡¼ö
+        //ì—°ìŠµ ì ‘ìˆ˜ ë¶€ì—¬
+        //ì‘ì€ë³„ ì ìˆ˜
         /**jsonLoadData.practiceScoreSetting.littleRotScore = practiceScore.littleRotScore;
         jsonLoadData.practiceScoreSetting.littleRotResultScore = practiceScore.littleRotResultScore;
 
-        //Å«º° Á¡¼ö 
+        //í°ë³„ ì ìˆ˜ 
         jsonLoadData.practiceScoreSetting.bigRotScore = practiceScore.bigRotScore;
         jsonLoadData.practiceScoreSetting.bigRotResultScore = practiceScore.bigRotResultScore;*/
         UserScoreText.PracticeScoreSetting _practiceScore = userScoreText.practiceScore;
@@ -918,11 +918,11 @@ public partial class UserTableSettingBase : MonoBehaviour
         _practiceScore.bigRotScore = jsonLoadData.practiceScoreSetting.bigRotScore;
         _practiceScore.bigRotResultScore = jsonLoadData.practiceScoreSetting.bigRotResultScore;
         ballSetting.bigRotatingNumberMaxRot= jsonLoadData.practiceScoreSetting.bigRotatingNumberMaxRot;
-        //ÀÛÀºº°
+        //ì‘ì€ë³„
         /*practiceScore.littleRotScore = jsonLoadData.practiceScoreSetting.littleRotScore;
         practiceScore.littleRotResultScore = jsonLoadData.practiceScoreSetting.littleRotResultScore;
 
-        //Å«º°
+        //í°ë³„
         practiceScore.bigRotScore = jsonLoadData.practiceScoreSetting.bigRotScore;
         practiceScore.bigRotResultScore = jsonLoadData.practiceScoreSetting.bigRotResultScore;*/
 

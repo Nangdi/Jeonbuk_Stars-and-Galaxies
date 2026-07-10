@@ -1,13 +1,13 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UserMakingDust : MonoBehaviour
 {
-    //°ÔÀÓ¿ÀºêÁ§Æ® ÄÁÆ®·Ñ
+    //ê²Œì„ì˜¤ë¸Œì íŠ¸ ì»¨íŠ¸ë¡¤
     public GameObjectControl gameObjectControl;
 
-    //¼ö¼Ò¸ÕÁö ¸¸µé±â ½ÃÀÛ½Ã µ¿½Ã Ã³¸®
+    //ìˆ˜ì†Œë¨¼ì§€ ë§Œë“¤ê¸° ì‹œì‘ì‹œ ë™ì‹œ ì²˜ë¦¬
     public void OnEnable()
     {
         //gameObjectControl

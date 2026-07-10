@@ -1,4 +1,4 @@
-using OpenCVForUnity.CoreModule;
+Ôªøusing OpenCVForUnity.CoreModule;
 using OpenCVForUnity.UnityUtils;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using OpenCVRect = OpenCVForUnity.CoreModule.Rect;
 
 public class ProjectorVideoTexture : MonoBehaviour
 {
-    //∑ª¥ı ≈ÿΩ∫√ƒ
+    //Î†åÎçî ÌÖçÏä§Ï≥ê
     public RenderTexture renderTexture;
     public Texture2D renderTexture2D = null;
     private Coroutine onLoop = null;

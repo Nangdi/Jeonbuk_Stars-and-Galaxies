@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,13 +15,13 @@ public class TextDataContent : MonoBehaviour
 
         public UserTableSettingBase.StationState stationState;
 
-        //¹®Á¦ ÅØ½ºÆ® 
+        //ë¬¸ì œ í…ìŠ¤íŠ¸ 
         public TextMeshPro problemTextObject;
 
-        //³»¿ë ÅØ½ºÆ®
+        //ë‚´ìš© í…ìŠ¤íŠ¸
         public TextMeshPro contentTextObject;
         
-        //¹®±¸ ÅØ½ºÆ® 
+        //ë¬¸êµ¬ í…ìŠ¤íŠ¸ 
         public TextMeshPro phraseTextObject;
 
         [TextArea]
@@ -35,7 +35,7 @@ public class TextDataContent : MonoBehaviour
     private Coroutine onTimeTextViewStart;
     private int index = 0;
 
-    //È°¼ºÈ­½Ã ¸Ş¼¼Áö Á¤º¸ ÃÊ±âÈ­
+    //í™œì„±í™”ì‹œ ë©”ì„¸ì§€ ì •ë³´ ì´ˆê¸°í™”
     public virtual void OnEnable()
     {
         TextData errorTextData = OnInitSetTextView();
@@ -44,10 +44,10 @@ public class TextDataContent : MonoBehaviour
 
 
 
-    //ÅØ½ºÆ® ºä
+    //í…ìŠ¤íŠ¸ ë·°
     private TextData OnInitSetTextView()
     {
-        //ÇöÀç »óÈ²¿¡ µû¸¥ ¸Ş¼¼Áö Á¤º¸
+        //í˜„ì¬ ìƒí™©ì— ë”°ë¥¸ ë©”ì„¸ì§€ ì •ë³´
         TextData errorTextData = GetErrorTextData();
         SetText(errorTextData, errorTextData.textData1);
         return errorTextData;
@@ -56,7 +56,7 @@ public class TextDataContent : MonoBehaviour
 
 
 
-    //ÅØ½ºÆ®
+    //í…ìŠ¤íŠ¸
     private void SetText(TextData errorTextData, string textData)
     {
         errorTextData.contentTextObject.text = textData;
@@ -64,7 +64,7 @@ public class TextDataContent : MonoBehaviour
 
 
 
-    //»óÈ²¿¡ µû¸¥¿¡·¯ ÅØ½ºÆ® µ¥ÀÌÅÍ ¸®ÅÏ
+    //ìƒí™©ì— ë”°ë¥¸ì—ëŸ¬ í…ìŠ¤íŠ¸ ë°ì´í„° ë¦¬í„´
     private TextData GetErrorTextData()
     {
         TextData errorTextData = null;
@@ -84,7 +84,7 @@ public class TextDataContent : MonoBehaviour
     }
 
    
-    //Å¸ÀÓ ÅØ½ºÆ® ºä
+    //íƒ€ì„ í…ìŠ¤íŠ¸ ë·°
     public IEnumerator OnTimeTextView(TextData errorTextData)
     {
         yield return null;

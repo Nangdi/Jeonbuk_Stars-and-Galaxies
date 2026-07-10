@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -16,7 +16,7 @@ public class RectAreaDataViewEditor : Editor
         base.OnInspectorGUI();
 
         RectAreaDataView rectAreaDataView = target as RectAreaDataView;
-        if (GUILayout.Button("À§Ä¡¿¡µû¸¥ ¿ÀºêÁ§Æ® °ËÃâ"))
+        if (GUILayout.Button("ìœ„ì¹˜ì—ë”°ë¥¸ ì˜¤ë¸Œì íŠ¸ ê²€ì¶œ"))
         {
             rectAreaDataView.SetEditorObject();
         }
@@ -37,7 +37,7 @@ public class RectAreaDataView : MonoBehaviour
     }
 
 
-    //Ã¼Å©¿ë
+    //ì²´í¬ìš©
     public void SetEditorObject() {
 
         ArrangementObject[] arrangementObjectList= parentObject.GetComponentsInChildren<ArrangementObject>();

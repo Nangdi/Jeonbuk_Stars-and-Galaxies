@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -7,36 +7,36 @@ using static UserTableSettingControl;
 public class UserTableSettingControl : UserTableSettingBase
 {
 
-    //»ç¿ëÀÚ Å×ÀÌºí ¼ÂÆÃ
-    [Header("»ç¿ëÀÚ Å×ÀÌºí ¼ÂÆÃ")]
+    //ì‚¬ìš©ì í…Œì´ë¸” ì…‹íŒ…
+    [Header("ì‚¬ìš©ì í…Œì´ë¸” ì…‹íŒ…")]
     public UserTableSetting userTableSetting;
 
     [System.Serializable]
     public class UserTableSetting
     {
-        //»ç¿ëÀÚ È­»ìÇ¥ ÄÁÆ®·Ñ ·»´õ·¯
+        //ì‚¬ìš©ì í™”ì‚´í‘œ ì»¨íŠ¸ë¡¤ ë Œë”ëŸ¬
         public Renderer userArrowRenderer;
 
         public List<Texture2D> textureList;
         public MaterialPropertyBlock userMaterialPropertyBlock;
 
-        [Header("»ç¿ëÀÚ È­»ìÇ¥ ¿¡´Ï¸ŞÀÌ¼Ç ¼³Á¤")] 
+        [Header("ì‚¬ìš©ì í™”ì‚´í‘œ ì—ë‹ˆë©”ì´ì…˜ ì„¤ì •")] 
         public Animator userArrowAnimator;
-        [Header("»ç¿ëÀÚ »óÅÂ Á¤º¸")]
+        [Header("ì‚¬ìš©ì ìƒíƒœ ì •ë³´")]
         public UserState userState;
         public Coroutine userStateCoroutine = null;
 
     }
 
-    //»ç¿ëÀÚ »óÅÂ 
+    //ì‚¬ìš©ì ìƒíƒœ 
     public enum UserState { 
-        watiting    /*´ë±â*/, 
-        Connection  /*¿¬µ¿*/,
-        Playing     /*½ÃÀÛ*/
+        watiting    /*ëŒ€ê¸°*/, 
+        Connection  /*ì—°ë™*/,
+        Playing     /*ì‹œì‘*/
     }
 
 
-    //½ÃÀÛ ÄÁÆ®·Ñ
+    //ì‹œì‘ ì»¨íŠ¸ë¡¤
     public override void OnInit()
     {
         base.OnInit();
@@ -44,12 +44,12 @@ public class UserTableSettingControl : UserTableSettingBase
         SetUserArrow();
     }
 
-    //Å×ÀÌºí ¼ÂÆÃ ¼³Á¤
+    //í…Œì´ë¸” ì…‹íŒ… ì„¤ì •
     public void OnInitUserTableSetting() {
         userTableSetting.userMaterialPropertyBlock = new MaterialPropertyBlock();
     }
 
-    //»ç¿ëÀÚ È­¸é È­»ìÇ¥ ¼ÂÆÃ ±¸°£
+    //ì‚¬ìš©ì í™”ë©´ í™”ì‚´í‘œ ì…‹íŒ… êµ¬ê°„
     public void SetUserArrow() {
 
         Texture2D _texture=userTableSetting.textureList[(int)starIndex-1];
@@ -72,11 +72,11 @@ public class UserTableSettingControl : UserTableSettingBase
         }
     }
 
-    //È­»ìÇ¥ ¿¡´Ï¸ŞÀÌ¼Ç ÀÛµ¿ ½ÃÀÛ
+    //í™”ì‚´í‘œ ì—ë‹ˆë©”ì´ì…˜ ì‘ë™ ì‹œì‘
     private void AnimatorStart() {
         userTableSetting.userArrowAnimator.SetBool("IsPlay",true);
     }
-    //È­»ìÇ¥ ¿¡´Ï¸ŞÀÌ¼Ç ÀÛµ¿ ¸ØÃã
+    //í™”ì‚´í‘œ ì—ë‹ˆë©”ì´ì…˜ ì‘ë™ ë©ˆì¶¤
     private void AnimatorStop() {
         userTableSetting.userArrowAnimator.SetBool("IsPlay", false);
     }

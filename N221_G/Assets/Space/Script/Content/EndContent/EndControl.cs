@@ -1,11 +1,11 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EndControl : MonoBehaviour
 {
-    //Å¸°Ù Äµ¹ö½º
+    //íƒ€ê²Ÿ ìº”ë²„ìŠ¤
     public Canvas targetCanvas;
 
     public void OnEnable()

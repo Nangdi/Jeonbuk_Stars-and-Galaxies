@@ -1,58 +1,58 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-//½ºÄÚ¾î ÄÁÆ®·Ñ
+//ìŠ¤ì½”ì–´ ì»¨íŠ¸ë¡¤
 public class ScoreControl : MonoBehaviour
 {
-    //»ç¿ëÀÚ Å×ÀÌºí ÄÁÆ®·Ñ·¯
+    //ì‚¬ìš©ì í…Œì´ë¸” ì»¨íŠ¸ë¡¤ëŸ¬
     public UserTableController userTableController;
     
-    [Header("ÇöÀçÀÇ ·©Å· Á¤º¸")]
+    [Header("í˜„ì¬ì˜ ë­í‚¹ ì •ë³´")]
     public int currentRank;
 
-    [Header("ÇöÀç±îÁöÀÇ ½ºÄÚ¾î Á¤º¸")]
+    [Header("í˜„ì¬ê¹Œì§€ì˜ ìŠ¤ì½”ì–´ ì •ë³´")]
     public int currentScore;
     
-    //°á°ú ÅØ½ºÆ® Ç¥Çö
+    //ê²°ê³¼ í…ìŠ¤íŠ¸ í‘œí˜„
     public string resultText;
     
-    //ÅØ½ºÆ® ¸Ş½¬
+    //í…ìŠ¤íŠ¸ ë©”ì‰¬
     public TMP_Text _text;
 
-    //°á°ú ÅØ½ºÆ®
+    //ê²°ê³¼ í…ìŠ¤íŠ¸
     public TMP_Text _resultText;
-    //{Data}µî | <size=50%>123Á¡</size>
+    //{Data}ë“± | <size=50%>123ì </size>
     [ReadOnly]
-    private string defaultText = "{Data1}µî | <size=50%>{Data2}Á¡</size>";
+    private string defaultText = "{Data1}ë“± | <size=50%>{Data2}ì </size>";
     [ReadOnly]
-    private string defaultText_NoUser = "{Data1}Á¡";
+    private string defaultText_NoUser = "{Data1}ì ";
 
-    //ÀÓÆåÆ® ¿ÀºêÁ§Æ® ÄÁÆ®·Ñ
+    //ì„í™íŠ¸ ì˜¤ë¸Œì íŠ¸ ì»¨íŠ¸ë¡¤
     public GameObject viewEffObject;
 
-    //ui ±×·ì Á¤º¸
+    //ui ê·¸ë£¹ ì •ë³´
     public UIGroup uiGroup;
 
-    //½ºÄÚ¾î µ¥ÀÌÅÍ
+    //ìŠ¤ì½”ì–´ ë°ì´í„°
     public ScoreData scoreData;
 
     [System.Serializable]
     public class ScoreData {
-        //1µî
+        //1ë“±
         public GameObject firstPlace;
-        //2µî
+        //2ë“±
         public GameObject secondPlace;
-        //3µî
+        //3ë“±
         public GameObject thirdPlace;
     }
 
     private Coroutine onViewRank = null;
 
-    //È°¼ºÈ­
+    //í™œì„±í™”
     private void OnEnable()
     {
         if (currentRank > -1)
@@ -64,7 +64,7 @@ public class ScoreControl : MonoBehaviour
        
     }
 
-    //ÄÚ·çÆ¾ ÃÊ±âÈ­
+    //ì½”ë£¨í‹´ ì´ˆê¸°í™”
     private void OnRemoveViewRank() {
         if (onViewRank != null) {
             StopCoroutine(onViewRank);
@@ -87,12 +87,12 @@ public class ScoreControl : MonoBehaviour
         //OnResetData();
     }
 
-    //·©Å· Á¤º¸ µî·Ï
+    //ë­í‚¹ ì •ë³´ ë“±ë¡
     public void SetRank(int rank) {
         currentRank = rank;
     }
 
-    //ÇöÀçÀÇ ½ºÄÚ¾î Á¤º¸ µî·Ï
+    //í˜„ì¬ì˜ ìŠ¤ì½”ì–´ ì •ë³´ ë“±ë¡
     public void SetScore(int score) {
         currentScore = score;
     }
@@ -117,7 +117,7 @@ public class ScoreControl : MonoBehaviour
         return text;
     }
 
-    //ÅØ½ºÆ® º¯°æ 
+    //í…ìŠ¤íŠ¸ ë³€ê²½ 
     public void SetText(string setText) {
         _text.text = TextChange_Rank(currentRank, currentScore);
         _resultText.text = setText;
@@ -125,7 +125,7 @@ public class ScoreControl : MonoBehaviour
         
     }
 
-    //´Ù¸¥ »ç¿ëÀÚ°¡ Á¸Àç ÇÏÁö¾Ê´Â ´Üµ¶ÀÏ°æ¿ì
+    //ë‹¤ë¥¸ ì‚¬ìš©ìê°€ ì¡´ì¬ í•˜ì§€ì•ŠëŠ” ë‹¨ë…ì¼ê²½ìš°
     public void SetText_NoUser(string setText)
     {
         _text.text = TextChange_NoUser(currentScore);
@@ -135,10 +135,10 @@ public class ScoreControl : MonoBehaviour
     }
 
 
-    //½ºÄÚ¾î UI
+    //ìŠ¤ì½”ì–´ UI
     private void ScoreUI() {
         OnResetData();
-        //½ºÄÚ¾î °ªÀÌ 0ÀÏ°æ¿ì ÀÛµ¿µÇÁö ¾ÊÀ½
+        //ìŠ¤ì½”ì–´ ê°’ì´ 0ì¼ê²½ìš° ì‘ë™ë˜ì§€ ì•ŠìŒ
         if (currentScore == 0) {
             return;
         }

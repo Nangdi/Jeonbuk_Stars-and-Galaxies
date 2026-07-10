@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+ï»¿using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,17 +11,17 @@ using static com.humanc.rsconn.ConsoleProcessStart;
 namespace com.humanc.rsconn
 {
 
-    //RS232 ¿¬µ¿ ¸ğµâ
+    //RS232 ì—°ë™ ëª¨ë“ˆ
     public class RsConnection : MonoBehaviour
     {
         private Coroutine onInitCoroutine = null;
 
         /// <summary>
-        /// ÄÜ¼Ö ¿¬µ¿ 
+        /// ì½˜ì†” ì—°ë™ 
         /// </summary>
         private ConsoleProcessStart consoleProcessStart;
 
-        //ÃÊ±âÈ­ ¸®¼Â µ¥ÀÌÅÍ Á¤º¸
+        //ì´ˆê¸°í™” ë¦¬ì…‹ ë°ì´í„° ì •ë³´
         public string resetData = "";
         public float resetTime = 0;
         public RSDataEvent rsEvent = new RSDataEvent();
@@ -37,7 +37,7 @@ namespace com.humanc.rsconn
         }
 
         /// <summary>
-        /// ÄÚ·çÆ¾ ÃÊ±âÈ­ ±¸°£ 
+        /// ì½”ë£¨í‹´ ì´ˆê¸°í™” êµ¬ê°„ 
         /// </summary>
         /// <param name="coroutine"></param>
         private void RemoveCoroutine(Coroutine coroutine) {
@@ -47,7 +47,7 @@ namespace com.humanc.rsconn
             }
         }
 
-        //¿¬µ¿ ÃÊ±â ¼³Á¤±¸°£
+        //ì—°ë™ ì´ˆê¸° ì„¤ì •êµ¬ê°„
         IEnumerator OnInit() {
             yield return null;
 
@@ -83,7 +83,7 @@ namespace com.humanc.rsconn
 
 
         /// <summary>
-        /// ½ÃÀÛ½Ã RS232 ÃÊ±âÈ­ µ¥ÀÌÅÍ Àü¼Û
+        /// ì‹œì‘ì‹œ RS232 ì´ˆê¸°í™” ë°ì´í„° ì „ì†¡
         /// </summary>
         public void OnResetData() {
             ResetOnResetDataCoroutine();
@@ -93,7 +93,7 @@ namespace com.humanc.rsconn
         Coroutine onResetDataCoroutine = null;
 
         /// <summary>
-        /// ¸®¼Â ÄÚ·çÆ¾
+        /// ë¦¬ì…‹ ì½”ë£¨í‹´
         /// </summary>
         /// <returns></returns>
         IEnumerator OnResetDataCoroutine(float resetTime) {
@@ -106,7 +106,7 @@ namespace com.humanc.rsconn
         }
 
         /// <summary>
-        /// ¸®¼Â µ¥ÀÌÅÍ ÄÚ·çÆ¾ ÀÛµ¿±¸°£
+        /// ë¦¬ì…‹ ë°ì´í„° ì½”ë£¨í‹´ ì‘ë™êµ¬ê°„
         /// </summary>
         private void ResetOnResetDataCoroutine() {
             if (onResetDataCoroutine != null) { 
@@ -116,7 +116,7 @@ namespace com.humanc.rsconn
         }
 
         /// <summary>
-        /// ÀÌº¥Æ® ¿¬µ¿ ±¸°£
+        /// ì´ë²¤íŠ¸ ì—°ë™ êµ¬ê°„
         /// </summary>
         private void SetEvent()
         {
@@ -125,7 +125,7 @@ namespace com.humanc.rsconn
 
         private string rsData = null;
         /// <summary>
-        /// ¸®ÅÏ µ¥ÀÌÅÍ Á¤º¸ 
+        /// ë¦¬í„´ ë°ì´í„° ì •ë³´ 
         /// </summary>
         private void ReturnData(string data)
         {
@@ -133,7 +133,7 @@ namespace com.humanc.rsconn
         }
 
         /// <summary>
-        /// ¸®ÅÏÅ×½ºÆ®   
+        /// ë¦¬í„´í…ŒìŠ¤íŠ¸   
         /// </summary>
         /// <param name="data"></param>
         public void ReturnData2(string data)
@@ -141,7 +141,7 @@ namespace com.humanc.rsconn
             Debug.Log(data);
         }
 
-        //µ¥ÀÌÅÍ Àü¼Û
+        //ë°ì´í„° ì „ì†¡
         public void SendData(string message) {
             if (this.enabled){
                 try

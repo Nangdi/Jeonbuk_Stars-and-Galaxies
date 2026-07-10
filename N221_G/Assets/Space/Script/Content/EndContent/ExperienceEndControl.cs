@@ -1,13 +1,13 @@
-using RenderHeads.Media.AVProVideo;
+ï»¿using RenderHeads.Media.AVProVideo;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UserTableSettingBase;
 
-//¹Ì¼Ç ºñµğ¿À Àç»ı ¿©ºÎ ÆÇ´Ü
+//ë¯¸ì…˜ ë¹„ë””ì˜¤ ì¬ìƒ ì—¬ë¶€ íŒë‹¨
 public class ExperienceEndControl : MonoBehaviour
 {
-    //È°¼ºÈ­ ÀÛµ¿
+    //í™œì„±í™” ì‘ë™
 
     private Coroutine onInit = null;
     public MediaPlayer endVideoPlayer;
@@ -47,32 +47,32 @@ public class ExperienceEndControl : MonoBehaviour
             onInit = null;
         }
     }
-    //½ÃÀÛ Ä¿¸Çµå ¼³Á¤
+    //ì‹œì‘ ì»¤ë§¨ë“œ ì„¤ì •
     IEnumerator OnInit()
     {
         Debug.Log("OnInit] : ");
         endVideoPlayer.Control.SeekFast(0);
         yield return null;
-        //Á¡¼ö Á¤º¸ ÅäÅ» 
+        //ì ìˆ˜ ì •ë³´ í† íƒˆ 
         GameObjectControl.Instance.ScoreRankingControl();
-        //Á¸ÀçÇÏ´Â ¿¤¸®¸ÕÆ® »èÁ¦
+        //ì¡´ì¬í•˜ëŠ” ì—˜ë¦¬ë¨¼íŠ¸ ì‚­ì œ
         GameObjectControl.Instance.RemoveElementObject();
-        //½ÃÀÛ ÄÁÆ®·Ñ(ÇÏµå¿ş¾îÀåºñÀÛµ¿X)
+        //ì‹œì‘ ì»¨íŠ¸ë¡¤(í•˜ë“œì›¨ì–´ì¥ë¹„ì‘ë™X)
         GameObjectControl.Instance.IsMissionPlayAllUserList(false);
-        //·©Å·µ¥ÀÌÅÍ Á¤º¸ È­¸é¿¡ Ç¥½Ã
+        //ë­í‚¹ë°ì´í„° ì •ë³´ í™”ë©´ì— í‘œì‹œ
         GameObjectControl.Instance.SettingRankDatas();
-        //»ı¼ºµÈ ¿¤¸®¸ÕÆ® Á¤º¸ »èÁ¦ (ÃÊ±âÈ­ ÇÏ´Â±¸°£)
+        //ìƒì„±ëœ ì—˜ë¦¬ë¨¼íŠ¸ ì •ë³´ ì‚­ì œ (ì´ˆê¸°í™” í•˜ëŠ”êµ¬ê°„)
         GameObjectControl.Instance.RemoveElementObject();
         MainTableManager.instance.RemoveStar();
-        //10ÃÊ µÚ¿¡ ÁøÇà
+        //10ì´ˆ ë’¤ì— ì§„í–‰
         yield return new WaitUntil(()=> endVideoPlayerGUI.gameObject.activeSelf);
-        Debug.Log("½ÇÇàÀÛµ¿ ±¸°£ ");
-        //¿µ»ó Àç»ı ½ÃÀÛ
+        Debug.Log("ì‹¤í–‰ì‘ë™ êµ¬ê°„ ");
+        //ì˜ìƒ ì¬ìƒ ì‹œì‘
         endVideoPlayer.Control.SeekFast(0);
         endVideoPlayer.Control.Play();
        
         RemoveElementObject();
-        //Á¸ÀçÇÏ´Â ¿¤¸®¸ÕÆ® »èÁ¦
+        //ì¡´ì¬í•˜ëŠ” ì—˜ë¦¬ë¨¼íŠ¸ ì‚­ì œ
         GameObjectControl.Instance.RemoveElementObject();
         MainTableManager.instance.RemoveStar();
     }
@@ -91,7 +91,7 @@ public class ExperienceEndControl : MonoBehaviour
 
                 break;
             case MediaPlayerEvent.EventType.FinishedPlaying:
-                Debug.Log("¿µ»ó ¿Ï·á ÀÌº¥Æ®");
+                Debug.Log("ì˜ìƒ ì™„ë£Œ ì´ë²¤íŠ¸");
                 //UserTableSettingBase.StationState _stationState, 
                 //GameManager.ClipState _clipState
                 if (this.gameObject.activeSelf)
@@ -104,11 +104,11 @@ public class ExperienceEndControl : MonoBehaviour
         }
     }
 
-    //¹Ì¼Ç Á¾·á ¾À ÀÌµ¿
+    //ë¯¸ì…˜ ì¢…ë£Œ ì”¬ ì´ë™
     IEnumerator OnEndNextScene() {
         yield return null;
-        Debug.Log("°ø¹èÃâ [ÇÏµå¿ş¾î ÃÊ±âÈ­]");
-        //¹Ì¼Ç 1½ÃÀÛ ÁöÁ¡
+        Debug.Log("ê³µë°°ì¶œ [í•˜ë“œì›¨ì–´ ì´ˆê¸°í™”]");
+        //ë¯¸ì…˜ 1ì‹œì‘ ì§€ì 
         gameObjectControl.GotoSceneClip(UserTableSettingBase.StationState.experience, GameManager.ClipState.Scene2);
         gameObjectControl.stationState = UserTableSettingBase.StationState.mission1;
         for (int i=0;i < gameObjectControl.userTableSettingList.Count; i++) {
@@ -116,7 +116,7 @@ public class ExperienceEndControl : MonoBehaviour
             if (userTableController.ballSetting.insertBallCount > 0)
             {
                 GameObjectControl.Instance.rsControl.multiRS.SendConsole(i, "1");
-                Debug.Log("¸®¼Â ÁøÇà »ç¿ëÀÚ" + i);
+                Debug.Log("ë¦¬ì…‹ ì§„í–‰ ì‚¬ìš©ì" + i);
             }
         }
         OnResetData("1");
@@ -143,13 +143,13 @@ public class ExperienceEndControl : MonoBehaviour
         GameObjectControl.Instance.RemoveElementObject();
         MainTableManager.instance.RemoveStar();
         
-        //½ÃÀÛ ÄÁÆ®·Ñ(ÇÏµå¿ş¾îÀåºñÀÛµ¿O)
+        //ì‹œì‘ ì»¨íŠ¸ë¡¤(í•˜ë“œì›¨ì–´ì¥ë¹„ì‘ë™O)
         GameObjectControl.Instance.IsMissionPlayAllUserList(true);
     }
 
     
 
-    //µ¥ÀÌÅÍ ¸®¼Â
+    //ë°ì´í„° ë¦¬ì…‹
     private void OnResetData(string data) {
         for (int i = 0; i < gameObjectControl.userTableSettingList.Count; i++)
         {
@@ -159,7 +159,7 @@ public class ExperienceEndControl : MonoBehaviour
                 if (userTableController.ballSetting.insertBallCount > 0)
                 {
                     GameObjectControl.Instance.rsControl.multiRS.SendConsole(i, data);
-                    Debug.Log("¸®¼Â ÁøÇà »ç¿ëÀÚ" + i);
+                    Debug.Log("ë¦¬ì…‹ ì§„í–‰ ì‚¬ìš©ì" + i);
                 }
             }
         }

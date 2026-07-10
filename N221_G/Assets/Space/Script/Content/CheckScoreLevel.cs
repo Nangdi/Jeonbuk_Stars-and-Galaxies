@@ -1,18 +1,18 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 /// <summary>
-/// ½ºÄÚ¾î Á¤º¸ Ã¼Å©
+/// ìŠ¤ì½”ì–´ ì •ë³´ ì²´í¬
 /// </summary>
 public class CheckScoreLevel : MonoBehaviour
 {
-    //»ç¿ëÀÚ Å×ÀÌºí ÄÁÆ®·Ñ·¯
+    //ì‚¬ìš©ì í…Œì´ë¸” ì»¨íŠ¸ë¡¤ëŸ¬
     //public UserTableController userTableController;
 
-    //È°¼ºÈ­½Ã Á¡¼ö µ¥ÀÌÅÍ Ã¼Å© 
+    //í™œì„±í™”ì‹œ ì ìˆ˜ ë°ì´í„° ì²´í¬ 
     public void OnEnable()
     {
         //userTableController.UserTableGotoClip(
@@ -32,26 +32,26 @@ public class CheckScoreLevel : MonoBehaviour
             }
         }
         bool[] customConnectionList = Array.FindAll(connectionUser, item => item);
-        //1¸íÀÌ»óÀÏ°æ¿ì
+        //1ëª…ì´ìƒì¼ê²½ìš°
         if (customConnectionList.Length > 1)
         {
-            ManyUserRenk("ÃÖÁ¾ Á¡¼ö");
+            ManyUserRenk("ìµœì¢… ì ìˆ˜");
         }
         else {
-            //1¸í ´Üµ¶À¸·Î ±¸¼ºµÇ¾îÀÖÀ»°æ¿ì
+            //1ëª… ë‹¨ë…ìœ¼ë¡œ êµ¬ì„±ë˜ì–´ìˆì„ê²½ìš°
             int index = Array.FindIndex(connectionUser, item => item);
             UserTableController userTableController = GameObjectControl.Instance.userTableSettingList[index];
             ScoreControl scoreControl = userTableController.scoreControl;
             UserScoreText userScoreText = userTableController.userScoreText;
             scoreControl.SetRank(-1);
             scoreControl.SetScore(userScoreText._score);
-            scoreControl.SetText_NoUser("ÃÖÁ¾ Á¡¼ö");
+            scoreControl.SetText_NoUser("ìµœì¢… ì ìˆ˜");
 
         }
     }
 
 
-    //´Üµ¶ÀÏ°æ¿ì ·©Å· µ¥ÀÌÅÍ Á¤º¸
+    //ë‹¨ë…ì¼ê²½ìš° ë­í‚¹ ë°ì´í„° ì •ë³´
     public void ManyUserRenk(string text) {
         GameObjectControl.Instance.GetRenk(text);
     }

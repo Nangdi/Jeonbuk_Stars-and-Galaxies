@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,29 +7,29 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// ¿ø¼Ò ¿ÀºêÁ§Æ® ¿òÁ÷ÀÓ Ã³¸® 
+/// ì›ì†Œ ì˜¤ë¸Œì íŠ¸ ì›€ì§ì„ ì²˜ë¦¬ 
 /// </summary>
 public class ElementObject : MonoBehaviour
 {
 
-    [Header("·»´ı ³ª¾Æ°¡´Â °¢µµ")]
+    [Header("ë Œë¤ ë‚˜ì•„ê°€ëŠ” ê°ë„")]
     [ReadOnly]
     public float rendom_advancing_angle;
 
-    //·çÇÁ ÄÚ·çÆ¾
+    //ë£¨í”„ ì½”ë£¨í‹´
     private Coroutine onLoop = null;
 
-    // ½Ã¾ß ¿µ¿ªÀÇ ¹İÁö¸§°ú ½Ã¾ß °¢µµ
+    // ì‹œì•¼ ì˜ì—­ì˜ ë°˜ì§€ë¦„ê³¼ ì‹œì•¼ ê°ë„
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
 
-    //³ª¾Æ°¡´Â ¹æÇâ Æ÷ÀÎÆ® Á¤º¸
+    //ë‚˜ì•„ê°€ëŠ” ë°©í–¥ í¬ì¸íŠ¸ ì •ë³´
     private Vector3 forwardPosition = Vector3.zero;
     public _2D_Reflection _2d_Reflection;
     public Transform moveTarget;
     
-    //Äİ¶óÀÌ´õ ¼³Á¤ 
+    //ì½œë¼ì´ë” ì„¤ì • 
     public Collider2D collider2D;
 
     public bool isEditorMove = true;
@@ -37,14 +37,14 @@ public class ElementObject : MonoBehaviour
     public bool isMove = false;
     public int elementIndex = 0;
 
-    //»ı¼ºµÈ ºñµğ¿À Å¸ÀÔ Á¤º¸
+    //ìƒì„±ëœ ë¹„ë””ì˜¤ íƒ€ì… ì •ë³´
     public UserTableSettingBase.StarVideoType starVideoType;
 
     public List<Sprite> littleStarSprite;
     public List<Sprite> bigStarSprite;
     public SpriteRenderer spriteRenderer;
 
-    //Ãæµ¹ ÀÎµ¦½º ÆÄ»ıµÈ ÀÔÀÚÀÇ À§Ä¡ Á¤º¸
+    //ì¶©ëŒ ì¸ë±ìŠ¤ íŒŒìƒëœ ì…ìì˜ ìœ„ì¹˜ ì •ë³´
     public int crashIndex = 0;
   
 
@@ -58,7 +58,7 @@ public class ElementObject : MonoBehaviour
 
 #if UNITY_EDITOR
     /// <summary>
-    /// ±âÁî¸ğ ¿òÁ÷ÀÓ Ã³¸®
+    /// ê¸°ì¦ˆëª¨ ì›€ì§ì„ ì²˜ë¦¬
     /// </summary>
     public void OnDrawGizmos()
     {
@@ -76,7 +76,7 @@ public class ElementObject : MonoBehaviour
         Vector3 viewAngleC = DirFromAngle(0, false);
         Handles.DrawLine(moveTarget.transform.position, moveTarget.transform.position + viewAngleC * viewRadius);
 
-        //º¤ÅÍ Á¤º¸°¡ 0,0,0 ÀÌ ¾Æ´Ò°æ¿ì ÀÛµ¿µÇ´Â±¸°£
+        //ë²¡í„° ì •ë³´ê°€ 0,0,0 ì´ ì•„ë‹ê²½ìš° ì‘ë™ë˜ëŠ”êµ¬ê°„
         if (!forwardPosition.Equals(Vector3.zero))
         {
             Handles.color = Color.green;
@@ -94,7 +94,7 @@ public class ElementObject : MonoBehaviour
 
 
     /// <summary>
-    /// ³ª¾Æ°¡´Â ¹æÇâ·»´ı ±âÁî¸ğ ¼³Á¤ ±¸°£
+    /// ë‚˜ì•„ê°€ëŠ” ë°©í–¥ë Œë¤ ê¸°ì¦ˆëª¨ ì„¤ì • êµ¬ê°„
     /// </summary>
     public void SetRandomForwardAngle() {
 
@@ -114,7 +114,7 @@ public class ElementObject : MonoBehaviour
     }
 
     /// <summary>
-    /// ½ÃÀÛ Ä¿¸Çµå
+    /// ì‹œì‘ ì»¤ë§¨ë“œ
     /// </summary>
     public void OnInit() {
         collider2D.enabled = false;
@@ -130,7 +130,7 @@ public class ElementObject : MonoBehaviour
 
 
     /// <summary>
-    /// Ãæµ¹Ã¼ »ı¼º
+    /// ì¶©ëŒì²´ ìƒì„±
     /// </summary>
     /// <returns></returns>
     IEnumerator OnCollider() {
@@ -170,7 +170,7 @@ public class ElementObject : MonoBehaviour
 
 
     /// <summary>
-    /// °¢µµ ¼±Á¤
+    /// ê°ë„ ì„ ì •
     /// </summary>
     private void SelectionAngle() {
         SetRandomForwardAngle();
@@ -198,7 +198,7 @@ public class ElementObject : MonoBehaviour
     public float reachDist = 1f;
     
     /// <summary>
-    /// ·çÇÁ ÀÛµ¿ ÄÚ·çÆ¾
+    /// ë£¨í”„ ì‘ë™ ì½”ë£¨í‹´
     /// </summary>
     /// <returns></returns>
     IEnumerator OnLoop()
@@ -237,12 +237,12 @@ public class ElementObject : MonoBehaviour
         }
     }
 
-    //È÷Æ® ¿µ¿ª layerMask
+    //íˆíŠ¸ ì˜ì—­ layerMask
     public string hitLayerMask;
 
-    //Ãæµ¹ Ã³¸®(
+    //ì¶©ëŒ ì²˜ë¦¬(
     /// <summary>
-    /// ¿ø¼Ò ³¢¸® Ãæµ¹½Ã ÀÛµ¿ µÇ´Â ±¸°£
+    /// ì›ì†Œ ë¼ë¦¬ ì¶©ëŒì‹œ ì‘ë™ ë˜ëŠ” êµ¬ê°„
     /// </summary>
     public void HitObject() {
 
@@ -260,7 +260,7 @@ public class ElementObject : MonoBehaviour
             if (index > -1) {
                 RaycastHit2D his = hits[index];
                 Debug.Log("[hit]");
-                //1. Ãæµ¹½Ã Á¤Áö 
+                //1. ì¶©ëŒì‹œ ì •ì§€ 
                 isMove = false;
 
                 collider2D.enabled = false;
@@ -273,7 +273,7 @@ public class ElementObject : MonoBehaviour
         }
     }
 
-    //¿ÀºêÁ§Æ® È÷Æ® ÀÓÆåÆ® »ı¼º ±¸¿ª (ÀÏ´Ü À§Ä¡ ºÎÅÍ È®ÀÎ)
+    //ì˜¤ë¸Œì íŠ¸ íˆíŠ¸ ì„í™íŠ¸ ìƒì„± êµ¬ì—­ (ì¼ë‹¨ ìœ„ì¹˜ ë¶€í„° í™•ì¸)
     IEnumerator OnHitObject(RaycastHit2D his) { 
         yield return null;
         Vector3 centerVer = Vector3.zero;

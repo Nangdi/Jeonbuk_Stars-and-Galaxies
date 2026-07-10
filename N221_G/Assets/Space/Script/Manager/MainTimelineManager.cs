@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +8,13 @@ using UnityEngine.Timeline;
 
 public class MainTimelineManager : MonoBehaviour
 {
-    //¸ŞÀÎ Å¸ÀÓ¶óÀÎ ¼³Á¤ 
+    //ë©”ì¸ íƒ€ì„ë¼ì¸ ì„¤ì • 
     public PlayableDirector playableDirector;
     
-    //½ÅÈ£ ¿¬µ¿
+    //ì‹ í˜¸ ì—°ë™
     public RsControl rsControl;
 
-    //Å¸ÀÓ¶óÀÎ Ã¼ÀÎÁö
+    //íƒ€ì„ë¼ì¸ ì²´ì¸ì§€
     public bool isTimelineChange = false;
 
     public void GotoSceneClip(UserTableSettingBase.StationState _stationState, 
@@ -42,7 +42,7 @@ public class MainTimelineManager : MonoBehaviour
         }
     }
 
-    //½Ã°£ º¯°æ ÄÚ·çÆ¾ 
+    //ì‹œê°„ ë³€ê²½ ì½”ë£¨í‹´ 
     public void PlayableDirectorPlay(double time)
     {
         isTimelineChange = true;
@@ -51,7 +51,7 @@ public class MainTimelineManager : MonoBehaviour
         onPlayableDirectorPlayCoroutine = StartCoroutine(OnPlayableDirectorPlayCoroutine(time));
     }
 
-    //ÇÃ·¹ÀÌ¾î ÄÚ·çÆ¾
+    //í”Œë ˆì´ì–´ ì½”ë£¨í‹´
     private Coroutine onPlayableDirectorPlayCoroutine = null;
     private void RemovePlayableDirectorPlayCoroutine()
     {
@@ -77,7 +77,7 @@ public class MainTimelineManager : MonoBehaviour
         yield return null;
         isTimelineChange = false;
     }
-    //Å¸ÀÓº¯°æ ÀÌº¥Æ® ÇÚµé·¯
+    //íƒ€ì„ë³€ê²½ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬
     public void SetChangeTime(double time)
     {
         playableDirector.time = time;

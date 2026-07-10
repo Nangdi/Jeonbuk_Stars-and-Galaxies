@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -12,7 +12,7 @@ public class GameTimeSceneMarkerBridge : MonoBehaviour, INotificationReceiver
     public Type type;
 
 
-    //»ç¿ëÀÚ Å×ÀÌºí ÄÁÆ®·Ñ
+    //ì‚¬ìš©ì í…Œì´ë¸” ì»¨íŠ¸ë¡¤
     public UserTableController userTableController;
 
     public void OnNotify(Playable origin, INotification notification, object context)
@@ -22,7 +22,7 @@ public class GameTimeSceneMarkerBridge : MonoBehaviour, INotificationReceiver
         switch (marker.sceneClipStats)
         {
             case GameSceneClip.SceneStats.OnPause:
-                if (type.Equals(Type.Main))//¸ŞÀÎ Å¸ÀÓ¶óÀÎ ÄÁÆ®·ÑÀÏ°æ¿ì
+                if (type.Equals(Type.Main))//ë©”ì¸ íƒ€ì„ë¼ì¸ ì»¨íŠ¸ë¡¤ì¼ê²½ìš°
                 {
                     if (!GameObjectControl.Instance.isTimelineChange)
                     {
@@ -32,7 +32,7 @@ public class GameTimeSceneMarkerBridge : MonoBehaviour, INotificationReceiver
                         playableDirector.Pause();
                     }
                 }
-                else if(type.Equals(Type.User))//»ç¿ëÀÚ Á¤º¸ Å¸ÀÓ¶óÀÎ ÄÁÆ®·ÑÀÏ°æ¿ì
+                else if(type.Equals(Type.User))//ì‚¬ìš©ì ì •ë³´ íƒ€ì„ë¼ì¸ ì»¨íŠ¸ë¡¤ì¼ê²½ìš°
                 {
                     //playableDirector.Pause();
                     if (!userTableController.isTimelineChange)

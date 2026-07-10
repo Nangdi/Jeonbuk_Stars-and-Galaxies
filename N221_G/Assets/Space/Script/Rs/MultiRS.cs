@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+ï»¿using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 /// <summary>
-/// ¸ÖÆ¼ RS232 ¿¬µ¿ Å¬·¡½º 
+/// ë©€í‹° RS232 ì—°ë™ í´ë˜ìŠ¤ 
 /// </summary>
 public class MultiRS : OutsideProcessControl
 {
@@ -16,7 +16,7 @@ public class MultiRS : OutsideProcessControl
     
     }
 
-    //ÇÁ·Î¼¼½º ·Îµå ¿Ï·á ÀÌº¥Æ® ÇÚµé·¯
+    //í”„ë¡œì„¸ìŠ¤ ë¡œë“œ ì™„ë£Œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬
     public void OnLoadComplete() { 
         
     }

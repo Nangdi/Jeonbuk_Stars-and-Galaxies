@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-//»ç¿ëÀÚ ¹®Á¦ 
+//ì‚¬ìš©ì ë¬¸ì œ 
 public class UserTableQuestion : UserTableSettingControl
 {
-    //Å¸ÀÓ¶óÀÎ º¯°æ 
+    //íƒ€ì„ë¼ì¸ ë³€ê²½ 
     public bool isTimelineChange = false;
     
     public override void OnInit()
@@ -19,16 +19,16 @@ public class UserTableQuestion : UserTableSettingControl
 
     }
 
-    //¹®Á¦ Ç®ÀÌ ¼³Á¤ ÄÁÆ®·Ñ ±¸°£
+    //ë¬¸ì œ í’€ì´ ì„¤ì • ì»¨íŠ¸ë¡¤ êµ¬ê°„
     public void QuestionSettig() {
-        //°ø Á¤º¸ È­¸é Ç¥½Ã ÄÁÆ®·Ñ
+        //ê³µ ì •ë³´ í™”ë©´ í‘œì‹œ ì»¨íŠ¸ë¡¤
         ballSetting.mission1Text.SetText(ballSetting.littleInsertCountBall, ballSetting.bigInsertCountBall);
         ballSetting.mission2Text.SetText(ballSetting.littleInsertCountBall, ballSetting.bigInsertCountBall);
         ballSetting.ballCountData.SetText(1, ballSetting.bigInsertCountBall);
 
     }
 
-    //ÇöÀç ÁøÇàÁßÀÎ Å¬¸³Á¤º¸
+    //í˜„ì¬ ì§„í–‰ì¤‘ì¸ í´ë¦½ì •ë³´
     public override GameSceneClip GetClipState() {
         List<PlayableBinding> playableBindings = pd.playableAsset.outputs.Cast<PlayableBinding>().ToList();
 
@@ -52,7 +52,7 @@ public class UserTableQuestion : UserTableSettingControl
         return gameSceneClip;
     }
 
-    //ÇØ´ç Å¬¸³À¸·ÎÀÌµ¿
+    //í•´ë‹¹ í´ë¦½ìœ¼ë¡œì´ë™
     public override void UserTableGotoClip(UserTableSettingBase.StationState _stationState, GameManager.ClipState _clipState) {
         List<PlayableBinding> playableBindings = pd.playableAsset.outputs.Cast<PlayableBinding>().ToList();
         for (int i = 0; i < playableBindings.Count; i++)
@@ -77,7 +77,7 @@ public class UserTableQuestion : UserTableSettingControl
     }
 
 
-    //½Ã°£ º¯°æ ÄÚ·çÆ¾ 
+    //ì‹œê°„ ë³€ê²½ ì½”ë£¨í‹´ 
     public void PlayableDirectorPlay(double time)
     {
         isTimelineChange = true;
@@ -86,7 +86,7 @@ public class UserTableQuestion : UserTableSettingControl
         onPlayableDirectorPlayCoroutine = StartCoroutine(OnPlayableDirectorPlayCoroutine(time));
     }
 
-    //ÇÃ·¹ÀÌ¾î ÄÚ·çÆ¾
+    //í”Œë ˆì´ì–´ ì½”ë£¨í‹´
     private Coroutine onPlayableDirectorPlayCoroutine = null;
     private void RemovePlayableDirectorPlayCoroutine()
     {
@@ -110,7 +110,7 @@ public class UserTableQuestion : UserTableSettingControl
     }
 
 
-    //Å¸ÀÓº¯°æ ÀÌº¥Æ® ÇÚµé·¯
+    //íƒ€ì„ë³€ê²½ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬
     public void SetChangeTime(double time)
     {
         pd.time = time;

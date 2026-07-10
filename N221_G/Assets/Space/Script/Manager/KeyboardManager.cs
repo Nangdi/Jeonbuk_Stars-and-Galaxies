@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-//Å°º¸µå ¸Å´ÏÀú 
-//Å°º¸µå ÄÁÆ®·Ñ·¯ Á¦ÀÛ
+//í‚¤ë³´ë“œ ë§¤ë‹ˆì € 
+//í‚¤ë³´ë“œ ì»¨íŠ¸ë¡¤ëŸ¬ ì œì‘
 public class KeyboardManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -13,7 +13,7 @@ public class KeyboardManager : MonoBehaviour
         OnInit();
     }
 
-    //½ÃÀÛ Ä¿¸Çµå 
+    //ì‹œì‘ ì»¤ë§¨ë“œ 
     private void OnInit() {
         OnReset();
     }
@@ -24,7 +24,7 @@ public class KeyboardManager : MonoBehaviour
     }
 
 
-    //ÃÊ±âÈ­
+    //ì´ˆê¸°í™”
     private void OnReset() {
         EditorControl().IsEditor = false;
     }
@@ -33,9 +33,9 @@ public class KeyboardManager : MonoBehaviour
     void Update()
     {
 
-        //UI ¹èÄ¡ ½ÃÀÛ¹× Á¤Áö(µ¥ÀÌÅÍ ÀúÀå)
+        //UI ë°°ì¹˜ ì‹œì‘ë° ì •ì§€(ë°ì´í„° ì €ì¥)
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            //Å°º¸µå 1µî·Ï
+            //í‚¤ë³´ë“œ 1ë“±ë¡
             Debug.Log("KeyDown_1");
             if (EditorControl().IsEditor)
             {
@@ -49,9 +49,9 @@ public class KeyboardManager : MonoBehaviour
                 GameManager.instance.SetUIComponentData();
                 GameManager.instance.SettingDataSave();
             }
-            //È­¸é¼ÂÆÃ ÁØºñ
+            //í™”ë©´ì…‹íŒ… ì¤€ë¹„
         } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            //µ¥ÀÌÅÍ ¸®¼Â
+            //ë°ì´í„° ë¦¬ì…‹
             GameManager.instance.DataComponentVOReset();
             GameManager.instance.SettingDataSave();
 

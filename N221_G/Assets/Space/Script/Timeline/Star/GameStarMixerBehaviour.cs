@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -21,7 +21,7 @@ public class GameStarMixerBehaviour : PlayableBehaviour
         {
             TimelineClip timelineClip = getClips[i];
             GameStarClip sceneClip = getClips[i].asset as GameStarClip;
-            //Å¸ÀÓ Á¤º¸ È®ÀÎ ±¸°£
+            //íƒ€ìž„ ì •ë³´ í™•ì¸ êµ¬ê°„
             double time = playable.GetTime();
             int index = Array.FindIndex(getClips.ToArray(), item => ((TimelineClip)(item)).start < time && time < ((TimelineClip)(item)).end);
             if (index > -1)
@@ -62,7 +62,7 @@ public class GameStarMixerBehaviour : PlayableBehaviour
 
     }
 
-    //ÀýÂ÷ Á¤º¸ 
+    //ì ˆì°¨ ì •ë³´ 
     private StarStepData GetStarStepData(StarStepData.Step step) {
         List<StarStepData> starStepDataList = MainTableManager.instance.starControl.starStepDataList;
         int index=Array.FindIndex(starStepDataList.ToArray(), item => item.step.Equals(step));

@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Permissions;
@@ -13,7 +13,7 @@ public class PrrtElmntObjectEditor:Editor {
     {
         base.OnInspectorGUI();
         PrrtElmntObject prrtElmntObject= (PrrtElmntObject)target;
-        if (GUILayout.Button("ÀÌ¹ÌÁö ±³Ã¼ ÁøÇà&½ºÅ©¸³Æ® µî·Ï")) {
+        if (GUILayout.Button("ì´ë¯¸ì§€ êµì²´ ì§„í–‰&ìŠ¤í¬ë¦½íŠ¸ ë“±ë¡")) {
             prrtElmntObject.SetObject();
         }
     }
@@ -42,14 +42,14 @@ public class PrrtElmntObject : MonoBehaviour
     }
 
   
-    //¿ÀºêÁ§Æ® ÇÏ¸é ¾ËÆÄ 
+    //ì˜¤ë¸Œì íŠ¸ í•˜ë©´ ì•ŒíŒŒ 
     public void ObjectAlphaView() {
         for (int i=0;i< spriteRendererList.Count; i++) {
             spriteRendererList[i].color = Color.clear;
         }
     }
 
-    //¿ÀºêÁ§Æ® µî·Ï ¼³Á¤
+    //ì˜¤ë¸Œì íŠ¸ ë“±ë¡ ì„¤ì •
     public void SetObject() {
         spriteRendererList.Clear();
         for (int i=0;i< objectList.Count; i++) {

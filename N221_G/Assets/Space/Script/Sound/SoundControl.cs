@@ -1,13 +1,13 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//»ç¿îµå ±¸¼º ½ºÅ©¸³Æ®
+//ì‚¬ìš´ë“œ êµ¬ì„± ìŠ¤í¬ë¦½íŠ¸
 public class SoundControl : MonoBehaviour
 {
     public AudioClip backgraundSound1;
     public AudioClip backgraundSound2;
     public AudioClip backgraundSound3;
-    //¿Àµğ¿À ¼Ò½º
+    //ì˜¤ë””ì˜¤ ì†ŒìŠ¤
     public AudioSource audioSource;
 
     public enum SoundType { Sound1 , Sound2 , Sound3 }
@@ -21,7 +21,7 @@ public class SoundControl : MonoBehaviour
         
     }
 
-    //»ç¿îµå ÇÃ·¹ÀÌ(¹è°æ»ç¿îµå)
+    //ì‚¬ìš´ë“œ í”Œë ˆì´(ë°°ê²½ì‚¬ìš´ë“œ)
     public void BackgraundSoundPlay(SoundType soundType) {
         switch (soundType) { 
             case SoundType.Sound1 :

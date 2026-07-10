@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+ï»¿using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ public class ColliderSetting : MonoBehaviour
     [SerializeField][Range(0f, 10f)] private float speed = 1;
     [SerializeField][Range(0f, 40f)] private float radius = 1;
 
-    //Æ÷ÀÎÆ® ¼±Á¤ ±¸°£(¿øÇü Ãæµ¹ ±¸¼º)
+    //í¬ì¸íŠ¸ ì„ ì • êµ¬ê°„(ì›í˜• ì¶©ëŒ êµ¬ì„±)
     public void SetPoint() {
         Array.Clear(edgeCollider2D.points,0, edgeCollider2D.points.Length);
         float _x;

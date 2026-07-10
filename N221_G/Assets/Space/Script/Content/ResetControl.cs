@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//¸®¼Â ÄÁÆ®·Ñ
+//ë¦¬ì…‹ ì»¨íŠ¸ë¡¤
 public class ResetControl : GotoSceneClipControl
 {
 
-    //¸®¼Â ÃÊ±âÈ­
+    //ë¦¬ì…‹ ì´ˆê¸°í™”
     public override void OnEnable()
     {
         base.OnEnable();

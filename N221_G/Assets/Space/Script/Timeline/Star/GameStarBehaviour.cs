@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 public class GameStarBehaviour : PlayableBehaviour
 {
     /// <summary>
-    /// Å¸ÀÓ ÄÁÆ®·Ñ °´Ã¼ ¹è¿­ Á¤º¸ 
+    /// íƒ€ì„ ì»¨íŠ¸ë¡¤ ê°ì²´ ë°°ì—´ ì •ë³´ 
     /// </summary>
     public TimeData timeData = new TimeData();
 

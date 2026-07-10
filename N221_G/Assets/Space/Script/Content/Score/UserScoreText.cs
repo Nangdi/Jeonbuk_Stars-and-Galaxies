@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,21 +6,21 @@ using static MissionDataLoader;
 using static UserTableSettingBase;
 
 /// <summary>
-/// Á¡¼ö ÄÁÆ®·Ñ
+/// ì ìˆ˜ ì»¨íŠ¸ë¡¤
 /// </summary>
 public class UserScoreText : MonoBehaviour
 {
 
-    //ÅØ½ºÆ® Á¤º¸
+    //í…ìŠ¤íŠ¸ ì •ë³´
     public TextMeshPro _text;
     public int _score;
 
-    //µî·ÏµÈ ½ºÄÚ¾î ÅØ½ºÆ® Á¤º¸
+    //ë“±ë¡ëœ ìŠ¤ì½”ì–´ í…ìŠ¤íŠ¸ ì •ë³´
     public AddScoreText addScoreTextObject;
-    //»óÀ§ Á¡¼ö ÅØ½ºÆ® ¿ÀºêÁ§Æ®
+    //ìƒìœ„ ì ìˆ˜ í…ìŠ¤íŠ¸ ì˜¤ë¸Œì íŠ¸
     public GameObject parentScoreTextObject;
 
-    //È°¼ºÈ­½Ã
+    //í™œì„±í™”ì‹œ
     public void OnEnable()
     {
         isMissionStart = false;
@@ -28,27 +28,27 @@ public class UserScoreText : MonoBehaviour
         //SetText(_score.ToString());
     }
 
-    //½ºÄÚ¾î µ¥ÀÌÅÍ ¸®¼Â
+    //ìŠ¤ì½”ì–´ ë°ì´í„° ë¦¬ì…‹
     public void OnScoreDataReset() {
         ScoreUpdate(0);
     }
 
-    //½ºÄÚ¾î ¾÷µ¥ÀÌÆ®
+    //ìŠ¤ì½”ì–´ ì—…ë°ì´íŠ¸
     private void ScoreUpdate(int _score)
     {
         this._score = _score;
         SetText(_score.ToString());
     }
 
-    //ÅØ½ºÆ® º¯°æ
+    //í…ìŠ¤íŠ¸ ë³€ê²½
     private void SetText(string message) {
         _text.text = message;
     }
 
-    //Á¡¼ö È¹µæ¿¡ ´ëÇÑ Á¤ÀÇ ±¸°£ ¼³Á¤ÇÊ¿ä
+    //ì ìˆ˜ íšë“ì— ëŒ€í•œ ì •ì˜ êµ¬ê°„ ì„¤ì •í•„ìš”
     public void SendScoreData(int score, UserTableController userTableController) {
         if (!GameObjectControl.Instance.isGamePlay) { return; }
-        //»ç¿ëÀÚ Á¤º¸ 
+        //ì‚¬ìš©ì ì •ë³´ 
         //userTableController.
 
         if (GameObjectControl.Instance.stationState.Equals(UserTableSettingBase.StationState.experience))
@@ -57,92 +57,92 @@ public class UserScoreText : MonoBehaviour
             Debug.Log("score : " + _score);
             SetText(_score.ToString());
         }
-        //¹Ì¼Ç1 ¹Ì¼Ç2 Á¡¼ö È¹µæ ±¸°£
+        //ë¯¸ì…˜1 ë¯¸ì…˜2 ì ìˆ˜ íšë“ êµ¬ê°„
         else if(
             GameObjectControl.Instance.stationState.Equals(UserTableSettingBase.StationState.mission1) ||
             GameObjectControl.Instance.stationState.Equals(UserTableSettingBase.StationState.mission2))
         {
 
-            Debug.Log("¹Ì¼Ç1,¹Ì¼Ç2 ÀÏ°æ¿ì Á¡¼ö È¹µæ Á¤º¸ È®ÀÎ±¸°£");
+            Debug.Log("ë¯¸ì…˜1,ë¯¸ì…˜2 ì¼ê²½ìš° ì ìˆ˜ íšë“ ì •ë³´ í™•ì¸êµ¬ê°„");
         }
     }
 
     /// <summary>
-    /// ¹Ì¼Ç ½ÃÀÛ 
+    /// ë¯¸ì…˜ ì‹œì‘ 
     /// </summary>
     [ReadOnly]
     [SerializeField]
     public bool isMissionStart = false;
 
-    //¿¬½À °ÔÀÓ Á¡¼ö µ¥ÀÌÅÍ Á¤º¸
+    //ì—°ìŠµ ê²Œì„ ì ìˆ˜ ë°ì´í„° ì •ë³´
     [ReadOnly]
     public PracticeScoreSetting practiceScore;
     
-    //Á¡¼ö -> ³»Á¡¼ö Ç×¸ñ¿¡ ÀúÀå
+    //ì ìˆ˜ -> ë‚´ì ìˆ˜ í•­ëª©ì— ì €ì¥
     [System.Serializable]
     public class PracticeScoreSetting
     {
         
-        //*************ÀÛÀºº°****************
-        //ÀÛÀºº° È¸Àü Á¡¼ö
+        //*************ì‘ì€ë³„****************
+        //ì‘ì€ë³„ íšŒì „ ì ìˆ˜
         public int littleRotScore;
-        //ÀÛÀºº° È¸Àü °á°ú Á¡¼ö
+        //ì‘ì€ë³„ íšŒì „ ê²°ê³¼ ì ìˆ˜
         public int littleRotResultScore;
         
 
-        //*************Å«º°****************
-        //Å«º° È¸Àü °á°ú Á¡¼ö
+        //*************í°ë³„****************
+        //í°ë³„ íšŒì „ ê²°ê³¼ ì ìˆ˜
         public int bigRotScore;
-        //Å«º° È¸Àü °á°ú Á¡¼ö 
+        //í°ë³„ íšŒì „ ê²°ê³¼ ì ìˆ˜ 
         public int bigRotResultScore;
 
     }
 
 
-    //ºñµğ¿À Á¾·á ÀÌº¥Æ® ÇÚµé·¯
+    //ë¹„ë””ì˜¤ ì¢…ë£Œ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬
     public void VideoEndEvent(UserTableController userTableController)
     {
         if (!GameObjectControl.Instance.isGamePlay) { return; }
         switch (GameObjectControl.Instance.stationState)
         {
             case UserTableSettingBase.StationState.experience:
-                //Debug.Log("Á¡¼ö Áõ°¡");
+                //Debug.Log("ì ìˆ˜ ì¦ê°€");
                 if (userTableController.starVideoType.Equals(StarVideoType.BigStar))
                 {
-                    Debug.Log("Å«º° Á¡¼ö");
+                    Debug.Log("í°ë³„ ì ìˆ˜");
                     _score = _score + practiceScore.bigRotResultScore;
                     SetText(_score.ToString());
                 }
                 else if (userTableController.starVideoType.Equals(StarVideoType.LittleStar)) 
                 {
-                    Debug.Log("ÀÛÀºº° Á¡¼ö");
+                    Debug.Log("ì‘ì€ë³„ ì ìˆ˜");
                     _score = _score + practiceScore.littleRotResultScore;
                     SetText(_score.ToString());
                 }
                 
                 break;
 
-            //¹Ì¼Ç1    
+            //ë¯¸ì…˜1    
             case UserTableSettingBase.StationState.mission1:
-                Debug.Log("-------------------¹Ì¼Ç1----------------------");
+                Debug.Log("-------------------ë¯¸ì…˜1----------------------");
                 if (GameObjectControl.Instance.isMissionPlay)
                 {
-                    //Á¤´äÀÎÁö ¿À´äÀÎÁö È®ÀÎ ÇÊ¿ä
+                    //ì •ë‹µì¸ì§€ ì˜¤ë‹µì¸ì§€ í™•ì¸ í•„ìš”
                     int userIndex = (int)userTableController.starIndex - 1;
                     int userDataIndex = 0;
                     bool isRightAnswer = GameObjectControl.Instance.userDataList[userDataIndex].isUserList[userIndex];
-                    Debug.Log("userIndex(»ç¿ëÀÚ ÀÎµ¦½º Á¤º¸) : " + userIndex);
-                    //Á¤´ä À¯¹«  Ãß·Ğ
+                    Debug.Log("userIndex(ì‚¬ìš©ì ì¸ë±ìŠ¤ ì •ë³´) : " + userIndex);
+                    //ì •ë‹µ ìœ ë¬´  ì¶”ë¡ 
                     MissionScoreSetting missionScoreSetting = GameObjectControl.Instance.missionDataLoader.jsonLoadData.mission1ScoreSetting;
                     int Mission1Score = MissionScoreData(isRightAnswer, missionScoreSetting);
-                    Debug.Log("Á¤´ä ¿©ºÎ] : " + Mission1Score);
-                    //Æ²¸² Á¡¼ö ºÎ¿© ±â´É
+                    Debug.Log("ì •ë‹µ ì—¬ë¶€] : " + Mission1Score);
+                    //í‹€ë¦¼ ì ìˆ˜ ë¶€ì—¬ ê¸°ëŠ¥
                     bool applyWrongScore = GameObjectControl.Instance.missionDataLoader.jsonLoadData.mission1ScoreSetting.applyWrongScore;
                     if (applyWrongScore)
                     {
                         if (!isMissionStart)
                         {
-                            if (isRightAnswer)//Á¤´ä¸¸ ¸ğ¼ÇÀÌ µé¾î°¡µµ·Ï ±¸¼º
+                            if (isRightAnswer)//ì •ë‹µë§Œ ëª¨ì…˜ì´ ë“¤ì–´ê°€ë„ë¡ êµ¬ì„±
                             {
                                 MissionScoreScoreMotion(isRightAnswer, Mathf.Abs(Mission1Score));
                                 isMissionStart = true;
@@ -156,7 +156,7 @@ public class UserScoreText : MonoBehaviour
                     else {
                         if (!isMissionStart)
                         {
-                            if (isRightAnswer)//Á¤´ä¸¸ ¸ğ¼ÇÀÌ µé¾î°¡µµ·Ï ±¸¼º
+                            if (isRightAnswer)//ì •ë‹µë§Œ ëª¨ì…˜ì´ ë“¤ì–´ê°€ë„ë¡ êµ¬ì„±
                             {
                                 MissionScoreScoreMotion(isRightAnswer, Mathf.Abs(Mission1Score));
                                 isMissionStart = true;
@@ -166,12 +166,12 @@ public class UserScoreText : MonoBehaviour
                     }
                 }
                 else {
-                    Debug.Log("¹Ì¼ÇÀÌ Á¾·á µÇ¾î¼­ Á¡¼ö¸¦ È¹µæÇÒ¼ö¾ø½À´Ï´Ù.");
+                    Debug.Log("ë¯¸ì…˜ì´ ì¢…ë£Œ ë˜ì–´ì„œ ì ìˆ˜ë¥¼ íšë“í• ìˆ˜ì—†ìŠµë‹ˆë‹¤.");
                 }
                 break;
-            //¹Ì¼Ç2
+            //ë¯¸ì…˜2
             case UserTableSettingBase.StationState.mission2:
-                Debug.Log("¹Ì¼Ç2");
+                Debug.Log("ë¯¸ì…˜2");
                 if (GameObjectControl.Instance.isMissionPlay)
                 {
                     int userIndex = (int)userTableController.starIndex - 1;
@@ -184,7 +184,7 @@ public class UserScoreText : MonoBehaviour
                     {
                         if (!isMissionStart)
                         {
-                            if (isRightAnswer)//Á¤´ä¸¸ ¸ğ¼ÇÀÌ µé¾î°¡µµ·Ï ±¸¼º
+                            if (isRightAnswer)//ì •ë‹µë§Œ ëª¨ì…˜ì´ ë“¤ì–´ê°€ë„ë¡ êµ¬ì„±
                             {
                                 MissionScoreScoreMotion(isRightAnswer, Mathf.Abs(Mission2Score));
                                 isMissionStart = true;
@@ -199,7 +199,7 @@ public class UserScoreText : MonoBehaviour
                     {
                         if (!isMissionStart)
                         {
-                            if (isRightAnswer)//Á¤´ä¸¸ ¸ğ¼ÇÀÌ µé¾î°¡µµ·Ï ±¸¼º
+                            if (isRightAnswer)//ì •ë‹µë§Œ ëª¨ì…˜ì´ ë“¤ì–´ê°€ë„ë¡ êµ¬ì„±
                             {
                                 MissionScoreScoreMotion(isRightAnswer, Mathf.Abs(Mission2Score));
                                 isMissionStart = true;
@@ -209,25 +209,25 @@ public class UserScoreText : MonoBehaviour
 
                 }
                 else{
-                    Debug.Log("¹Ì¼ÇÀÌ Á¾·á µÇ¾î¼­ Á¡¼ö¸¦ È¹µæÇÒ¼ö¾ø½À´Ï´Ù.");
+                    Debug.Log("ë¯¸ì…˜ì´ ì¢…ë£Œ ë˜ì–´ì„œ ì ìˆ˜ë¥¼ íšë“í• ìˆ˜ì—†ìŠµë‹ˆë‹¤.");
                 }
 
                 break;
         }
     }
 
-    //¹Ì¼Ç Á¡¼ö ÄÁÆ®·Ñ
+    //ë¯¸ì…˜ ì ìˆ˜ ì»¨íŠ¸ë¡¤
     private int MissionScoreData(bool isRightAnswer, MissionScoreSetting missionScoreSetting)
     {
         int result = 0;
-        //Á¤´ä ¿©ºÎ(Á¤´ä ÁøÇà)
+        //ì •ë‹µ ì—¬ë¶€(ì •ë‹µ ì§„í–‰)
         if (isRightAnswer)
         {
-            //Á¤´äÀÏ°æ¿ì
+            //ì •ë‹µì¼ê²½ìš°
            int rightAnswerScore = missionScoreSetting.rightAnswerScore;
            result = rightAnswerScore;
         }
-        else//¿À´äÀÏ°æ¿ì(°¨Á¡ ÁøÇà)
+        else//ì˜¤ë‹µì¼ê²½ìš°(ê°ì  ì§„í–‰)
         {
            int mustScore = missionScoreSetting.mustScore;
            result = -mustScore;
@@ -235,11 +235,11 @@ public class UserScoreText : MonoBehaviour
         return result;
     }
 
-    //Á¤´ä&¿À´ä È®Á¤ ¸ğ¼Ç
+    //ì •ë‹µ&ì˜¤ë‹µ í™•ì • ëª¨ì…˜
     public void MissionScoreScoreMotion(bool isRightAnswer,int score) {
-        //Á¡¼ö ¸ğ¼Ç ÀÛµ¿ ±¸°£
+        //ì ìˆ˜ ëª¨ì…˜ ì‘ë™ êµ¬ê°„
         AddScoreText addScoreText=GameObject.Instantiate<AddScoreText>(addScoreTextObject, parentScoreTextObject.transform);
-        //½ÃÀÛ Ä¿¸Çµå ÀÛµ¿ ±¸°£
+        //ì‹œì‘ ì»¤ë§¨ë“œ ì‘ë™ êµ¬ê°„
         addScoreText.OnInit(isRightAnswer, score);
         if (isRightAnswer)
         {
@@ -253,7 +253,7 @@ public class UserScoreText : MonoBehaviour
 
 
 
-    //Á¤´ä ½ºÄÚ¾î Á¤º¸(Á¡¼ö µî·Ï±¸°£)
+    //ì •ë‹µ ìŠ¤ì½”ì–´ ì •ë³´(ì ìˆ˜ ë“±ë¡êµ¬ê°„)
     private void SetMissionRightAnswerScore() { 
         
     }
