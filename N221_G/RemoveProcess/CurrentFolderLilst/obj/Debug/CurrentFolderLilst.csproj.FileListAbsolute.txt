@@ -1,0 +1,11 @@
+D:\Project\Nowon\Nowon(20230215)\RemoveProcess\CurrentFolderLilst\bin\Debug\CurrentFolderLilst.exe.config
+D:\Project\Nowon\Nowon(20230215)\RemoveProcess\CurrentFolderLilst\bin\Debug\CurrentFolderLilst.exe
+D:\Project\Nowon\Nowon(20230215)\RemoveProcess\CurrentFolderLilst\bin\Debug\CurrentFolderLilst.pdb
+D:\Project\Nowon\Nowon(20230215)\RemoveProcess\CurrentFolderLilst\obj\Debug\CurrentFolderLilst.csproj.AssemblyReference.cache
+D:\Project\Nowon\Nowon(20230215)\RemoveProcess\CurrentFolderLilst\obj\Debug\CurrentFolderLilst.csproj.SuggestedBindingRedirects.cache
+D:\Project\Nowon\Nowon(20230215)\RemoveProcess\CurrentFolderLilst\obj\Debug\CurrentFolderLilst.Form1.resources
+D:\Project\Nowon\Nowon(20230215)\RemoveProcess\CurrentFolderLilst\obj\Debug\CurrentFolderLilst.Properties.Resources.resources
+D:\Project\Nowon\Nowon(20230215)\RemoveProcess\CurrentFolderLilst\obj\Debug\CurrentFolderLilst.csproj.GenerateResource.cache
+D:\Project\Nowon\Nowon(20230215)\RemoveProcess\CurrentFolderLilst\obj\Debug\CurrentFolderLilst.csproj.CoreCompileInputs.cache
+D:\Project\Nowon\Nowon(20230215)\RemoveProcess\CurrentFolderLilst\obj\Debug\CurrentFolderLilst.exe
+D:\Project\Nowon\Nowon(20230215)\RemoveProcess\CurrentFolderLilst\obj\Debug\CurrentFolderLilst.pdb

@@ -1,0 +1,15 @@
+{
+  "displayName": "Humanc Rs232 connection",
+  "name": "com.humanc.rsconn",
+  "version": "0.0.1",
+  "unity": "2019.2",
+  "description": "rs232 연동 Unity Test Framework.",
+  "keywords": [
+    "rs232",
+    "RS232"
+  ],
+  "author": {
+    "name": "Humanc",
+    "email": "0wjsxoghks@gmail.com"
+  }
+}

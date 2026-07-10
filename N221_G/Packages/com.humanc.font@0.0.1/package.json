@@ -1,0 +1,15 @@
+{
+  "displayName": "Humanc Font",
+  "name": "com.humanc.font",
+  "version": "0.0.1",
+  "unity": "2019.2",
+  "description": "폰트 Unity Test Framework.",
+  "keywords": [
+    "font",
+    "Font"
+  ],
+  "author": {
+    "name": "Humanc",
+    "email": "0wjsxoghks@gmail.com"
+  }
+}

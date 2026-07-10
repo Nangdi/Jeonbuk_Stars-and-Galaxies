@@ -1,0 +1,24 @@
+만들어진 보고서: 
+	2023-01-16	오후 1:30:04
+
+프로젝트 이름: 성간물질배경.aep
+
+소스 파일 수집 위치: 
+	C:\Users\akram\Desktop\영상 소스
+
+수집한 소스 파일: 모두
+
+수집한 컴포지션:
+	shutterstock_1079853926
+	
+수집한 파일 개수: 2
+
+수집한 파일 크기: 120 MB
+
+수집한 소스 파일: 
+	C:\Users\akram\Desktop\mask.ai
+	C:\Users\akram\Desktop\shutterstock_1079853926.mov
+	
+렌더링 플러그인:
+	클래식 3D
+	
