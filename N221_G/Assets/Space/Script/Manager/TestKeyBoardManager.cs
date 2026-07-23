@@ -66,6 +66,7 @@ public class TestKeyBoardManager : MonoBehaviour
 
     private void LogKeyUp(RawKey key)
     {
+        if (DebugInputLock.Locked) return; // 프로젝터 설정창 열림 중 디버그 입력 잠금
         Debug.Log("Key Up: " + key);
         switch (key) {
 

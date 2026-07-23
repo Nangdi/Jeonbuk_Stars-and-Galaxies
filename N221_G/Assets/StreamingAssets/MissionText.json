@@ -3,8 +3,8 @@
     {
       "missionType": 0,
       "problemData": "우리주변의 사물을 구성하고 있는 원소를\r\n모두 만들어내는 별을 만들어 보세요!",
+      "rightAnswerRange": "5",
       "rightAnswer": "정답입니다!",
-      "rightAnswerRange":"5",
       "right_messageData1": "큰 별의 내부에서는 철까지,\r\n초신성 폭발에서는 나머지 원소를 만들어 냅니다.",
       "right_messageData2": "우리와 우리 주변의 모든 사물은\r\n별에서 만들어진 원소로 이루어져 있습니다.",
       "wrongAnswer": "오답입니다.",
@@ -14,8 +14,8 @@
     {
       "missionType": 1,
       "problemData": "생명이 탄생해 진화하고, 살아갈 수 있도록\r\n긴 시간 동안 에너지를 공급해주는 별을 만들어 보세요.",
+      "rightAnswerRange": "1,4",
       "rightAnswer": "정답입니다!",
-      "rightAnswerRange":"1,4",
       "right_messageData1": "태양과 같은 별은 수명이\r\n약 100억년으로 아주 길기 때문에",
       "right_messageData2": "긴 시간 동안 생명이 탄생하고 진화할 수 있도록\r\n꾸준히 에너지를 공급할 수 있습니다.",
       "wrongAnswer": "오답입니다.",
@@ -24,38 +24,33 @@
     }
   ],
   "timeSetting": {
-    "connectionTime":2,
+    "connectionTime": 2,
     "practiceTime": 2,
     "mission1Time": 5,
     "mission1EndTimeDelay": 2,
     "mission2Time": 4
   },
   "windowsSetting": {
-    "isMouseCursor":true,
-    "startData" : "E",
-    "endData" : "E"
+    "isMouseCursor": true,
+    "startData": "E",
+    "endData": "E"
   },
-  "_comment":"연습게임 점수 셋팅",
-  "practiceScoreSetting":{
-    "_comment":"작은별 점수 등록",
-    "littleRotScore":10,
+  "practiceScoreSetting": {
+    "littleRotScore": 10,
     "littleRotResultScore": 30,
-    "littleRotatingNumberMaxRot":10,
-
-    "_comment":"큰별 점수 등록",
-    "bigRotScore":5,
+    "littleRotatingNumberMaxRot": 10,
+    "bigRotScore": 5,
     "bigRotResultScore": 105,
-    "bigRotatingNumberMaxRot":5
-
+    "bigRotatingNumberMaxRot": 5
   },
-  "mission1ScoreSetting" :{
-    "rightAnswerScore":50,
+  "mission1ScoreSetting": {
+    "rightAnswerScore": 50,
     "mustScore": 20,
-    "applyWrongScore":false
+    "applyWrongScore": false
   },
-  "mission2ScoreSetting" :{
-    "rightAnswerScore":100,
+  "mission2ScoreSetting": {
+    "rightAnswerScore": 100,
     "mustScore": 20,
-    "applyWrongScore":false
+    "applyWrongScore": false
   }
 }

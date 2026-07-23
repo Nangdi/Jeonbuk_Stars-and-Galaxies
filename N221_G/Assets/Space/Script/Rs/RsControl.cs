@@ -67,6 +67,7 @@ public class RsControl : MonoBehaviour
 
     public void Update()
     {
+        if (DebugInputLock.Locked) return; // 프로젝터 설정창 열림 중 디버그 입력 잠금
         if (Input.GetKeyDown(KeyCode.A)) {
             multiRS.SendConsole(3,"1");
         }

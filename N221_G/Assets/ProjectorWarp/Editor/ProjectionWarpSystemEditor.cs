@@ -85,9 +85,10 @@ namespace MultiProjectorWarpSystem
             {
                 string path = EditorUtility.SaveFilePanelInProject(
                     "Save Calibration",
-                    "projector_calibration.json",
+                    "default_calibration.json",
                     "json",
-                    "Enter a filename for the calibration file");
+                    "Enter a filename for the calibration file",
+                    "Assets/StreamingAssets");
                 myScript.SaveCalibration(path);
 
                 AssetDatabase.Refresh();

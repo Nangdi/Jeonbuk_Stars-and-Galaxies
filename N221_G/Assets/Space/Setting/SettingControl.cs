@@ -11,6 +11,7 @@ public class SettingControl : MonoBehaviour
     public KeyCode keyCode;
     public void Update()
     {
+        if (DebugInputLock.Locked) return; // 프로젝터 설정창 열림 중 디버그 입력 잠금
         if (Input.GetKeyUp(keyCode)) {
             //파일로 저장
             string data = "{'size':'"+ spriteRenderer.transform.localScale+ "'}";

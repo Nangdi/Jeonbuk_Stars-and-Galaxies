@@ -20,6 +20,7 @@ public class ContentObject : MonoBehaviour
 
     void Update()
     {
+        if (DebugInputLock.Locked) return; // 프로젝터 설정창 열림 중 디버그 입력 잠금
         if (Input.GetKeyDown(KeyCode.V)) {
             Debug.Log("키 입력 테스트");
             Met();

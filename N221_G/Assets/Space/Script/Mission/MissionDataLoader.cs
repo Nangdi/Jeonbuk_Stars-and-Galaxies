@@ -275,4 +275,19 @@ public class MissionDataLoader : MonoBehaviour
         loadCompleteEvent.Invoke(jsonLoadData);
     }
 
+    //MissionText.json 경로
+    public string MissionTextPath {
+        get { return Application.streamingAssetsPath + Path.DirectorySeparatorChar + "MissionText.json"; }
+    }
+
+    /// <summary>
+    /// 현재 jsonLoadData를 MissionText.json에 저장하고 게임에 실시간 재적용
+    /// (설정 패널에서 호출)
+    /// </summary>
+    public void SaveAndApply() {
+        string jsonData = JsonConvert.SerializeObject(jsonLoadData, Formatting.Indented);
+        File.WriteAllText(MissionTextPath, jsonData);
+        SetDataValue();
+    }
+
 }

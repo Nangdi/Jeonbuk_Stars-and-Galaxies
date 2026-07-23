@@ -131,13 +131,15 @@ namespace MultiProjectorWarpSystem
         void Start()
         {
             
-            if (File.Exists(Application.dataPath + "/../default_calibration.json"))	
-            {	
-                LoadCalibration(Application.dataPath + "/../default_calibration.json");	
-            }	
-            else if (defaultCalibrationFile.Length > 0)	
-            {	
-                LoadCalibration(defaultCalibrationFile);	
+            // 초기화 파일 경로를 StreamingAssets 폴더 기준으로 동적으로 지정
+            string initFilePath = Path.Combine(Application.streamingAssetsPath, "default_calibration.json");
+            if (File.Exists(initFilePath))
+            {
+                LoadCalibration(initFilePath);
+            }
+            else if (defaultCalibrationFile.Length > 0)
+            {
+                LoadCalibration(defaultCalibrationFile);
             }
 
             AssignReferences();
@@ -161,12 +163,20 @@ namespace MultiProjectorWarpSystem
         {
             calibrationManager.canvas.enabled = showProjectionWarpGUI;
 
+            // 패널 컨테이너(Dialog)가 씬에 비활성으로 저장돼 있어, 캔버스만 켜면 내용이 보이지 않는 문제 수정.
+            // 캔버스 표시 여부에 맞춰 Dialog 오브젝트도 함께 켜고 끈다.
+            Transform dialog = calibrationManager.canvas.transform.Find("Dialog");
+            if (dialog != null) dialog.gameObject.SetActive(showProjectionWarpGUI);
+
+            // 설정창이 열려 있는 동안 게임 측 키보드 디버그 입력을 잠근다.
+            DebugInputLock.Locked = showProjectionWarpGUI;
+
             if (Application.isPlaying)
             {
                 if (showProjectionWarpGUI) EventSystem.current.sendNavigationEvents = false;
                 else EventSystem.current.sendNavigationEvents = true;
             }
-            
+
         }
 
         public void SetEditMode(ProjectionMesh.MeshEditMode mode)
@@ -663,16 +673,22 @@ namespace MultiProjectorWarpSystem
 
             json += "}";
 
-            var sr = File.CreateText(Application.dataPath + "/../" + path);
+            // 저장 경로도 StreamingAssets 폴더 기준으로 지정 (로드 경로와 일치)
+            string savePath = Path.Combine(Application.streamingAssetsPath, Path.GetFileName(path));
+            Directory.CreateDirectory(Path.GetDirectoryName(savePath));
+            var sr = File.CreateText(savePath);
             sr.WriteLine(json);
             sr.Close();
 
-            Debug.Log(path + " has been saved.");
+            Debug.Log(savePath + " has been saved.");
         }
 
         public bool LoadCalibration(string path)
         {
             if (path == null || path.Length == 0) return false;
+
+            // 로드 경로도 StreamingAssets 기준으로 통일 (저장 경로와 일치 → 파일명만으로 저장/로드 가능)
+            path = Path.Combine(Application.streamingAssetsPath, Path.GetFileName(path));
 
             string json = "";
             try

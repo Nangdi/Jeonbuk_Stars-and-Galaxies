@@ -32,6 +32,7 @@ public class KeyboardManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DebugInputLock.Locked) return; // 프로젝터 설정창 열림 중 디버그 입력 잠금
 
         //UI 배치 시작및 정지(데이터 저장)
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
