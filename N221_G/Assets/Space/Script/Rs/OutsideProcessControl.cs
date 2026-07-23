@@ -1,26 +1,32 @@
-﻿using com.humanc.rsconn;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering.LookDev;
-using static com.humanc.rsconn.ConsoleProcessStart;
-using static OutsideProcessControl;
 
+/// <summary>
+/// 컨트롤러(테이블) RS232 통신 베이스.
+///
+/// [변경] 기존 외부 exe(Rs232_Console_Connection.exe) 브리지를 제거하고,
+/// RS232Package의 네이티브 시리얼 매니저(SerialPortManager)를 통해 송수신한다.
+/// - 포트 설정: StreamingAssets/port.json (JsonManager가 로드) — 컨트롤러(테이블)별 COM/baud
+/// - 송신: SendConsole(index, msg) → SerialPortManager.SendData(index, "E"+msg+"E")
+/// - 수신: SerialPortManager.OnDataReceived → RsReceived 이벤트 → RsControl이 JSON 파싱
+///   (프로토콜/호출부 무변경 → 컨트롤러 펌웨어 변경 불필요)
+///
+/// controllerId(=SendData/OnDataReceived의 index)는 테이블 번호(0부터)와 1:1 대응하도록
+/// port.json의 controllerId를 0~4로 맞춘다.
+/// </summary>
 public class OutsideProcessControl : MonoBehaviour
 {
-    //외부 컨트롤 데이터 정보 
+    //외부 컨트롤 데이터 정보
     public MissionDataLoader missionDataLoader;
 
-    [Header("외부 파일 로드 경로")]
+    [Header("(미사용) 이전 exe 브리지 경로 - 호환용")]
     [SerializeField]
     private string processFile;
 
-    [Header("프로세스 데이터 리스트")]
+    [Header("(미사용) 이전 포트 설정 - 현재 포트 설정은 StreamingAssets/port.json 사용")]
     public List<ProcessData> processDataList;
-
 
     [Header("이벤트 핸들러")]
     public RsEventHandler rsEventHandler = new RsEventHandler();
@@ -37,179 +43,85 @@ public class OutsideProcessControl : MonoBehaviour
         }
     }
 
-    /*public delegate void myEventData(string data);
-    public event myEventData;*/
-
     [System.Serializable]
     public class ProcessData {
-        //외부 프로세스 정보
-        public Process process;
-
-        [Header("프로세스 인덱스 정보")]
+        [Header("컨트롤러(테이블) 인덱스")]
         public int processIndex;
 
         [Header("rs232 comName")]
         public string comName;
 
-        [Header("rs232 bit")]
+        [Header("rs232 baud")]
         public int bit;
 
         public string data = "";
-
     }
 
+    private bool subscribed = false;
 
     //프로그램 실행 컨트롤
     IEnumerator Start() {
         yield return null;
-        ProcessPlay();
-       // yield return StartCoroutine(OnLoop());
+        TrySubscribe();
     }
 
-    //외부 프로세스 실행
-    private void ProcessPlay() {
-        for (int i=0;i< processDataList.Count; i++) {
-
-            ProcessData processData = processDataList[i];
-            
-            //프로세스 실행 컨트롤 
-            processData.process = new Process();
-
-            System.Diagnostics.ProcessStartInfo proinfo = new ProcessStartInfo();
-            proinfo.FileName = Application.streamingAssetsPath + Path.DirectorySeparatorChar + processFile;
-            proinfo.Arguments = " " + processData.comName + " " + processData. bit + " "+ i;
-
-            proinfo.CreateNoWindow = true;
-            proinfo.UseShellExecute = false;
-
-            processData.process.EnableRaisingEvents = false;
-
-            proinfo.RedirectStandardOutput = true;
-            proinfo.RedirectStandardInput = true;
-            proinfo.RedirectStandardError = true;
-
-            processData.process.StartInfo = proinfo;
-            processData.process.OutputDataReceived += DataReceived;
-            processData.process.ErrorDataReceived += Process_ErrorDataReceived;
-            processData.process.Start();
-
-            processData.process.BeginOutputReadLine();
-            processData.processIndex = i;
-            UnityEngine.Debug.Log("[Rs232 Process Start] index : "+ processData.processIndex);
-            //rsConnection.OnResetData();
-
+    //SerialPortManager 수신 이벤트 구독
+    private void TrySubscribe() {
+        if (subscribed) return;
+        if (SerialPortManager.Instance == null) {
+            Debug.LogWarning("[Rs232] SerialPortManager를 찾지 못했습니다. 씬에 RS232 매니저 오브젝트가 있는지 확인하세요.");
+            return;
         }
-
-       
+        SerialPortManager.Instance.OnDataReceived += OnSerialReceived;
+        subscribed = true;
     }
 
-    /*
-    IEnumerator OnLoop() {
-        while (true)
-        {
-            yield return null;
-            UnityEngine.Debug.Log("On Loop]");
-            if (string.IsNullOrEmpty(data)) {
-                RsReceivedData(data);
-                //저장되어있는 데이터 정보 초기화 
-                //data = "";
-            }
-
-        }
-    }*/
-
-    private void Update()
-    {
-        if (!string.IsNullOrEmpty(data))
-        {
-            RsReceivedData(data); 
-           
-            data = "";
-        }
-        
-    }
-    private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
-    {
-        UnityEngine.Debug.Log("[Process_ErrorDataReceived]");
-
-    }
-    public string data;
     /// <summary>
-    /// 리시버 이벤트 핸들러 작동구간 (수정 : 추가적인 작업 필요함)
+    /// 수신 콜백. SerialPortChannel이 메인 스레드로 복귀시켜 호출한다.
+    /// 기존 수신 파이프라인(RsReceived 이벤트 → RsControl JSON 파싱) 그대로 사용.
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="eventArgs"></param>
-    void DataReceived(object sender, DataReceivedEventArgs eventArgs)
-    { 
-        data = eventArgs.Data;
-        
-        //// RsReceivedData(data);
+    private void OnSerialReceived(int controllerId, string data) {
+        RsReceivedData(data);
     }
 
-    public void SendConsole(int index,string message)
+    /// <summary>
+    /// 특정 컨트롤러(테이블)로 명령 송신. 기존 프레임(startData+message+endData, 예: "E1E") 유지.
+    /// </summary>
+    public void SendConsole(int index, string message)
     {
-        if (processDataList[index] != null && processDataList[index].process != null)
+        SerialPortManager mgr = SerialPortManager.Instance;
+        if (mgr == null || !mgr.IsControllerOpen(index))
         {
-            Process process = processDataList[index].process;
-            if (process != null)
-            {
-                //UnityEngine.Debug.Log("전송 데이터 정보"+ processDataList[index].comName);
-                //UnityEngine.Debug.Log("전송 데이터 정보" + message);
-                if (message.Equals("1"))
-                {
-                    UnityEngine.Debug.Log("볼 출력 진행: 인덱스" + index);
-                }
-                else {
-                    UnityEngine.Debug.Log("볼 바람 종료 진행: 인덱스" + index);
-                }
-                string s = missionDataLoader.jsonLoadData.windowsSetting.startData;
-                string e= missionDataLoader.jsonLoadData.windowsSetting.endData;
-                process.StandardInput.WriteLine(s+message+e);
-            }
+            Debug.Log("연결되지 않음 index=" + index);
+            return;
         }
-        else {
-            UnityEngine.Debug.Log("연결되지 않음");
-        }
-       
-    }
 
+        if (message.Equals("1"))
+        {
+            Debug.Log("볼 출력 진행: 인덱스" + index);
+        }
+        else
+        {
+            Debug.Log("볼 바람 종료 진행: 인덱스" + index);
+        }
+
+        string s = missionDataLoader.jsonLoadData.windowsSetting.startData;
+        string e = missionDataLoader.jsonLoadData.windowsSetting.endData;
+        mgr.SendData(index, s + message + e);
+    }
 
     public virtual void ReceiverData(string data) { }
 
-    /*
+    public virtual void OnInit() { }
 
-    private void Update() {
-        UnityEngine.Debug.Log("Data");
-        if (string.IsNullOrEmpty(data))
-        {
-            UnityEngine.Debug.Log(data);
-            data = "";
-        }
-    }*/
+    public string data;
 
-
-    //프로그램 실행 경로 
-    private void ProcessStart() { 
-    
-    }
-
-
-    public virtual void OnInit() { 
-            
-    }
-
-
-    /// <summary>
-    /// 프로세스 종료
-    /// </summary>
-    public void OnApplicationQuit()
+    private void OnDestroy()
     {
-        for (int i = 0; i < processDataList.Count; i++)
+        if (subscribed && SerialPortManager.Instance != null)
         {
-            if (processDataList[i].process != null) {
-                processDataList[i].process.Kill();
-            }
+            SerialPortManager.Instance.OnDataReceived -= OnSerialReceived;
+            subscribed = false;
         }
     }
-
 }
