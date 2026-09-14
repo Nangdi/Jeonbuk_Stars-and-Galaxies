@@ -1,0 +1,5 @@
+{
+    "ports": [
+        { "controllerId": 0, "com": "COM5", "baudLate": 9600, "enabled": true }
+    ]
+}
