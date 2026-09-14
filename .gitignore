@@ -104,3 +104,6 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# 대용량 에셋 배포 패키지 출력 폴더 (GitHub 미업로드, USB/드라이브로 전달)
+/_LargeAssets/

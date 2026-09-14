@@ -141,3 +141,325 @@ InitTestScene*.unity*
 
 # Adobe Illustrator 원본 디자인 파일(런타임 불필요, ~169MB). 내보낸 이미지가 실제 사용됨.
 *.ai
+
+# ============================================================================
+# 2MB 초과 대용량 바이너리(텍스처/폰트/DLL/오디오/PSD 등) — GitHub 대신
+# _LargeAssets/N221_G_LargeAssets.unitypackage 로 배포. .meta 는 유지되어
+# 패키지를 임포트하면 GUID/참조가 그대로 복원됩니다. (씬/프리팹은 제외 안 함)
+# 목록 재생성: 저장소 루트에서 git ls-files 로 2MB 초과 파일을 뽑아 갱신.
+# ============================================================================
+/Assets/AllIn1VfxToolkit/Demo & Assets/Textures Demo/Textures/DistortionMapsCopyNoNormalMap/DistortionCrack4.png
+/Assets/AllIn1VfxToolkit/Demo & Assets/Textures/Distortion Normal Maps/DistortionCrack4.png
+/Assets/AllIn1VfxToolkit/Demo & Assets/Textures/Noise/Noise92.png
+/Assets/AllIn1VfxToolkit/Documentation.pdf
+/Assets/AVProVideo/Docs/AVPro Video - User Manual.pdf
+/Assets/AVProVideo/Runtime/Plugins/Android/guava-31.1-android.jar
+/Assets/AVProVideo/Runtime/Plugins/Android/libs/arm64-v8a/libAudio360.so
+/Assets/AVProVideo/Runtime/Plugins/Android/libs/armeabi-v7a/libAudio360.so
+/Assets/AVProVideo/Runtime/Plugins/Android/libs/x86/libAudio360.so
+/Assets/AVProVideo/Runtime/Plugins/Android/libs/x86_64/libAudio360.so
+/Assets/AVProVideo/Runtime/Plugins/iOS/AVProVideo.framework/AVProVideo
+/Assets/AVProVideo/Runtime/Plugins/tvOS/AVProVideo.framework/AVProVideo
+/Assets/AVProVideo/Runtime/Plugins/Windows/x86/Audio360.dll
+/Assets/AVProVideo/Runtime/Plugins/Windows/x86_64/Audio360.dll
+/Assets/AVProVideo/Runtime/Plugins/WSA/UWP/x86/Audio360.dll
+/Assets/AVProVideo/Runtime/Plugins/WSA/UWP/x86_64/Audio360.dll
+/Assets/Black hole/Assets/Textures/xlarge_web.png
+/Assets/Font/BlackHanSans-Regular SDF.asset
+/Assets/Font/NanumSquareNeo-aLt SDF.asset
+/Assets/Font/NanumSquareNeo-aLt SDF_UIToolkit.asset
+/Assets/Font/NanumSquareNeo-aLt.ttf
+/Assets/Font/RoundCond.ttf
+/Assets/Font/고고라운드.asset
+/Assets/Font/산돌(격동고딕)SDF.asset
+/Assets/GPUInstancer/Demos/AddModifyTerrainsRuntime/Textures/Terrain_Grass_02_a.psd
+/Assets/GPUInstancer/Demos/AddModifyTerrainsRuntime/Textures/veg_grass_01_d.tif
+/Assets/GPUInstancer/Demos/DetailInstancing/Terrains/DetailInstancingDemoTerrain.asset
+/Assets/GPUInstancer/Demos/DetailInstancing/Textures/Building_01_n.tif
+/Assets/GPUInstancer/Demos/DetailInstancing/Textures/Mountain_Muddy_a.psd
+/Assets/GPUInstancer/Demos/DetailInstancing/Textures/SunsetSkyboxHDR.hdr
+/Assets/GPUInstancer/Demos/DetailInstancing/Textures/Terrain_Grass_02_a.psd
+/Assets/GPUInstancer/Demos/DetailInstancing/Textures/Terrain_Grass_02_n.psd
+/Assets/GPUInstancer/Demos/DetailInstancing/Textures/Terrain_Grass_03_a.psd
+/Assets/GPUInstancer/Demos/DetailInstancing/Textures/Terrain_Grass_03_n.psd
+/Assets/GPUInstancer/Demos/DetailInstancing/Textures/Terrain_Grass_04_a.psd
+/Assets/GPUInstancer/Demos/PrefabInstancing/Textures/Skybox/PurpleNebula/nebula_up.png
+/Assets/GPUInstancer/Demos/TreeInstancing/Terrains/TreeInstancingDemoTerrain.asset
+/Assets/Nebula Pack/Skybox Blue Nebula/images/BlueNebula2048_back.tif
+/Assets/Nebula Pack/Skybox Blue Nebula/images/BlueNebula2048_bottom.tif
+/Assets/Nebula Pack/Skybox Blue Nebula/images/BlueNebula2048_front.tif
+/Assets/Nebula Pack/Skybox Blue Nebula/images/BlueNebula2048_left.tif
+/Assets/Nebula Pack/Skybox Blue Nebula/images/BlueNebula2048_right.tif
+/Assets/Nebula Pack/Skybox Blue Nebula/images/BlueNebula2048_top.tif
+/Assets/Nebula Pack/Skybox Dark Nebula/Textures/Dark Nebula Back TEX.png
+/Assets/Nebula Pack/Skybox Dark Nebula/Textures/Dark Nebula Bottom TEX.png
+/Assets/Nebula Pack/Skybox Dark Nebula/Textures/Dark Nebula Front TEX.png
+/Assets/Nebula Pack/Skybox Dark Nebula/Textures/Dark Nebula Left TEX.png
+/Assets/Nebula Pack/Skybox Dark Nebula/Textures/Dark Nebula Right TEX.png
+/Assets/Nebula Pack/Skybox Dark Nebula/Textures/Dark Nebula Top TEX.png
+/Assets/Nebula Pack/Skybox Green Nebula/Textures/Green Nebula Back TEX.png
+/Assets/Nebula Pack/Skybox Green Nebula/Textures/Green Nebula Bottom TEX.png
+/Assets/Nebula Pack/Skybox Green Nebula/Textures/Green Nebula Front TEX.png
+/Assets/Nebula Pack/Skybox Green Nebula/Textures/Green Nebula Left TEX.png
+/Assets/Nebula Pack/Skybox Green Nebula/Textures/Green Nebula Right TEX.png
+/Assets/Nebula Pack/Skybox Green Nebula/Textures/Green Nebula Top TEX.png
+/Assets/Nebula Pack/Skybox Purple Nebula/images/PurpleNebula2048_back.tif
+/Assets/Nebula Pack/Skybox Purple Nebula/images/PurpleNebula2048_bottom.tif
+/Assets/Nebula Pack/Skybox Purple Nebula/images/PurpleNebula2048_front.tif
+/Assets/Nebula Pack/Skybox Purple Nebula/images/PurpleNebula2048_left.tif
+/Assets/Nebula Pack/Skybox Purple Nebula/images/PurpleNebula2048_right.tif
+/Assets/Nebula Pack/Skybox Purple Nebula/images/PurpleNebula2048_top.tif
+/Assets/OpenCVForUnity/Plugins/Windows/x86/opencvforunity.dll
+/Assets/OpenCVForUnity/Plugins/Windows/x86_64/opencvforunity.dll
+/Assets/OpenCVForUnity/ReadMe.pdf
+/Assets/OpenCVForUnity/StreamingAssets/768x576_mjpeg.mjpeg
+/Assets/OpenCVForUnity/StreamingAssets/text/OCRHMM_knn_model_data.xml.gz
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Atmosphere/Required/Shaders/SGT_Atmosphere_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Aurora/Required/Shaders/SGT_Aurora_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Backdrop/Required/Shaders/SGT_Backdrop_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Belt/Required/Shaders/SGT_Belt_Additive_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Belt/Required/Shaders/SGT_Belt_Opaque_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Cloudsphere/Examples/Textures/Cloudsphere1.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Cloudsphere/Required/Shaders/SGT_Cloudsphere_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Jovian/Examples/Textures/Marble_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Jovian/Required/Shaders/SGT_Jovian_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/LightAndShadow/Required/Shaders/SGT_ShadowLayer_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/Textures/Planet_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/Textures/Planet_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/Textures/Planet_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/Textures/PlanetDetail1.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/Textures/PlanetDetail11_2.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/Textures/PlanetDetail14.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/Textures/PlanetDetail16.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/Textures/PlanetDetail2.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/Textures/PlanetDetail8.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Required/Shaders/SGT_Planet_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Prominence/Required/Shaders/SGT_Prominence_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Ring/Examples/Textures/RingDetail2.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Ring/Examples/Textures/RingDetail3.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Ring/Required/Shaders/SGT_Ring_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Examples/Models/Asteroid_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Examples/Shaders/SGT_Solid_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Examples/Textures/Rocky_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Examples/Textures/Rocky_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Extras/Meshes/Geosphere100.dae
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Extras/Meshes/Geosphere50.dae
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Extras/Textures/Noise3D.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Singularity/Required/Shaders/SGT_BlackHole_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Singularity/Required/Shaders/SGT_Lens_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Spacetime/Required/Shaders/SGT_Spacetime_Additive_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Star/Required/Shaders/SGT_Star_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Starfield/Required/Shaders/SGT_Starfield_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Starfield/Required/Shaders/SGT_StarfieldInfinite_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Terrain/Examples/Textures/Shore_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Terrain/Required/Shaders/SGT_TerrainOcean_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Terrain/Required/Shaders/SGT_TerrainPlanet_Bundle.asset
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien1_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien1_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien2_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien2_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien2_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien3_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien3_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien3_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien4_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien4_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien5_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien5_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Alien5_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren1_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren1_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren1_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren2_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren2_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren3_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren3_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren4_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren4_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren4_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren5_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Barren5_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Desert1_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Desert1_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Desert2_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Desert2_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Desert2_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Desert3_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Desert3_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Desert4_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Desert4_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen1_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen1_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen2_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen2_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen2_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen3_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen3_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen4_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen4_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen4_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen5_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Frozen5_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Lava1_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Lava1_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Lava1_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Lava2_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Lava2_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Lava2_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Lava3_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Lava3_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Lava3_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Tropical1_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Tropical1_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Tropical1_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Tropical2_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Tropical2_Height.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Tropical2_Normal.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Tropical3_Albedo.png
+/Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/PLANETS/Textures/Tropical3_Normal.png
+/Assets/ProceduralPlanet/Materials/SpaceCubeMap.cubemap
+/Assets/ProjectorSimulator/TestScene/Images/BigBuckBunny_HQ.png
+/Assets/Resources/수정사항리소스/20230424/G-별과 은하의 탄생-추가/Links/shutterstock_1060693408.mov_20230424_151308.243.psd
+/Assets/Resources/수정사항리소스/20230424/배경영상 커스텀.fla
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-Black SDF.asset
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-Black.ttf
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-Bold SDF.asset
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-Bold.ttf
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-ExtraBold SDF.asset
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-ExtraBold.ttf
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-ExtraLight SDF.asset
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-ExtraLight.ttf
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-Light SDF.asset
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-Light.ttf
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-Medium SDF.asset
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-Medium.ttf
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-Regular SDF.asset
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-Regular.ttf
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-SemiBold SDF.asset
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-SemiBold.ttf
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-Thin.ttf
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-VariableFont_wght SDF.asset
+/Assets/RS232Package/10.Font/defaultFont/NotoSansKR-VariableFont_wght.ttf
+/Assets/Samples/Timeline/1.6.4/Customization Samples/Demo/Animation/Staff_vs_Staff_OneFight_MaleA.fbx
+/Assets/Samples/Timeline/1.6.4/Customization Samples/Demo/Animation/Staff_vs_Staff_OneFight_MaleB.fbx
+/Assets/Samples/Universal RP/12.1.7/URP Package Samples/LensFlares/Textures/Ring.png
+/Assets/Samples/Universal RP/12.1.7/URP Package Samples/Shaders/Lit/Textures/Coins_Base.png
+/Assets/Samples/Universal RP/12.1.7/URP Package Samples/Shaders/Lit/Textures/Coins_Metallic.png
+/Assets/Samples/Universal RP/12.1.7/URP Package Samples/Shaders/Lit/Textures/Coins_Normal.png
+/Assets/See-through Shader/Sample Models/MedievalHouse/medievalHouse.fbm/HouseWall-albedo.png
+/Assets/See-through Shader/Sample Models/MedievalHouse/medievalHouse.fbm/HouseWall-normal.png
+/Assets/See-through Shader/Sample Models/PineTree/pine02.fbx
+/Assets/See-through Shader/Sample Models/PineTree/pineBark-albedo.png
+/Assets/See-through Shader/Sample Models/PineTree/pineBark-normal.png
+/Assets/See-through Shader/Sample Models/Standard Assets/Characters/ThirdPersonCharacter/Animation/HumanoidCrouch.fbx
+/Assets/See-through Shader/Sample Textures/DissolveTextures/tiles.png
+/Assets/See-through Shader/See_throughShaderDocumentation_v1_7_8.pdf
+/Assets/Space/Resources/GUI/G-별과 은하의 탄생.skp
+/Assets/Space/Resources/GUI/Links/ab02.psd
+/Assets/Space/Resources/GUI/Links/Enscape_2023-01-16-17-14-09.png
+/Assets/Space/Resources/GUI/Links/shutterstock_309664820.jpg
+/Assets/Space/Resources/GUI/원본/1x/10.png
+/Assets/Space/Resources/GUI/제작리소스파일/영상제작 리소스/1x/10.png
+/Assets/Space/Resources/Sound/배경음/Future Glider - Brian Bolger.mp3
+/Assets/Space/Resources/Sound/배경음/Icelandic Arpeggios - DivKid.mp3
+/Assets/Space/Resources/Sound/배경음/Sun Awakening - Futuremono.mp3
+/Assets/Space/Resources/현장공간데이터/전시대.fbx
+/Assets/Space/Resources/현장공간데이터/전시대.skp
+/Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+/Assets/UETools/Magic_Particle_Effects/Textures/Aura_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Aura_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Bubbles_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Bubbles_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Bubbles_03.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Cell_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Cell_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Cell_03.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Cell_04.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Cell_05.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Cell_06.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Cell_07.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Color_Cells_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Color_Circles_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Color_Ring_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Color_Ring_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Color_Ring_03.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Color_Ring_04.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Color_Stars_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Cosmic_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Cosmic_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Fire_Flower_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Fire_Flower_03.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Fire_Ring_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Fire_Water_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Flame_Lights_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Flame_Ring_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Flame_Ring_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Flame_Ring_03.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Flames_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Flames_03.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Flames_05.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Frozen_Ring_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Frozen_Ring_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Frozen_Ring_03.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Halo_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Lava_Ring_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Light_Ring_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Lights_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Lights_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Lights_03.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Aura_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Aura_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Bubble_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Ring_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Ring_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Ring_04.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Ring_05.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Ring_06.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Ring_07.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Ring_08.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Ring_09.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Ring_10.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Ring_11.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Magic_Ring_12.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Mystery_03.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Sphere_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Sphere_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Spikes_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Star_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Star_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Star_03.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Star_04.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Star_05.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Star_06.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Star_07.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Sun_Fire_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Sunburst_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Sunburst_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Toxic_Aura_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Toxic_Cloud_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Toxic_Ring_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Water_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Water_03.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Water_04.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Water_05.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Water_06.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Water_07.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Water_09.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Whirl_01.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Whirl_02.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Whirl_04.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Whirl_05.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Whirl_06.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Whirl_07.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Whirl_08.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Whirl_09.png
+/Assets/UETools/Magic_Particle_Effects/Textures/Wood_01.png
+/Packages/com.humanc.font@0.0.1/Runtime/Font/NanumSquareNeo/NanumSquareNeo-aLt.ttf
+/Packages/com.humanc.font@0.0.1/Runtime/Font/NanumSquareNeo/NanumSquareNeo-bRg.ttf
+/Packages/com.humanc.font@0.0.1/Runtime/Font/NanumSquareNeo/NanumSquareNeo-cBd.ttf
+/Packages/com.humanc.font@0.0.1/Runtime/Font/NanumSquareNeo/NanumSquareNeo-dEb.ttf
+/Packages/com.humanc.font@0.0.1/Runtime/Font/NanumSquareNeo/NanumSquareNeo-eHv.ttf
+/Packages/com.humanc.font@0.0.1/Runtime/Font/NotoSerifCJKkr-Bold SDF.asset
+/Packages/com.humanc.font@0.0.1/Runtime/Font/NotoSerifCJKkr-Bold.otf
+/Packages/com.humanc.font@0.0.1/Runtime/Font/Sandoll GothicNeo1 07 Bold SDF.asset
+/가운데 영상 이미지시퀀스/G-별과 은하의 탄생-추가/Links/shutterstock_1060693408.mov_20230424_151308.243.psd
