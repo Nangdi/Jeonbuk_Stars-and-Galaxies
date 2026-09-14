@@ -1,9 +1,5 @@
 {
     "ports": [
-        { "controllerId": 0, "com": "COM5", "baudLate": 9600, "enabled": true },
-        { "controllerId": 1, "com": "COM6", "baudLate": 9600, "enabled": true },
-        { "controllerId": 2, "com": "COM7", "baudLate": 9600, "enabled": true },
-        { "controllerId": 3, "com": "COM8", "baudLate": 9600, "enabled": true },
-        { "controllerId": 4, "com": "COM9", "baudLate": 9600, "enabled": true }
+        { "controllerId": 0, "com": "COM5", "baudLate": 9600, "enabled": true }
     ]
 }

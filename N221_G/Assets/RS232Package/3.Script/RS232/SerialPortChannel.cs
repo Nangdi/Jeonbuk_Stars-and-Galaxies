@@ -46,6 +46,7 @@ public class SerialPortChannel
         {
             serialPort = new SerialPort(Com, BaudLate, Parity.None, 8, StopBits.One);
             serialPort.Encoding = Encoding.ASCII; // 장치 규약이 ASCII 가정. 변경 시 송/수신 양쪽 함께 변경 필요
+            serialPort.NewLine = "\r\n"; // 송신(WriteLine) 종결자를 기존 exe 브리지와 동일하게 CR+LF로 맞춤
             Debug.Log($"[Ctrl {ControllerId}] 포트연결시도 ({Com})");
             serialPort.Open();
         }

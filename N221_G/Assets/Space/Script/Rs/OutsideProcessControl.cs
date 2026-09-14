@@ -4,17 +4,15 @@ using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
-/// 컨트롤러(테이블) RS232 통신 베이스.
+/// 컨트롤러 RS232 통신 베이스.
 ///
-/// [변경] 기존 외부 exe(Rs232_Console_Connection.exe) 브리지를 제거하고,
-/// RS232Package의 네이티브 시리얼 매니저(SerialPortManager)를 통해 송수신한다.
-/// - 포트 설정: StreamingAssets/port.json (JsonManager가 로드) — 컨트롤러(테이블)별 COM/baud
-/// - 송신: SendConsole(index, msg) → SerialPortManager.SendData(index, "E"+msg+"E")
-/// - 수신: SerialPortManager.OnDataReceived → RsReceived 이벤트 → RsControl이 JSON 파싱
-///   (프로토콜/호출부 무변경 → 컨트롤러 펌웨어 변경 불필요)
-///
-/// controllerId(=SendData/OnDataReceived의 index)는 테이블 번호(0부터)와 1:1 대응하도록
-/// port.json의 controllerId를 0~4로 맞춘다.
+/// [구성] 단일 컨트롤러(포트 1개)가 5개 테이블을 모두 담당한다.
+/// - 포트 설정: StreamingAssets/port.json (controllerId 0, COM 1개)
+/// - 송신: SendConsole(index, msg) → 단일 포트로 "E{index}{cmd}E"(예: E31E) 전송.
+///         프레임에 테이블 번호(index, 0~4)를 포함하므로 컨트롤러가 어느 테이블인지 구분 가능.
+/// - 수신: 컨트롤러가 JSON {Index,Data}로 어느 테이블 이벤트인지 담아 보냄.
+///         SerialPortManager.OnDataReceived → RsReceived 이벤트 → RsControl이 JSON 파싱.
+///         (어느 포트로 오든 JSON Index로 테이블을 결정하므로 단일 포트로 동작)
 /// </summary>
 public class OutsideProcessControl : MonoBehaviour
 {
@@ -84,13 +82,16 @@ public class OutsideProcessControl : MonoBehaviour
         RsReceivedData(data);
     }
 
+    // 단일 컨트롤러(포트) 방식: 모든 송신을 이 controllerId의 포트로 보낸다. (port.json의 controllerId와 일치)
+    private const int SingleControllerId = 0;
+
     /// <summary>
-    /// 특정 컨트롤러(테이블)로 명령 송신. 기존 프레임(startData+message+endData, 예: "E1E") 유지.
+    /// 테이블(index)로 명령 송신. 단일 컨트롤러 방식이므로 프레임에 테이블 번호를 포함한다: E{index}{cmd}E (예: E31E).
     /// </summary>
     public void SendConsole(int index, string message)
     {
         SerialPortManager mgr = SerialPortManager.Instance;
-        if (mgr == null || !mgr.IsControllerOpen(index))
+        if (mgr == null || !mgr.IsControllerOpen(SingleControllerId))
         {
             Debug.Log("연결되지 않음 index=" + index);
             return;
@@ -107,7 +108,8 @@ public class OutsideProcessControl : MonoBehaviour
 
         string s = missionDataLoader.jsonLoadData.windowsSetting.startData;
         string e = missionDataLoader.jsonLoadData.windowsSetting.endData;
-        mgr.SendData(index, s + message + e);
+        // 프레임에 테이블 번호(index) 포함 → 단일 컨트롤러가 어느 테이블인지 구분. 예: "E" + "3" + "1" + "E" = "E31E"
+        mgr.SendData(SingleControllerId, s + index.ToString() + message + e);
     }
 
     public virtual void ReceiverData(string data) { }
