@@ -29,6 +29,12 @@ public class GameSettingsPanel : MonoBehaviour
 
     private int builtFontSize = -1;
     private bool show = false;
+
+    /// <summary>
+    /// 패널이 열려 있는지. IMGUI 입력칸은 Input.GetKey 를 소비하지 않으므로,
+    /// 다른 키보드 조작 스크립트가 이 값을 보고 입력을 멈춰야 한다.
+    /// </summary>
+    public bool IsOpen { get { return show; } }
     private Vector2 scroll;
     private Font uiFont;
     private string status = "";
