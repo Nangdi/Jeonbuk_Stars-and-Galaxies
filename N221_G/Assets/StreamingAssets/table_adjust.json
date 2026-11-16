@@ -1,0 +1,39 @@
+{
+    "tables": [
+        {
+            "label": "0",
+            "angleOffset": 0.0,
+            "radiusOffset": 0.0,
+            "rotationOffset": 0.0,
+            "scaleMultiplier": 1.0
+        },
+        {
+            "label": "1",
+            "angleOffset": 0.0,
+            "radiusOffset": 0.0,
+            "rotationOffset": 0.0,
+            "scaleMultiplier": 1.0
+        },
+        {
+            "label": "2",
+            "angleOffset": 0.0,
+            "radiusOffset": 0.0,
+            "rotationOffset": 0.0,
+            "scaleMultiplier": 1.0
+        },
+        {
+            "label": "3",
+            "angleOffset": 0.0,
+            "radiusOffset": 0.0,
+            "rotationOffset": 0.0,
+            "scaleMultiplier": 1.0
+        },
+        {
+            "label": "4",
+            "angleOffset": 0.0,
+            "radiusOffset": 0.0,
+            "rotationOffset": 0.0,
+            "scaleMultiplier": 1.0
+        }
+    ]
+}

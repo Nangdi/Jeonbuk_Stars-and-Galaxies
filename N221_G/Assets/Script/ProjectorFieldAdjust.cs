@@ -13,6 +13,9 @@ using UnityEngine;
 /// 3) 원 마스크 바깥 가림 : 줌아웃하면 화면이 원 마스크(영역마스크)보다 커져서 원 바깥이
 ///                        그대로 보인다. 마스크 바깥의 검은 테두리(외각) 4장을 현재 화면 크기에
 ///                        맞춰 자동으로 키워서 원 밖으로는 아무것도 나오지 않게 한다.
+/// 4) 화면 늘리기/줄이기 : 출력 영상을 가로/세로 따로 늘리거나 줄인다. 외부 블렌딩 장비가
+///                        입력(예: 1920x2160)을 블렌딩된 영역(1:1)에 맞춰 한쪽 방향으로 눌러
+///                        내보낼 때, 그만큼 미리 반대로 늘려서 벽에서 정원이 되게 맞춘다.
 ///
 /// 보정값은 StreamingAssets/field_adjust.json 에 저장되고 다음 실행 때 자동으로 복원된다.
 /// </summary>
@@ -64,6 +67,14 @@ public class ProjectorFieldAdjust : MonoBehaviour
     public float centerStep = 0.2f;
     public float centerFineStep = 0.02f;
 
+    [Header("화면 늘리기/줄이기 (1 = 원래 비율)")]
+    [Tooltip("x = 가로 배율, y = 세로 배율. 1보다 크면 늘어나고 작으면 줄어든다.")]
+    public Vector2 stretch = Vector2.one;
+    public float minStretch = 0.5f;
+    public float maxStretch = 2f;
+    public float stretchStep = 0.01f;
+    public float stretchFineStep = 0.001f;
+
     [Header("원이 화면 밖으로 잘리지 않게")]
     [Tooltip("투사 영역보다 원이 크면 좌우(또는 상하)가 일자로 잘린다.\n" +
              "켜두면 원 전체가 들어오는 최소 배율 아래로는 줌인되지 않게 자동으로 막는다.")]
@@ -85,6 +96,8 @@ public class ProjectorFieldAdjust : MonoBehaviour
     public Button moveDown = new Button { key = KeyCode.DownArrow };
     public Button moveLeft = new Button { key = KeyCode.LeftArrow };
     public Button moveRight = new Button { key = KeyCode.RightArrow };
+    [Tooltip("이 키를 누른 채 방향키 = 화면 늘리기/줄이기 (↑↓ 세로, ←→ 가로)")]
+    public KeyCode stretchModifier = KeyCode.LeftControl;
     [Tooltip("보정값을 파일로 저장")]
     public KeyCode saveKey = KeyCode.F8;
     [Tooltip("보정값을 초기값으로 되돌린다(저장하지는 않는다)")]
@@ -96,6 +109,9 @@ public class ProjectorFieldAdjust : MonoBehaviour
 
     // 기준값 — 최초 1회 캐시해 두고 리셋할 때 되돌린다.
     float defaultZoom;
+    // 실제로 화면에 적용된 배율. zoom 은 저장된/요청한 값이고, 원이 잘리지 않게 하는 최소 배율에
+    // 걸리면 이 값만 올라간다. (예전 파일의 배율이 늘리기를 맞추기 전에 잘려서 사라지지 않게)
+    float appliedZoom;
     Vector3 sourceCamerasBasePosition;
     bool baseCaptured;
     bool applyRequested;
@@ -106,11 +122,14 @@ public class ProjectorFieldAdjust : MonoBehaviour
         public float zoom;
         public float centerOffsetX;
         public float centerOffsetY;
+        public float stretchX = 1f;
+        public float stretchY = 1f;
     }
 
     public static string SavePath
     {
-        get { return Path.Combine(Application.streamingAssetsPath, SaveFileName); }
+        // persistentDataPath (없으면 StreamingAssets 기본값을 복사해 옴). 빌드를 덮어써도 현장 보정값 유지
+        get { return ConfigPath.Get(SaveFileName); }
     }
 
     Transform SourceCamerasRoot
@@ -164,11 +183,15 @@ public class ProjectorFieldAdjust : MonoBehaviour
         // 워프 시스템이 출력 카메라를 다시 만들면 컬링 설정이 초기화되므로 매 프레임 확인한다(카메라 2대, 비용 무시 가능).
         ApplyProjectionCameraCulling();
 
+        // 캘리브레이션을 다시 불러오면 UpdateSourceCameras 가 직교 크기를 바꾸므로 늘리기 행렬도 매 프레임 다시 맞춘다.
+        ApplyStretch();
+
         // 캘리브레이션 파일을 다시 불러오면 배율이 밖에서 바뀐다.
         // 그 값을 그대로 받아들이고 마스크 테두리만 다시 맞춘다.
-        if (!Mathf.Approximately(warpSystem.orthographicSizeScale, zoom))
+        if (!Mathf.Approximately(warpSystem.orthographicSizeScale, appliedZoom))
         {
             zoom = warpSystem.orthographicSizeScale;
+            appliedZoom = zoom;
             if (autoFitSurround) FitSurround();
         }
 
@@ -183,13 +206,26 @@ public class ProjectorFieldAdjust : MonoBehaviour
 
         bool changed = false;
 
-        if (Repeat(zoomIn)) { zoom -= zStep; changed = true; }   // 줌인 = 더 좁게 보기 = 배율 감소
-        if (Repeat(zoomOut)) { zoom += zStep; changed = true; }
+        // 줌 키는 지금 화면에 보이는 배율에서 출발한다(최소 배율에 걸려 있던 요청값은 버린다).
+        if (Repeat(zoomIn)) { zoom = appliedZoom - zStep; changed = true; }   // 줌인 = 더 좁게 보기 = 배율 감소
+        if (Repeat(zoomOut)) { zoom = appliedZoom + zStep; changed = true; }
+
+        // Ctrl + 방향키 = 화면 늘리기/줄이기. 이때는 중심 이동/테이블 조정으로 새어 나가지 않는다.
+        bool stretchMode = IsStretchModifierHeld;
+        float sStep = fine ? stretchFineStep : stretchStep;
+
+        if (stretchMode)
+        {
+            if (Repeat(moveUp)) { stretch.y += sStep; changed = true; }
+            if (Repeat(moveDown)) { stretch.y -= sStep; changed = true; }
+            if (Repeat(moveRight)) { stretch.x += sStep; changed = true; }
+            if (Repeat(moveLeft)) { stretch.x -= sStep; changed = true; }
+        }
 
         // 테이블 조정 모드에서는 방향키와 초기화키를 UserTableFieldAdjust 가 가져간다.
         bool tableMode = tableAdjust != null && tableAdjust.HasSelection;
 
-        if (!tableMode)
+        if (!tableMode && !stretchMode)
         {
             if (Repeat(moveUp)) { centerOffset.y += cStep; changed = true; }
             if (Repeat(moveDown)) { centerOffset.y -= cStep; changed = true; }
@@ -201,6 +237,7 @@ public class ProjectorFieldAdjust : MonoBehaviour
         {
             zoom = defaultZoom;
             centerOffset = Vector2.zero;
+            stretch = Vector2.one;
             changed = true;
             Notify("Field adjust reset");
         }
@@ -208,8 +245,9 @@ public class ProjectorFieldAdjust : MonoBehaviour
         if (changed)
         {
             Apply();
-            Notify(string.Format("Zoom {0:0.000}   Center {1:0.00}, {2:0.00}",
-                zoom, centerOffset.x, centerOffset.y));
+            Notify(string.Format("Zoom {0:0.000}{5}   Center {1:0.00}, {2:0.00}   Stretch W {3:0.0}% H {4:0.0}%",
+                appliedZoom, centerOffset.x, centerOffset.y, stretch.x * 100f, stretch.y * 100f,
+                Mathf.Approximately(zoom, appliedZoom) ? "" : string.Format(" (saved {0:0.000}, held by circle fit)", zoom)));
         }
 
         if (saveKey != KeyCode.None && Input.GetKeyDown(saveKey))
@@ -229,6 +267,7 @@ public class ProjectorFieldAdjust : MonoBehaviour
         zoom = Safe(zoom, defaultZoom > 0f ? defaultZoom : 1f);
         centerOffset.x = Safe(centerOffset.x, 0f);
         centerOffset.y = Safe(centerOffset.y, 0f);
+        stretch = ClampStretch(stretch);
 
         float lowerZoom = Mathf.Max(0.001f, minZoom);
         if (keepCircleInsideFrame)
@@ -237,12 +276,15 @@ public class ProjectorFieldAdjust : MonoBehaviour
             if (fit > 0f) lowerZoom = Mathf.Max(lowerZoom, fit);
         }
 
-        zoom = Mathf.Clamp(zoom, lowerZoom, Mathf.Max(lowerZoom, maxZoom));
+        // 요청값(zoom)은 고정 한계로만 자르고, 원 맞춤 최소 배율은 적용값에만 건다.
+        zoom = Mathf.Clamp(zoom, Mathf.Max(0.001f, minZoom), Mathf.Max(minZoom, maxZoom));
+        appliedZoom = Mathf.Clamp(zoom, lowerZoom, Mathf.Max(lowerZoom, maxZoom));
         centerOffset.x = Mathf.Clamp(centerOffset.x, -centerRange, centerRange);
         centerOffset.y = Mathf.Clamp(centerOffset.y, -centerRange, centerRange);
 
-        warpSystem.orthographicSizeScale = zoom;
+        warpSystem.orthographicSizeScale = appliedZoom;
         warpSystem.UpdateSourceCameras();
+        ApplyStretch();
 
         Transform root = SourceCamerasRoot;
         if (root != null && baseCaptured)
@@ -252,6 +294,56 @@ public class ProjectorFieldAdjust : MonoBehaviour
 
         if (autoFitSurround) FitSurround();
         ApplyProjectionCameraCulling();
+    }
+
+    /// <summary>
+    /// Source Camera 투영 행렬을 가로/세로 따로 조절해 출력 영상을 늘리거나 줄인다.
+    /// 배율이 1 이면 원래 투영으로 되돌린다. 워프 메시/캘리브레이션 값은 건드리지 않는다.
+    /// </summary>
+    public void ApplyStretch()
+    {
+        if (warpSystem == null || warpSystem.sourceCameras == null) return;
+
+        stretch = ClampStretch(stretch);
+        bool identity = Mathf.Approximately(stretch.x, 1f) && Mathf.Approximately(stretch.y, 1f);
+
+        for (int i = 0; i < warpSystem.sourceCameras.Count; i++)
+        {
+            Camera cam = warpSystem.sourceCameras[i];
+            if (cam == null) continue;
+
+            if (identity || !cam.orthographic)
+            {
+                cam.ResetProjectionMatrix();
+                continue;
+            }
+
+            // 보이는 월드 범위를 배율로 나누면 화면에서는 그만큼 늘어난다.
+            float halfHeight = cam.orthographicSize / stretch.y;
+            float halfWidth = cam.orthographicSize * cam.aspect / stretch.x;
+            cam.projectionMatrix = Matrix4x4.Ortho(-halfWidth, halfWidth, -halfHeight, halfHeight,
+                cam.nearClipPlane, cam.farClipPlane);
+        }
+    }
+
+    Vector2 ClampStretch(Vector2 value)
+    {
+        float lo = Mathf.Max(0.01f, minStretch);
+        float hi = Mathf.Max(lo, maxStretch);
+        return new Vector2(
+            Mathf.Clamp(Safe(value.x, 1f), lo, hi),
+            Mathf.Clamp(Safe(value.y, 1f), lo, hi));
+    }
+
+    bool IsStretchModifierHeld
+    {
+        get
+        {
+            if (stretchModifier == KeyCode.None) return false;
+            if (Input.GetKey(stretchModifier)) return true;
+            // 왼쪽 Ctrl 을 지정했으면 오른쪽 Ctrl 도 같이 받는다.
+            return stretchModifier == KeyCode.LeftControl && Input.GetKey(KeyCode.RightControl);
+        }
     }
 
     /// <summary>
@@ -313,6 +405,11 @@ public class ProjectorFieldAdjust : MonoBehaviour
                 break;
         }
 
+        // 늘린 방향은 그만큼 보이는 범위가 좁아진다.
+        Vector2 s = ClampStretch(stretch);
+        halfWidthPerZoom /= s.x;
+        halfHeightPerZoom /= s.y;
+
         float tightest = Mathf.Min(halfWidthPerZoom, halfHeightPerZoom);
         if (tightest <= 0f) return 0f;
 
@@ -329,13 +426,21 @@ public class ProjectorFieldAdjust : MonoBehaviour
         if (surroundBars.Length < 4) return;
         for (int i = 0; i < 4; i++) if (surroundBars[i] == null) return;
 
-        // 원 마스크 사각형의 반지름(로컬 단위). 테두리는 이 사각형 바로 바깥부터 시작한다.
-        float inner = circleMask.rect.width * 0.5f * Mathf.Abs(circleMask.localScale.x);
+        // 월드 → 테두리가 속한 캔버스의 로컬 단위
+        float scale = Mathf.Abs(surroundBars[0].parent != null ? surroundBars[0].parent.lossyScale.x : surroundBars[0].lossyScale.x);
+        if (scale < 1e-6f) return;
+
+        // 원 마스크 사각형의 반지름(테두리 부모의 로컬 단위). 테두리는 이 사각형 바로 바깥부터 시작한다.
+        float inner = CircleRadiusWorld / scale;
         if (inner <= 0f) return;
+
+        // 테두리 부모(외각)가 원 중심과 어긋나 있어도 테두리는 원 중심에 맞춘다.
+        // 어긋난 만큼 그대로 두면 한쪽 테두리가 원을 파고들어 윗부분 등이 일자로 잘린다.
+        Vector2 center = GetCircleCenterInBarSpace();
 
         // 소스 카메라가 보는 월드 범위 (수직 배열이면 카메라 대수만큼 세로로 쌓인다)
         int cameraCount = Mathf.Max(1, warpSystem.projectorCount);
-        float halfHeightWorld = warpSystem.viewportSize * zoom;
+        float halfHeightWorld = warpSystem.viewportSize * appliedZoom;
         float aspect = warpSystem.renderTextureSize.y > 0f
             ? warpSystem.renderTextureSize.x / warpSystem.renderTextureSize.y
             : 1.6f;
@@ -352,22 +457,37 @@ public class ProjectorFieldAdjust : MonoBehaviour
                 break;
         }
 
+        // 줄인 방향은 그만큼 더 넓은 월드가 보이므로 테두리도 더 크게 덮어야 한다.
+        Vector2 s = ClampStretch(stretch);
+        halfWidthWorld /= s.x;
+        halfHeightWorld /= s.y;
+
         float neededWorld = Mathf.Max(halfWidthWorld, halfHeightWorld) * Mathf.Max(1f, surroundMargin)
                             + centerRange + centerOffset.magnitude;
 
-        // 월드 → 테두리가 속한 캔버스의 로컬 단위
-        float scale = Mathf.Abs(surroundBars[0].lossyScale.x);
-        if (scale < 1e-6f) return;
-        float outer = Mathf.Max(neededWorld / scale, inner * 1.05f);
+        float outer = Mathf.Max(neededWorld / scale + center.magnitude, inner * 1.05f);
 
         float band = outer - inner;
         float bandCenter = (outer + inner) * 0.5f;
 
         // 상 / 하 : 좌우 끝까지 덮어 모서리까지 처리한다.  좌 / 우 : 사각형 높이만큼만.
-        SetBar(0, new Vector2(0f, bandCenter), new Vector2(outer * 2f, band));
-        SetBar(1, new Vector2(0f, -bandCenter), new Vector2(outer * 2f, band));
-        SetBar(2, new Vector2(-bandCenter, 0f), new Vector2(band, inner * 2f));
-        SetBar(3, new Vector2(bandCenter, 0f), new Vector2(band, inner * 2f));
+        SetBar(0, center + new Vector2(0f, bandCenter), new Vector2(outer * 2f, band));
+        SetBar(1, center + new Vector2(0f, -bandCenter), new Vector2(outer * 2f, band));
+        SetBar(2, center + new Vector2(-bandCenter, 0f), new Vector2(band, inner * 2f));
+        SetBar(3, center + new Vector2(bandCenter, 0f), new Vector2(band, inner * 2f));
+    }
+
+    /// <summary>
+    /// 원 마스크 중심을 테두리 부모 기준 anchoredPosition(앵커 = 부모 중앙) 좌표로 돌려준다.
+    /// </summary>
+    Vector2 GetCircleCenterInBarSpace()
+    {
+        RectTransform parent = surroundBars[0].parent as RectTransform;
+        if (parent == null) return Vector2.zero;
+
+        Vector3 world = circleMask.TransformPoint(circleMask.rect.center);
+        Vector2 local = parent.InverseTransformPoint(world);
+        return local - parent.rect.center;
     }
 
     void SetBar(int index, Vector2 anchoredPosition, Vector2 size)
@@ -392,7 +512,9 @@ public class ProjectorFieldAdjust : MonoBehaviour
         {
             zoom = zoom,
             centerOffsetX = centerOffset.x,
-            centerOffsetY = centerOffset.y
+            centerOffsetY = centerOffset.y,
+            stretchX = stretch.x,
+            stretchY = stretch.y
         };
 
         try
@@ -425,6 +547,10 @@ public class ProjectorFieldAdjust : MonoBehaviour
 
             zoom = data.zoom;
             centerOffset = new Vector2(data.centerOffsetX, data.centerOffsetY);
+            // 늘리기 값이 없던 예전 파일은 0 으로 읽히므로 1(원래 비율)로 본다.
+            stretch = new Vector2(
+                data.stretchX > 0f ? data.stretchX : 1f,
+                data.stretchY > 0f ? data.stretchY : 1f);
             return true;
         }
         catch (Exception e)

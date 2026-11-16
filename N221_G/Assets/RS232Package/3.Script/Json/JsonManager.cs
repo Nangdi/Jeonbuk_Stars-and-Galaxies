@@ -78,9 +78,10 @@ public class JsonManager : MonoBehaviour
             return;
         }
 
-        portPath = Path.Combine(Application.streamingAssetsPath, "port.json");
-        tcpPath = Path.Combine(Application.streamingAssetsPath, "tcp.json");
-        gameDynamicDataPath = Path.Combine(Application.streamingAssetsPath, "Setting.json");
+        // 운영 설정은 persistentDataPath 에서 읽고 쓴다. 없으면 StreamingAssets 기본값을 복사해 온다 (ConfigPath).
+        portPath = ConfigPath.Get("port.json");
+        tcpPath = ConfigPath.Get("tcp.json");
+        gameDynamicDataPath = ConfigPath.Get("Setting.json");
         gameDataPath = Path.Combine(Application.persistentDataPath, "gameSettingData.json");
 
         gameSettingData ??= new GameSettingData();
@@ -115,6 +116,22 @@ public class JsonManager : MonoBehaviour
         Debug.Log($"Saved JSON: {path}");
     }
 
+    // 비교용: 공백·줄바꿈 차이는 무시한다 (값이 같으면 다시 저장하지 않음)
+    private static string NormalizeJson(string json)
+    {
+        if (string.IsNullOrEmpty(json)) return "";
+        var sb = new System.Text.StringBuilder(json.Length);
+        bool inString = false;
+        for (int i = 0; i < json.Length; i++)
+        {
+            char c = json[i];
+            if (c == '"' && (i == 0 || json[i - 1] != '\\')) inString = !inString;
+            if (!inString && char.IsWhiteSpace(c)) continue;
+            sb.Append(c);
+        }
+        return sb.ToString();
+    }
+
     // JSON 파일을 읽고, 파일이 없으면 기본값으로 새 파일을 만듭니다.
     // FromJsonOverwrite를 사용해 json에 없는 필드는 인스턴스 기본값을 유지한다.
     // (예: 기존 port.json에 enabled 필드가 없어도 PortConfig.enabled = true 가 보존됨)
@@ -130,8 +147,33 @@ public class JsonManager : MonoBehaviour
         }
 
         Debug.Log($"Loaded JSON: {path}");
-        string json = File.ReadAllText(path);
-        JsonUtility.FromJsonOverwrite(json, data);
+        string json;
+        try
+        {
+            json = File.ReadAllText(path);
+            JsonUtility.FromJsonOverwrite(json, data);
+        }
+        catch (Exception e)
+        {
+            // 깨진 파일은 덮어쓰지 않고 기본값으로 실행한다 (운영자가 고칠 수 있게)
+            Debug.LogError($"JSON 읽기 실패, 기본값 사용: {path} ({e.Message})");
+            return data;
+        }
+
+        // 새 버전에서 추가된 항목이 파일에 없으면 기본값으로 채워 다시 저장한다 (기존 값은 유지)
+        string merged = JsonUtility.ToJson(data, true);
+        if (NormalizeJson(merged) != NormalizeJson(json))
+        {
+            try
+            {
+                File.WriteAllText(path, merged);
+                Debug.Log($"JSON 새 항목 반영 저장: {path}");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"JSON 저장 실패: {path} ({e.Message})");
+            }
+        }
         return data;
     }
 }

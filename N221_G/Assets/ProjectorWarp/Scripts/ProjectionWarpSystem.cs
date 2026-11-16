@@ -132,7 +132,8 @@ namespace MultiProjectorWarpSystem
         {
             
             // 초기화 파일 경로를 StreamingAssets 폴더 기준으로 동적으로 지정
-            string initFilePath = Path.Combine(Application.streamingAssetsPath, "default_calibration.json");
+            // persistentDataPath 기준 (없으면 StreamingAssets 기본값을 복사해 옴, ConfigPath)
+            string initFilePath = ConfigPath.Get("default_calibration.json");
             if (File.Exists(initFilePath))
             {
                 LoadCalibration(initFilePath);
@@ -674,7 +675,8 @@ namespace MultiProjectorWarpSystem
             json += "}";
 
             // 저장 경로도 StreamingAssets 폴더 기준으로 지정 (로드 경로와 일치)
-            string savePath = Path.Combine(Application.streamingAssetsPath, Path.GetFileName(path));
+            // 실행 중에는 persistentDataPath, 에디터 편집 모드에서는 StreamingAssets 기본값 원본 (ConfigPath)
+            string savePath = ConfigPath.Get(Path.GetFileName(path));
             Directory.CreateDirectory(Path.GetDirectoryName(savePath));
             var sr = File.CreateText(savePath);
             sr.WriteLine(json);
@@ -688,7 +690,7 @@ namespace MultiProjectorWarpSystem
             if (path == null || path.Length == 0) return false;
 
             // 로드 경로도 StreamingAssets 기준으로 통일 (저장 경로와 일치 → 파일명만으로 저장/로드 가능)
-            path = Path.Combine(Application.streamingAssetsPath, Path.GetFileName(path));
+            path = ConfigPath.Get(Path.GetFileName(path));
 
             string json = "";
             try

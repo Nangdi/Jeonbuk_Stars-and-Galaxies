@@ -545,8 +545,8 @@ public partial class UserTableSettingBase : MonoBehaviour
                     starVideoType = StarVideoType.LittleStar;
                     RotionSoundPlay();
                 }
-                else { 
-                    
+                else {
+                    Debug.Log("회전 무시됨 [별 생성 완료 후 리셋 대기 중]");
                 }
             }
             else if(ballSetting.insertBallCount > ballSetting.littleInsertCountBall)
@@ -570,6 +570,9 @@ public partial class UserTableSettingBase : MonoBehaviour
                     BigVideoChangeDetectionValue(ballSetting.bigSaveRotatingDeviceCount);
                     starVideoType = StarVideoType.BigStar;
                     RotionSoundPlay();
+                }
+                else {
+                    Debug.Log("회전 무시됨 [별 생성 완료 후 리셋 대기 중]");
                 }
             }
         }

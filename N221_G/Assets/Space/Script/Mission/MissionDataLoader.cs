@@ -92,6 +92,12 @@ public class MissionDataLoader : MonoBehaviour
         [Header("미션2타임 정보")]
         public int mission2Time;
 
+        [Header("별만들기 종료 후 '미션 종료' 문구만 보이는 시간(초, 음수면 타임라인 기본 약 5초)")]
+        public float experienceEndTextTime = 2f;
+
+        [Header("별만들기 종료 후 전환 영상 재생 시간(초). 영상 전체가 이 시간에 끝나도록 배속. 0이면 원래 속도(약 20초)")]
+        public float experienceEndVideoTime = 15f;
+
     }
 
     [System.Serializable]
@@ -102,6 +108,10 @@ public class MissionDataLoader : MonoBehaviour
         public string startData= "";
         //종료 데이터
         public string endData = "";
+        //배경음 켜기 (SoundControl의 오디오)
+        public bool isBgmOn = true;
+        //효과음 켜기 (배경음 외 모든 AudioSource)
+        public bool isSfxOn = true;
     }
 
     //연습게임 점수 셋팅 설정 구간
@@ -183,7 +193,8 @@ public class MissionDataLoader : MonoBehaviour
     }
 
     private void MissionTextDataLoader() {
-        string missionText=Application.streamingAssetsPath + Path.DirectorySeparatorChar + "MissionText.json";
+        //persistent 경로 (없으면 StreamingAssets 기본값을 복사해 옴)
+        string missionText = MissionTextPath;
         DisableLoader();
         onLoader = StartCoroutine(OnLoader(missionText));
     }
@@ -207,14 +218,94 @@ public class MissionDataLoader : MonoBehaviour
         else
         {
             yield return null;
-            UnityWebRequest request = UnityWebRequest.Get(path);
-            yield return request.SendWebRequest();
-            if (string.IsNullOrEmpty(request.error)) {
-                //리스트 정보 리턴 구간
-                jsonLoadData = JsonConvert.DeserializeObject<JsonLoadData>(request.downloadHandler.text);
+            //File.ReadAllText 는 메모장 저장 시 붙는 BOM 을 자동으로 떼어 준다
+            string text = null;
+            try
+            {
+                text = File.ReadAllText(path);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("[MissionDataLoader] 설정 파일 읽기 실패: " + path + " (" + e.Message + ")");
+            }
+
+            JsonLoadData loaded = null;
+            if (text != null)
+            {
+                try
+                {
+                    loaded = JsonConvert.DeserializeObject<JsonLoadData>(text);
+                }
+                catch (Exception e)
+                {
+                    //깨진 파일은 덮어쓰지 않고 그대로 둔다 (운영자가 고칠 수 있게)
+                    Debug.LogError("[MissionDataLoader] 설정 파일 형식 오류: " + path + " (" + e.Message + ")");
+                }
+            }
+
+            if (loaded != null)
+            {
+                jsonLoadData = loaded;
+                //새 버전에서 추가된 항목을 기본값으로 채워 파일에 다시 저장 (기존 값은 그대로 유지)
+                if (FillMissingDefaults(jsonLoadData, text))
+                {
+                    WriteFile(path);
+                    Debug.Log("[MissionDataLoader] 새 설정 항목을 기본값으로 추가해 저장: " + path);
+                }
                 SetDataValue();
             }
         }
+    }
+
+    /// <summary>
+    /// 이전 버전 파일에 없던 항목을 기본값으로 채운다. 파일에 다시 써야 하면 true.
+    /// (Newtonsoft 는 없는 필드를 클래스 기본값으로 두지만, 없는 객체는 null 이 되므로 채워 준다)
+    /// </summary>
+    private static bool FillMissingDefaults(JsonLoadData d, string originalText)
+    {
+        bool changed = false;
+        if (d.missionDataList == null) { d.missionDataList = new List<MissionData>(); changed = true; }
+        if (d.timeSetting == null) { d.timeSetting = new TimeSetting(); changed = true; }
+        if (d.windowsSetting == null) { d.windowsSetting = new WindowsSetting(); changed = true; }
+        if (d.practiceScoreSetting == null) { d.practiceScoreSetting = new PracticeScoreSetting(); changed = true; }
+        if (d.mission1ScoreSetting == null) { d.mission1ScoreSetting = new MissionScoreSetting(); changed = true; }
+        if (d.mission2ScoreSetting == null) { d.mission2ScoreSetting = new MissionScoreSetting(); changed = true; }
+
+        //다시 직렬화한 결과에 원본에 없던 키가 있으면 새 항목이 생긴 것
+        if (!changed)
+        {
+            try
+            {
+                var before = Newtonsoft.Json.Linq.JObject.Parse(originalText);
+                var after = Newtonsoft.Json.Linq.JObject.FromObject(d);
+                changed = HasMissingKey(before, after);
+            }
+            catch (Exception) { }
+        }
+        return changed;
+    }
+
+    //after 에 있는 키가 before 에 없으면 true (하위 객체까지 확인)
+    private static bool HasMissingKey(Newtonsoft.Json.Linq.JToken before, Newtonsoft.Json.Linq.JToken after)
+    {
+        var a = after as Newtonsoft.Json.Linq.JObject;
+        if (a == null) return false;
+        var b = before as Newtonsoft.Json.Linq.JObject;
+        if (b == null) return true;
+        foreach (var prop in a.Properties())
+        {
+            Newtonsoft.Json.Linq.JToken child;
+            if (!b.TryGetValue(prop.Name, out child)) return true;
+            if (HasMissingKey(child, prop.Value)) return true;
+        }
+        return false;
+    }
+
+    private void WriteFile(string path)
+    {
+        string dir = Path.GetDirectoryName(path);
+        if (!string.IsNullOrEmpty(dir)) Directory.CreateDirectory(dir);
+        File.WriteAllText(path, JsonConvert.SerializeObject(jsonLoadData, Formatting.Indented));
     }
 
     //데이터 값 연동 구간 
@@ -272,12 +363,24 @@ public class MissionDataLoader : MonoBehaviour
         GameObjectControl.Instance.missionCount2.maxCount = jsonLoadData.timeSetting.mission2Time;
      
         UnityEngine.Cursor.visible = jsonLoadData.windowsSetting.isMouseCursor;
+        ApplySound(jsonLoadData.windowsSetting.isBgmOn, jsonLoadData.windowsSetting.isSfxOn);
         loadCompleteEvent.Invoke(jsonLoadData);
     }
 
-    //MissionText.json 경로
+    //배경음/효과음 음소거 적용 (비활성 오브젝트 포함)
+    private void ApplySound(bool bgmOn, bool sfxOn) {
+        var bgmSources = new HashSet<AudioSource>();
+        foreach (var sc in FindObjectsOfType<SoundControl>(true)) {
+            if (sc.audioSource != null) bgmSources.Add(sc.audioSource);
+        }
+        foreach (var src in FindObjectsOfType<AudioSource>(true)) {
+            src.mute = bgmSources.Contains(src) ? !bgmOn : !sfxOn;
+        }
+    }
+
+    //MissionText.json 경로 (persistentDataPath. 없으면 StreamingAssets 기본값을 복사해 옴)
     public string MissionTextPath {
-        get { return Application.streamingAssetsPath + Path.DirectorySeparatorChar + "MissionText.json"; }
+        get { return ConfigPath.Get("MissionText.json"); }
     }
 
     /// <summary>
@@ -285,8 +388,7 @@ public class MissionDataLoader : MonoBehaviour
     /// (설정 패널에서 호출)
     /// </summary>
     public void SaveAndApply() {
-        string jsonData = JsonConvert.SerializeObject(jsonLoadData, Formatting.Indented);
-        File.WriteAllText(MissionTextPath, jsonData);
+        WriteFile(MissionTextPath);
         SetDataValue();
     }
 

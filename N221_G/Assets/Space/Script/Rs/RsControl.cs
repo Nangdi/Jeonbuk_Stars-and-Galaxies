@@ -31,7 +31,11 @@ public class RsControl : MonoBehaviour
             Debug.Log(rsDataVO.Index + ":" + rsDataVO.Data);
             Command(rsDataVO.Data, rsDataVO.Index);
         }
-        catch (Exception e) { }
+        catch (Exception e)
+        {
+            // 파싱 실패/테이블 인덱스 오류로 입력이 무시되는 경우 추적용
+            Debug.LogError("[Rs232] 수신 데이터 처리 실패: " + data + " / " + e.Message);
+        }
     }
 
     private void Command(string data,int userData) {

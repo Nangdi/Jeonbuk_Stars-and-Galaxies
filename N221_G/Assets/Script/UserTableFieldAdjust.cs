@@ -125,7 +125,8 @@ public class UserTableFieldAdjust : MonoBehaviour
 
     public static string SavePath
     {
-        get { return Path.Combine(Application.streamingAssetsPath, SaveFileName); }
+        // persistentDataPath (없으면 StreamingAssets 기본값을 복사해 옴). 빌드를 덮어써도 현장 보정값 유지
+        get { return ConfigPath.Get(SaveFileName); }
     }
 
     Vector2 Center
@@ -177,6 +178,9 @@ public class UserTableFieldAdjust : MonoBehaviour
         }
 
         if (!HasSelection) return;
+
+        // Ctrl + 방향키는 화면 늘리기/줄이기(ProjectorFieldAdjust) 용이다.
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) return;
 
         bool fine = fineModifier != KeyCode.None &&
                     (Input.GetKey(fineModifier) || Input.GetKey(KeyCode.RightShift));

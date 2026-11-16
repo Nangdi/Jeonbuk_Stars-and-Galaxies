@@ -96,6 +96,9 @@ public static class GameSettingsPanelBuilder
         AddInput(c, res, "미션1 시간", GameSettingsPanelUI.FieldKey.Mission1Time, bindings);
         AddInput(c, res, "미션1 종료 딜레이", GameSettingsPanelUI.FieldKey.Mission1EndDelay, bindings);
         AddInput(c, res, "미션2 시간", GameSettingsPanelUI.FieldKey.Mission2Time, bindings);
+        Header(c, "── 별만들기 → 미션1 전환 (초) ──");
+        AddInput(c, res, "종료 문구 표시 (음수=원래 5초)", GameSettingsPanelUI.FieldKey.ExperienceEndTextTime, bindings, false);
+        AddInput(c, res, "전환 영상 길이·배속 (0=원래 속도)", GameSettingsPanelUI.FieldKey.ExperienceEndVideoTime, bindings, false);
 
         Header(c, "── 정답 범위 (예: 5  또는  1,4) ──");
         AddInput(c, res, "미션1 정답범위", GameSettingsPanelUI.FieldKey.Range1, bindings, false);

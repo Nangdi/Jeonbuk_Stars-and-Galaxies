@@ -1,9 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 현장 운영용 게임 설정 패널.
 /// ESC로 열고, 값 수정 후 [저장 & 적용]을 누르면
-/// MissionText.json에 기록되고 게임에 실시간 반영된다.
+/// persistentDataPath/MissionText.json에 기록되고 게임에 실시간 반영된다.
 /// (편집 대상은 MissionDataLoader.jsonLoadData)
 /// </summary>
 public class GameSettingsPanel : MonoBehaviour
@@ -14,11 +14,11 @@ public class GameSettingsPanel : MonoBehaviour
     [Header("패널 토글 키")]
     public KeyCode toggleKey = KeyCode.Escape;
 
-    [Header("패널 크기·위치 (픽셀)")]
+    [Header("패널 크기 (픽셀) - 화면 중앙 왼쪽에 배치")]
     public float panelWidth = 470f;
     public float panelHeight = 640f;
-    public float panelX = 20f;
-    public float panelY = 20f;
+    [Tooltip("화면 중앙선과 패널 오른쪽 끝 사이 간격 (RS232 로그창과 나란히 배치)")]
+    public float centerGap = 10f;
 
     [Header("글자 크기")]
     public int fontSize = 15;
@@ -41,11 +41,13 @@ public class GameSettingsPanel : MonoBehaviour
 
     // 편집 버퍼 (저장 전까지 실제 값 미변경)
     private string connectionTime, practiceTime, mission1Time, mission1EndDelay, mission2Time;
+    private string expEndTextTime, expEndVideoMax;
     private string range1, range2;
     private string m1Right, m1Must; private bool m1Wrong;
     private string m2Right, m2Must; private bool m2Wrong;
     private string pLittleRot, pLittleResult, pLittleMax, pBigRot, pBigResult, pBigMax;
     private bool cursorVisible;
+    private bool bgmOn, sfxOn;
 
     private MissionDataLoader.JsonLoadData Data {
         get { return missionDataLoader != null ? missionDataLoader.jsonLoadData : null; }
@@ -88,6 +90,8 @@ public class GameSettingsPanel : MonoBehaviour
         mission1Time = t.mission1Time.ToString();
         mission1EndDelay = t.mission1EndTimeDelay.ToString();
         mission2Time = t.mission2Time.ToString();
+        expEndTextTime = t.experienceEndTextTime.ToString();
+        expEndVideoMax = t.experienceEndVideoTime.ToString();
 
         if (d.missionDataList != null && d.missionDataList.Count > 0) range1 = d.missionDataList[0].rightAnswerRange;
         if (d.missionDataList != null && d.missionDataList.Count > 1) range2 = d.missionDataList[1].rightAnswerRange;
@@ -108,12 +112,19 @@ public class GameSettingsPanel : MonoBehaviour
         pBigMax = p.bigRotatingNumberMaxRot.ToString();
 
         cursorVisible = d.windowsSetting.isMouseCursor;
+        bgmOn = d.windowsSetting.isBgmOn;
+        sfxOn = d.windowsSetting.isSfxOn;
         status = "";
     }
 
     private static int PI(string s, int fallback)
     {
         int v; return int.TryParse(s, out v) ? v : fallback;
+    }
+
+    private static float PF(string s, float fallback)
+    {
+        float v; return float.TryParse(s, out v) ? v : fallback;
     }
 
     private void SaveBuffers()
@@ -127,6 +138,8 @@ public class GameSettingsPanel : MonoBehaviour
         t.mission1Time = PI(mission1Time, t.mission1Time);
         t.mission1EndTimeDelay = PI(mission1EndDelay, t.mission1EndTimeDelay);
         t.mission2Time = PI(mission2Time, t.mission2Time);
+        t.experienceEndTextTime = PF(expEndTextTime, t.experienceEndTextTime);
+        t.experienceEndVideoTime = Mathf.Max(0f, PF(expEndVideoMax, t.experienceEndVideoTime));
 
         if (d.missionDataList != null && d.missionDataList.Count > 0) d.missionDataList[0].rightAnswerRange = string.IsNullOrEmpty(range1) ? d.missionDataList[0].rightAnswerRange : range1.Trim();
         if (d.missionDataList != null && d.missionDataList.Count > 1) d.missionDataList[1].rightAnswerRange = string.IsNullOrEmpty(range2) ? d.missionDataList[1].rightAnswerRange : range2.Trim();
@@ -147,6 +160,8 @@ public class GameSettingsPanel : MonoBehaviour
         p.bigRotatingNumberMaxRot = PI(pBigMax, p.bigRotatingNumberMaxRot);
 
         d.windowsSetting.isMouseCursor = cursorVisible;
+        d.windowsSetting.isBgmOn = bgmOn;
+        d.windowsSetting.isSfxOn = sfxOn;
 
         try
         {
@@ -173,7 +188,9 @@ public class GameSettingsPanel : MonoBehaviour
 
         float w = panelWidth;
         float h = Mathf.Min(Screen.height - 40f, panelHeight);
-        float x = panelX, y = panelY;
+        // 화면 중앙 기준: 중앙선 왼쪽에 붙이고 세로는 정중앙
+        float x = Screen.width * 0.5f - centerGap - w;
+        float y = (Screen.height - h) * 0.5f;
 
         // 배경(가독성용 어두운 박스)
         Color prev = GUI.color;
@@ -191,6 +208,9 @@ public class GameSettingsPanel : MonoBehaviour
         mission1Time = Row("미션1 시간", mission1Time);
         mission1EndDelay = Row("미션1 종료 딜레이", mission1EndDelay);
         mission2Time = Row("미션2 시간", mission2Time);
+        GUILayout.Label("별만들기 → 미션1 전환 (음수/0 = 원래 길이)");
+        expEndTextTime = Row("종료 문구 표시", expEndTextTime);
+        expEndVideoMax = Row("전환 영상 길이(배속)", expEndVideoMax);
 
         GUILayout.Space(8f);
         GUILayout.Label("── 정답 범위 (예: 5  또는  1,4) ──");
@@ -213,6 +233,11 @@ public class GameSettingsPanel : MonoBehaviour
         pBigRot = Row("큰별 회전점수", pBigRot);
         pBigResult = Row("큰별 결과점수", pBigResult);
         pBigMax = Row("큰별 회전카운트", pBigMax);
+
+        GUILayout.Space(8f);
+        GUILayout.Label("── 사운드 ──");
+        bgmOn = RowToggle("배경음", bgmOn);
+        sfxOn = RowToggle("효과음", sfxOn);
 
         GUILayout.Space(8f);
         GUILayout.Label("── 기타 ──");

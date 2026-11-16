@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
@@ -8,7 +8,7 @@ using Formatting = Newtonsoft.Json.Formatting;
 /// GameSettingsPanel 전용 커스텀 인스펙터.
 /// 실행 중 OnGUI 패널을 열지 않고도, 에디터 Inspector에서
 /// MissionText.json 값을 직접 수정하고 저장할 수 있다.
-///  - 에디트 모드: StreamingAssets/MissionText.json 파일을 직접 읽고/쓴다.
+///  - 에디트 모드: StreamingAssets/MissionText.json(기본값 원본)을 직접 읽고/쓴다. 실행 중에는 persistentDataPath 쪽을 쓴다.
 ///  - 플레이 모드: 로더의 jsonLoadData를 편집하고 SaveAndApply()로 실시간 반영.
 /// </summary>
 [CustomEditor(typeof(GameSettingsPanel))]
@@ -53,7 +53,7 @@ public class GameSettingsPanelEditor : Editor
     // ─────────────────────────── 에디트 모드 ───────────────────────────
     private void DrawEditMode()
     {
-        EditorGUILayout.HelpBox("StreamingAssets/MissionText.json 파일을 직접 편집합니다.", MessageType.None);
+        EditorGUILayout.HelpBox("StreamingAssets/MissionText.json(기본값 원본)을 편집합니다. 현장 PC에 이미 persistent 설정이 있으면 이 값은 적용되지 않습니다.", MessageType.None);
 
         if (!loaded)
         {
@@ -157,6 +157,8 @@ public class GameSettingsPanelEditor : Editor
         t.practiceTime = EditorGUILayout.IntField("연습 시간", t.practiceTime);
         t.mission1Time = EditorGUILayout.IntField("미션1 시간", t.mission1Time);
         t.mission1EndTimeDelay = EditorGUILayout.IntField("미션1 종료 딜레이", t.mission1EndTimeDelay);
+        t.experienceEndTextTime = EditorGUILayout.FloatField("별만들기 종료 문구 표시", t.experienceEndTextTime);
+        t.experienceEndVideoTime = EditorGUILayout.FloatField("전환 영상 길이(배속)", t.experienceEndVideoTime);
         t.mission2Time = EditorGUILayout.IntField("미션2 시간", t.mission2Time);
 
         EditorGUILayout.Space();

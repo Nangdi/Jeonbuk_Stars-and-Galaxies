@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// 현장 운영용 게임 설정 패널 (uGUI 버전).
 /// 기존 OnGUI 방식(GameSettingsPanel)을 대체한다.
 /// 실제 Canvas/InputField/Toggle/Button 오브젝트를 씬에서 직접 관리할 수 있으며,
-/// 값 수정 후 [저장 & 적용]을 누르면 MissionText.json에 기록되고 게임에 실시간 반영된다.
+/// 값 수정 후 [저장 & 적용]을 누르면 persistentDataPath/MissionText.json에 기록되고 게임에 실시간 반영된다.
 /// 패널 오브젝트는 GameSettingsPanelBuilder(에디터 메뉴)로 생성한다.
 /// </summary>
 public class GameSettingsPanelUI : MonoBehaviour
@@ -20,7 +20,9 @@ public class GameSettingsPanelUI : MonoBehaviour
         M1Right, M1Must, M1Wrong,
         M2Right, M2Must, M2Wrong,
         PLittleRot, PLittleResult, PLittleMax, PBigRot, PBigResult, PBigMax,
-        CursorVisible
+        CursorVisible,
+        // 별만들기 → 미션1 전환 (뒤에 추가해 기존 직렬화 값 유지)
+        ExperienceEndTextTime, ExperienceEndVideoTime
     }
 
     [System.Serializable]
@@ -161,6 +163,11 @@ public class GameSettingsPanelUI : MonoBehaviour
         int v; return int.TryParse(s, out v) ? v : fallback;
     }
 
+    private static float PF(string s, float fallback)
+    {
+        float v; return float.TryParse(s, out v) ? v : fallback;
+    }
+
     private string GetString(MissionDataLoader.JsonLoadData d, FieldKey key)
     {
         var t = d.timeSetting;
@@ -172,6 +179,8 @@ public class GameSettingsPanelUI : MonoBehaviour
             case FieldKey.Mission1Time: return t.mission1Time.ToString();
             case FieldKey.Mission1EndDelay: return t.mission1EndTimeDelay.ToString();
             case FieldKey.Mission2Time: return t.mission2Time.ToString();
+            case FieldKey.ExperienceEndTextTime: return t.experienceEndTextTime.ToString();
+            case FieldKey.ExperienceEndVideoTime: return t.experienceEndVideoTime.ToString();
             case FieldKey.Range1: return HasMission(d, 0) ? d.missionDataList[0].rightAnswerRange : "";
             case FieldKey.Range2: return HasMission(d, 1) ? d.missionDataList[1].rightAnswerRange : "";
             case FieldKey.M1Right: return d.mission1ScoreSetting.rightAnswerScore.ToString();
@@ -199,6 +208,8 @@ public class GameSettingsPanelUI : MonoBehaviour
             case FieldKey.Mission1Time: t.mission1Time = PI(s, t.mission1Time); break;
             case FieldKey.Mission1EndDelay: t.mission1EndTimeDelay = PI(s, t.mission1EndTimeDelay); break;
             case FieldKey.Mission2Time: t.mission2Time = PI(s, t.mission2Time); break;
+            case FieldKey.ExperienceEndTextTime: t.experienceEndTextTime = PF(s, t.experienceEndTextTime); break;
+            case FieldKey.ExperienceEndVideoTime: t.experienceEndVideoTime = Mathf.Max(0f, PF(s, t.experienceEndVideoTime)); break;
             case FieldKey.Range1:
                 if (HasMission(d, 0) && !string.IsNullOrEmpty(s)) d.missionDataList[0].rightAnswerRange = s.Trim();
                 break;

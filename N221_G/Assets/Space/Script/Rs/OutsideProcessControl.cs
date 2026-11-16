@@ -7,7 +7,7 @@ using UnityEngine.Events;
 /// 컨트롤러 RS232 통신 베이스.
 ///
 /// [구성] 단일 컨트롤러(포트 1개)가 5개 테이블을 모두 담당한다.
-/// - 포트 설정: StreamingAssets/port.json (controllerId 0, COM 1개)
+/// - 포트 설정: persistentDataPath/port.json (기본값 원본은 StreamingAssets) (controllerId 0, COM 1개)
 /// - 송신: SendConsole(index, msg) → 단일 포트로 "E{index}{cmd}E"(예: E31E) 전송.
 ///         프레임에 테이블 번호(index, 0~4)를 포함하므로 컨트롤러가 어느 테이블인지 구분 가능.
 /// - 수신: 컨트롤러가 JSON {Index,Data}로 어느 테이블 이벤트인지 담아 보냄.
@@ -23,7 +23,7 @@ public class OutsideProcessControl : MonoBehaviour
     [SerializeField]
     private string processFile;
 
-    [Header("(미사용) 이전 포트 설정 - 현재 포트 설정은 StreamingAssets/port.json 사용")]
+    [Header("(미사용) 이전 포트 설정 - 현재 포트 설정은 persistentDataPath/port.json 사용")]
     public List<ProcessData> processDataList;
 
     [Header("이벤트 핸들러")]

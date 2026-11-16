@@ -1,7 +1,7 @@
 /// <summary>
 /// 이 프로젝트(별/은하 테이블)용 RS232 매니저.
 ///
-/// 포트 설정은 StreamingAssets/port.json(JsonManager)에서 읽어 컨트롤러(테이블)별로 포트를 연다.
+/// 포트 설정은 persistentDataPath/port.json(JsonManager, 없으면 StreamingAssets 기본값 복사)에서 읽어 컨트롤러(테이블)별로 포트를 연다.
 /// 수신 데이터는 부모 SerialPortManager가 OnDataReceived 이벤트로 알려주며,
 /// 실제 게임 처리(회전/공투입 등)는 OutsideProcessControl이 그 이벤트를 구독해 담당한다.
 ///

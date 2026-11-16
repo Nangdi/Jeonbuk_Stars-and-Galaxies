@@ -25,15 +25,19 @@
   ],
   "timeSetting": {
     "connectionTime": 2,
-    "practiceTime": 2,
+    "practiceTime": 60,
     "mission1Time": 60,
     "mission1EndTimeDelay": 2,
-    "mission2Time": 4
+    "mission2Time": 4,
+    "experienceEndTextTime": 2.0,
+    "experienceEndVideoTime": 15.0
   },
   "windowsSetting": {
     "isMouseCursor": true,
     "startData": "E",
-    "endData": "E"
+    "endData": "E",
+    "isBgmOn": true,
+    "isSfxOn": true
   },
   "practiceScoreSetting": {
     "littleRotScore": 10,
